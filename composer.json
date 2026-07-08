@@ -1,0 +1,77 @@
+{
+    "name": "n7studios/postiz-auto-poster",
+    "description": "WordPress to Postiz Plugin",
+    "type": "project",
+    "require-dev": {
+        "php-webdriver/webdriver": "^1.0",
+        "wp-coding-standards/wpcs": "^3.0.0",
+        "phpstan/phpstan": "^1.0 || ^2.0",
+        "szepeviktor/phpstan-wordpress": "^1.0 || ^2.0",
+        "lucatume/wp-browser": "^3.0 || ^4.0",
+        "gumlet/php-image-resize": "^1.6"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "create-release-assets": [
+            "php -n $(which wp) i18n make-pot ./ ./languages/postiz-auto-poster.pot",
+            "@php .scripts/create-actions-filters-docs.php"
+        ],
+        "create-pot": "php -n $(which wp) i18n make-pot ./ ./languages/postiz-auto-poster.pot",
+        "create-dev-docs": "@php .scripts/create-actions-filters-docs.php",
+        "phpcs": "vendor/bin/phpcs ./ -s -v",
+        "phpcbf": "vendor/bin/phpcbf ./ -s -v",
+        "phpcs-tests": "vendor/bin/phpcs ./tests --standard=phpcs.tests.xml -s -v",
+        "phpcbf-tests": "vendor/bin/phpcbf ./tests --standard=phpcs.tests.xml -s -v",
+        "lint-css": "npm run lint:css",
+        "fix-css": "npm run fix:css",
+        "build-css": "npm run build:css",
+        "lint-js": "npm run lint:js",
+        "fix-js": "npm run fix:js",
+        "build-js": "npm run build:js",
+        "build": "npm run build",
+        "phpstan": "vendor/bin/phpstan analyse --memory-limit=1250M",
+        "test": [
+            "vendor/bin/codecept build",
+            "vendor/bin/codecept run EndToEnd @additional_args --fail-fast"
+        ],
+        "test-integration": [
+            "vendor/bin/codecept build",
+            "vendor/bin/codecept run Integration @additional_args --fail-fast"
+        ]
+    },
+    "archive": {
+        "exclude": [
+            "!vendor/*",
+            ".circleci",
+            ".github",
+            "bin",
+            "tests",
+            ".distignore",
+            ".env",
+            ".gitignore",
+            ".git",
+            ".wordpress-org",
+            ".travis.yml",
+            "circle.yml",
+            "codeception.dist.yml",
+            "composer.json",
+            "composer.lock",
+            "Gruntfile.js",
+            "log.txt",
+            "package.json",
+            "package-lock.json",
+            "phpcs.xml.dist",
+            "phpunit.xml",
+            "phpunit.xml.dist",
+            "node_modules",
+            "readme.md",
+            "tags"
+        ]
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}

@@ -1,0 +1,39 @@
+name: Deploy to WordPress.org
+
+on:
+  release:
+    types: [ published ]
+
+permissions:
+  contents: write
+
+jobs:
+  tag:
+    # Name
+    name: Plugin Deployment
+    
+    # Virtual Environment to use
+    # @see: https://github.com/actions/virtual-environments
+    runs-on: ubuntu-latest
+
+    # Steps to deploy
+    steps:
+      # Checkout (copy) this repository's Plugin to this VM.
+      - name: Checkout Plugin
+        uses: actions/checkout@v7
+
+      # Deploy to wordpress.org.
+      - name: WordPress Plugin Deploy
+        id: deploy
+        uses: 10up/action-wordpress-plugin-deploy@stable
+        with:
+          generate-zip: true
+        env:
+          SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+          SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+          SLUG: postiz-auto-poster
+          
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v3
+        with:
+          files: ${{ steps.deploy.outputs.zip-path }}

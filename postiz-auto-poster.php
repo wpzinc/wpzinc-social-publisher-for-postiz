@@ -1,0 +1,120 @@
+<?php
+/**
+ * Postiz Auto Poster WordPress Plugin.
+ *
+ * @package Postiz_Auto_Poster
+ * @author WP Zinc
+ *
+ * @wordpress-plugin
+ * Plugin Name: Postiz Auto Poster
+ * Plugin URI: http://www.wpzinc.com
+ * Version: 1.0.0
+ * Author: WP
+ * Author URI: http://www.wpzinc.com
+ * Description: Send WordPress Pages, Posts or Custom Post Types to your Postiz (postiz.io) account for scheduled publishing to social networks.
+ * Text Domain: postiz-auto-poster
+ * License:     GPLv3 or later
+ * License URI: https://www.gnu.org/licenses/gpl-3.0.html
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
+// Bail if Plugin is alread loaded.
+if ( class_exists( 'Postiz_Auto_Poster' ) ) {
+	return;
+}
+
+// Define Plugin version and build date.
+define( 'POSTIZ_AUTO_POSTER_PLUGIN_VERSION', '1.0.0' );
+define( 'POSTIZ_AUTO_POSTER_PLUGIN_BUILD_DATE', '2026-07-08 14:00:00' );
+
+// Define Plugin paths.
+define( 'POSTIZ_AUTO_POSTER_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'POSTIZ_AUTO_POSTER_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+
+/**
+ * Define the autoloader for this Plugin
+ *
+ * @since   1.0.0
+ *
+ * @param   string $class_name     The class to load.
+ */
+function Postiz_Auto_Poster_Autoloader( $class_name ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+
+	// Define the required start of the class name.
+	$class_start_name = 'WP_To_Social_Pro';
+
+	// Get the number of parts the class start name has.
+	$class_parts_count = count( explode( '_', $class_start_name ) );
+
+	// Break the class name into an array.
+	$class_path = explode( '_', $class_name );
+
+	// Bail if it's not a minimum length (i.e. doesn't potentially have WP_To_Social_Pro).
+	if ( count( $class_path ) < $class_parts_count ) {
+		return;
+	}
+
+	// Build the base class path for this class.
+	$base_class_path = '';
+	for ( $i = 0; $i < $class_parts_count; $i++ ) {
+		$base_class_path .= $class_path[ $i ] . '_';
+	}
+	$base_class_path = trim( $base_class_path, '_' );
+
+	// Bail if the first parts don't match what we expect.
+	if ( $base_class_path !== $class_start_name ) {
+		return;
+	}
+
+	// Define the file name.
+	$file_name = 'class-' . str_replace( '_', '-', strtolower( $class_name ) ) . '.php';
+
+	// Define the paths to search for the file.
+	$include_paths = array(
+		POSTIZ_AUTO_POSTER_PLUGIN_PATH . 'lib/includes',
+		POSTIZ_AUTO_POSTER_PLUGIN_PATH . 'lib/includes/integrations',
+		POSTIZ_AUTO_POSTER_PLUGIN_PATH . 'includes',
+	);
+
+	// Iterate through the include paths to find the file.
+	foreach ( $include_paths as $path ) {
+		if ( file_exists( $path . '/' . $file_name ) ) {
+			require_once $path . '/' . $file_name;
+			return;
+		}
+	}
+
+}
+spl_autoload_register( 'postiz_auto_poster_autoloader' );
+
+// Load Activation, Cron and Deactivation functions.
+require_once POSTIZ_AUTO_POSTER_PLUGIN_PATH . 'includes/activation.php';
+require_once POSTIZ_AUTO_POSTER_PLUGIN_PATH . 'includes/cron.php';
+require_once POSTIZ_AUTO_POSTER_PLUGIN_PATH . 'includes/functions.php';
+require_once POSTIZ_AUTO_POSTER_PLUGIN_PATH . 'includes/deactivation.php';
+register_activation_hook( __FILE__, 'postiz_auto_poster_activate' );
+if ( version_compare( get_bloginfo( 'version' ), '5.1', '>=' ) ) {
+	add_action( 'wp_insert_site', 'postiz_auto_poster_activate_new_site' );
+} else {
+	add_action( 'wpmu_new_blog', 'postiz_auto_poster_activate_new_site' );
+}
+add_action( 'activate_blog', 'postiz_auto_poster_activate_new_site' );
+register_deactivation_hook( __FILE__, 'postiz_auto_poster_deactivate' );
+
+/**
+ * Main function to return Plugin instance.
+ *
+ * @since   1.0.0
+ */
+function Postiz_Auto_Poster() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+
+	return Postiz_Auto_Poster::get_instance();
+
+}
+
+// Finally, initialize the Plugin.
+require_once POSTIZ_AUTO_POSTER_PLUGIN_PATH . 'includes/class-postiz-auto-poster.php';
+$postiz_auto_poster = Postiz_Auto_Poster();
