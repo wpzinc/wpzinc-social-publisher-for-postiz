@@ -78,7 +78,7 @@ class WP_To_Social_Pro_Image {
 		 * @param   string  $network    Social Network.
 		 * @param   string  $post_type  Post Type.
 		 */
-		$options = apply_filters( $this->base->plugin->filter_name . '_get_status_image_options', $options, $network, $post_type );
+		$options = apply_filters( 'postiz_auto_poster_get_status_image_options', $options, $network, $post_type );
 
 		// Return filtered results.
 		return $options;

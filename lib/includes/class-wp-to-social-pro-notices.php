@@ -132,7 +132,7 @@ class WP_To_Social_Pro_Notices {
 		 * @param   array   $success_notices    Success Notices.
 		 * @param   object  $this->notices      Success and Error Notices.
 		 */
-		$success_notices = apply_filters( $this->base->plugin->filter_name . '_notices_get_success_notices', $success_notices, $this->notices );
+		$success_notices = apply_filters( 'postiz_auto_poster_notices_get_success_notices', $success_notices, $this->notices );
 
 		// Return.
 		return $success_notices;
@@ -203,7 +203,7 @@ class WP_To_Social_Pro_Notices {
 		 * @param   array   $warning_notices    Warning Notices.
 		 * @param   object  $this->notices      Success, Warning and Error Notices.
 		 */
-		$warning_notices = apply_filters( $this->base->plugin->filter_name . '_notices_get_warning_notices', $warning_notices, $this->notices );
+		$warning_notices = apply_filters( 'postiz_auto_poster_notices_get_warning_notices', $warning_notices, $this->notices );
 
 		// Return.
 		return $warning_notices;
@@ -266,7 +266,7 @@ class WP_To_Social_Pro_Notices {
 		 * @param   array   $error_notices  Error Notices.
 		 * @param   object  $this->notices  Success and Error Notices.
 		 */
-		$error_notices = apply_filters( $this->base->plugin->filter_name . '_notices_get_error_notices', $error_notices, $this->notices );
+		$error_notices = apply_filters( 'postiz_auto_poster_notices_get_error_notices', $error_notices, $this->notices );
 
 		// Return.
 		return $error_notices;
@@ -323,7 +323,7 @@ class WP_To_Social_Pro_Notices {
 		 *
 		 * @param   array   $notices    Success and Error Notices.
 		 */
-		$notices = apply_filters( $this->base->plugin->filter_name . '_notices_get_notices', $notices );
+		$notices = apply_filters( 'postiz_auto_poster_notices_get_notices', $notices );
 
 		// If not an array, setup.
 		if ( ! is_array( $notices ) ) {
@@ -367,7 +367,7 @@ class WP_To_Social_Pro_Notices {
 		 *
 		 * @param   array   $notices    Success and Error Notices.
 		 */
-		$notices = apply_filters( $this->base->plugin->filter_name . '_notices_save', $notices );
+		$notices = apply_filters( 'postiz_auto_poster_notices_save', $notices );
 
 		// Update settings.
 		set_transient( $this->key_prefix, $notices, 60 );
@@ -396,7 +396,7 @@ class WP_To_Social_Pro_Notices {
 		 *
 		 * @since   3.9.6
 		 */
-		do_action( $this->base->plugin->filter_name . '_notices_delete_notices' );
+		do_action( 'postiz_auto_poster_notices_delete_notices' );
 
 		return true;
 

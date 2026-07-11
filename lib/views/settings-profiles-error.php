@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php
 			echo esc_html(
 				sprintf(
-				/* translators: Social Media Service Name (Buffer, Hootsuite) */
+				/* translators: Social Media Service Name  */
 					__( 'Visit your %s account to resolve this error.', 'postiz-auto-poster' ),
 					$this->base->plugin->account
 				)
@@ -34,7 +34,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php
 			echo esc_html(
 				sprintf(
-				/* translators: Social Media Service Name (Buffer, Hootsuite) */
+				/* translators: Social Media Service Name  */
 					__( 'Visit %s', 'postiz-auto-poster' ),
 					$this->base->plugin->account
 				)

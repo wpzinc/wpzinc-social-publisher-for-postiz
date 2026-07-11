@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php
 						echo esc_html(
 							sprintf(
-							/* translators: Social Media Service Name (Buffer, Hootsuite) */
+							/* translators: Social Media Service Name  */
 								__( '%s: Status Created At', 'postiz-auto-poster' ),
 								$this->base->plugin->account
 							)
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php
 						echo esc_html(
 							sprintf(
-								/* translators: Social Media Service Name (Buffer, Hootsuite) */
+								/* translators: Social Media Service Name  */
 								__( '%s: Status Scheduled For', 'postiz-auto-poster' ),
 								$this->base->plugin->account
 							)

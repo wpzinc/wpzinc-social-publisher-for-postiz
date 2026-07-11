@@ -109,7 +109,7 @@ class WP_To_Social_Pro_Settings {
 		 * @param   array   $settings   Settings.
 		 * @param   string  $type       Post Type.
 		 */
-		$settings = apply_filters( $this->base->plugin->filter_name . '_get_settings', $settings, $type );
+		$settings = apply_filters( 'postiz_auto_poster_get_settings', $settings, $type );
 
 		// Return result.
 		return $settings;
@@ -142,7 +142,7 @@ class WP_To_Social_Pro_Settings {
 		 * @param   string  $type                Post Type.
 		 * @param   array   $existing_settings   Existing Settings.
 		 */
-		$settings = apply_filters( $this->base->plugin->filter_name . '_update_settings', $settings, $type, $existing_settings );
+		$settings = apply_filters( 'postiz_auto_poster_update_settings', $settings, $type, $existing_settings );
 
 		// Save.
 		$result = $this->update_option( $type, $settings );
@@ -189,7 +189,7 @@ class WP_To_Social_Pro_Settings {
 			return new WP_Error(
 				$this->base->plugin->filter_name . '_settings_update_settings_duplicates',
 				sprintf(
-					/* translators: %1$s: Post Type Name, Plural, %2$s: Social Media Profile Name, %3$s: Action (Publish, Update, Repost, Bulk Publish), %4$s: Social Media Service Name (Buffer, Hootsuite) */
+					/* translators: %1$s: Post Type Name, Plural, %2$s: Social Media Profile Name, %3$s: Action (Publish, Update, Repost, Bulk Publish), %4$s: Social Media Service Name  */
 					__( 'Two or more statuses defined in %1$s > %2$s > %3$s are the same. Please correct this to ensure each status update is unique, otherwise your status updates will NOT publish to %4$s as they will be seen as duplicates, which violate Facebook and Twitter\'s Terms of Service.', 'postiz-auto-poster' ),
 					$post_type_object->label,
 					$profile,
@@ -254,7 +254,7 @@ class WP_To_Social_Pro_Settings {
 		 * @param   array   $settings   Settings.
 		 * @param   string  $type       Post Type.
 		 */
-		$settings = apply_filters( $this->base->plugin->filter_name . '_default_installation_settings', $settings );
+		$settings = apply_filters( 'postiz_auto_poster_default_installation_settings', $settings );
 
 		// Return.
 		return $settings;
@@ -493,7 +493,7 @@ class WP_To_Social_Pro_Settings {
 		 *
 		 * @param   array   $status     Status.
 		 */
-		$status = apply_filters( $this->base->plugin->filter_name . '_settings_get_default_status', $status );
+		$status = apply_filters( 'postiz_auto_poster_settings_get_default_status', $status );
 
 		// Return.
 		return $status;
@@ -614,7 +614,7 @@ class WP_To_Social_Pro_Settings {
 		 *
 		 * @param   array   $status     Status.
 		 */
-		$status = apply_filters( $this->base->plugin->filter_name . '_settings_validate_status', $status );
+		$status = apply_filters( 'postiz_auto_poster_settings_validate_status', $status );
 
 		// Return.
 		return $status;
@@ -792,8 +792,8 @@ class WP_To_Social_Pro_Settings {
 		// Delete the account.
 		unset( $accounts[ $account_id ] );
 
-		// Delete the profile transient for this account.
-		delete_transient( $this->base->plugin->name . '_' . $this->base->plugin->account . '_api_profiles_' . $account_id );
+		// Delete the stored profiles for this account.
+		delete_option( $this->base->plugin->name . '-profiles-' . $account_id );
 
 		// Update the accounts.
 		return update_option( $this->base->plugin->settingsName . '-accounts', $accounts );
@@ -963,7 +963,7 @@ class WP_To_Social_Pro_Settings {
 		 * @param   string  $value  Option Value.
 		 * @param   string  $key    Option Key.
 		 */
-		$value = apply_filters( $this->base->plugin->filter_name . '_update_option', $value, $key );
+		$value = apply_filters( 'postiz_auto_poster_update_option', $value, $key );
 
 		// Update.
 		return update_option( $this->base->plugin->settingsName . '-' . $key, $value );

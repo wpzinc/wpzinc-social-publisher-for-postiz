@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<?php
 									echo esc_html(
 										sprintf(
-										/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite), %2$s: Social Media Service Name (Buffer, Hootsuite) */
+										/* translators: %1$s: Social Media Service Name , %2$s: Social Media Service Name  */
 											__( 'To allow this Plugin to post updates to your social media profiles using %1$s, please authorize %2$s below.', 'postiz-auto-poster' ),
 											$this->base->plugin->account,
 											$this->base->plugin->account
@@ -48,7 +48,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									<?php
 									echo esc_html(
 										sprintf(
-										/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite) */
+										/* translators: %1$s: Social Media Service Name  */
 											__( 'Don\'t have a %1$s account?', 'postiz-auto-poster' ),
 											$this->base->plugin->account
 										)
@@ -69,7 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							 *
 							 * @param   array   $schedule   Schedule Options
 							 */
-							do_action( $this->base->plugin->filter_name . '_output_auth' );
+							do_action( 'postiz_auto_poster_output_auth' );
 							?>
 						</div>
 					</div>

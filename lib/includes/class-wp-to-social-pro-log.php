@@ -350,7 +350,7 @@ class WP_To_Social_Pro_Log {
 			add_meta_box(
 				$this->base->plugin->name . '-log',
 				sprintf(
-					/* translators: Social Media Service Name (Buffer, Hootsuite) */
+					/* translators: Social Media Service Name  */
 					__( '%s Log', 'postiz-auto-poster' ),
 					$this->base->plugin->displayName
 				),
@@ -501,7 +501,7 @@ class WP_To_Social_Pro_Log {
 		 * @param   array   $log        Post Log.
 		 * @param   int     $post_id    Post ID.
 		 */
-		$log = apply_filters( $this->base->plugin->filter_name . '_get_log', $log, $post_id );
+		$log = apply_filters( 'postiz_auto_poster_get_log', $log, $post_id );
 
 		// Return.
 		return $log;
@@ -568,7 +568,7 @@ class WP_To_Social_Pro_Log {
 		 *
 		 * @param   array   $result_options   Result Options.
 		 */
-		$result_options = apply_filters( $this->base->plugin->filter_name . '_log_get_result_options', $result_options );
+		$result_options = apply_filters( 'postiz_auto_poster_log_get_result_options', $result_options );
 
 		// Return filtered results.
 		return $result_options;
@@ -600,7 +600,7 @@ class WP_To_Social_Pro_Log {
 		 *
 		 * @param   array   $log_levels   Log Levels.
 		 */
-		$log_levels = apply_filters( $this->base->plugin->filter_name . '_log_get_log_levels', $log_levels );
+		$log_levels = apply_filters( 'postiz_auto_poster_log_get_log_levels', $log_levels );
 
 		// Return filtered results.
 		return $log_levels;
@@ -1056,7 +1056,7 @@ class WP_To_Social_Pro_Log {
                     <tr>
                         <td colspan="' . $colspan . '">' .
 							sprintf(
-								/* translators: Social Media Service Name (Buffer, Hootsuite) */
+								/* translators: Social Media Service Name  */
 								__( 'No log entries exist, or no status updates have been sent to %s.', 'postiz-auto-poster' ),
 								$this->base->plugin->account
 							)

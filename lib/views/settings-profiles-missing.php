@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php
 			echo esc_html(
 				sprintf(
-					/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite) */
+					/* translators: %1$s: Social Media Service Name  */
 					__( 'You must connect at least one social media account in %1$s for this Plugin to send status updates to it.', 'postiz-auto-poster' ),
 					$this->base->plugin->account
 				)

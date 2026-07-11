@@ -70,7 +70,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php
 						echo esc_html(
 							sprintf(
-								/* translators: %1$s: Plugin Name, %2$s: Social Media Service Name (Buffer, Hootsuite) */
+								/* translators: %1$s: Plugin Name, %2$s: Social Media Service Name  */
 								__( 'A list of %1$s accounts/organizations that are connected to %2$s.', 'postiz-auto-poster' ),
 								$this->base->plugin->account,
 								$this->base->plugin->displayName
@@ -83,8 +83,16 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<?php
 				// List connected accounts.
 				foreach ( $this->base->get_class( 'settings' )->get_accounts() as $account_id => $account ) {
-					$reconnect_url  = $this->base->get_class( 'api' )->get_oauth_url( $account_id );
-					$disconnect_url = add_query_arg(
+					$reconnect_url        = $this->base->get_class( 'api' )->get_oauth_url( $account_id );
+					$refresh_profiles_url = add_query_arg(
+						array(
+							'page'  => $this->base->plugin->name . '-settings',
+							$this->base->plugin->name . '-refresh-profiles' => $account_id,
+							'nonce' => wp_create_nonce( $this->base->plugin->name . '-refresh-profiles' ),
+						),
+						admin_url( 'admin.php' )
+					);
+					$disconnect_url       = add_query_arg(
 						array(
 							'page'  => $this->base->plugin->name . '-settings',
 							$this->base->plugin->name . '-disconnect' => $account_id,
@@ -98,6 +106,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<strong><?php echo esc_html( $account['name'] ); ?></strong>
 						</div>
 						<div class="right">
+							<a href="<?php echo esc_url( $refresh_profiles_url ); ?>" class="button button-secondary">
+								<?php esc_html_e( 'Refresh Profiles', 'postiz-auto-poster' ); ?>
+							</a>
 							<a href="<?php echo esc_url( $reconnect_url ); ?>" class="button button-secondary">
 								<?php esc_html_e( 'Reconnect', 'postiz-auto-poster' ); ?>
 							</a>
@@ -133,7 +144,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<?php
 							echo esc_html(
 								sprintf(
-								/* translators: Social Media Service Name (Buffer, Hootsuite) */
+								/* translators: Social Media Service Name  */
 									__( 'If enabled, status(es) are not sent to %s, but will appear in the Log, if logging is enabled. This is useful to test status text, conditions etc.', 'postiz-auto-poster' ),
 									$this->base->plugin->account
 								)
@@ -178,7 +189,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<?php
 							echo esc_html(
 								sprintf(
-								/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite), %2$s: Social Media Service Name (Buffer, Hootsuite) */
+								/* translators: %1$s: Social Media Service Name , %2$s: Social Media Service Name  */
 									__( 'If enabled, statuses sent to %1$s are performed through our proxy. This is useful if your ISP or host\'s country prevents access to %1$s.', 'postiz-auto-poster' ),
 									$this->base->plugin->account,
 									$this->base->plugin->account
@@ -203,7 +214,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						esc_html_e(
 							'Provides options for automatically generating images from text, when a Status\' image option is set to Use Text to Image
                         and a status has Text to Image defined.',
-							'wp-to-buffer'
+							'postiz-auto-poster'
 						);
 						?>
 					</p>
@@ -220,7 +231,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<p>
 							<?php
 							printf(
-								/* translators: Service name (Buffer, Hootsuite) */
+								/* translators: Service name  */
 								esc_html__( '%s Pro provides options to generate images based on text, which are them submitted with your status message.', 'postiz-auto-poster' ),
 								esc_html( $this->base->plugin->displayName )
 							);
@@ -259,7 +270,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									esc_html__( 'Plugin Logs', 'postiz-auto-poster' ),
 									esc_html(
 										sprintf(
-											/* translators: Social Media Service Name (Buffer, Hootsuite) */
+											/* translators: Social Media Service Name  */
 											__( 'will detail status(es) sent to %s, including any errors or reasons why no status(es) were sent.', 'postiz-auto-poster' ),
 											$this->base->plugin->account
 										)
@@ -269,7 +280,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								// Don't link "Plugin Log" text, as Logs are disabled so it won't show anything.
 								echo esc_html(
 									sprintf(
-									/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite) */
+									/* translators: %1$s: Social Media Service Name  */
 										__( 'If enabled, the Plugin Logs will detail status(es) sent to %1$s, including any errors or reasons why no status(es) were sent.', 'postiz-auto-poster' ),
 										$this->base->plugin->account
 									)
@@ -377,7 +388,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<?php esc_html_e( 'Provides options for when to run the WordPress Repost Cron Event on this WordPress installation.', 'postiz-auto-poster' ); ?><br />
 						<?php
 						printf(
-							/* translators: Service (Buffer, Hootsuite) */
+							/* translators: Service  */
 							esc_html__( 'When Post(s) are scheduled on %s will depend on the Repost Status Settings.', 'postiz-auto-poster' ),
 							esc_html( $this->base->plugin->displayName )
 						);
@@ -392,7 +403,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<p>
 							<?php
 							printf(
-								/* translators: %1$s: Service (Buffer, Hootsuite), %2$s: Service (Buffer, Hootsuite) */
+								/* translators: %1$s: Service , %2$s: Service  */
 								esc_html__( 'Automatically schedule old Posts to %1$s with %2$s Pro.', 'postiz-auto-poster' ),
 								esc_html( $this->base->plugin->displayName ),
 								esc_html( $this->base->plugin->displayName )
@@ -423,8 +434,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<p>
 							<?php
 							printf(
-								/* translators: %1$s: Service (Buffer, Hootsuite) */
-								esc_html__( '%s Pro provides options to limit which Post Types to show in the Settings screens, as well as prevent access to specific social media profiles linked to your Postiz account, on a per-WordPress Role basis.', 'postiz-auto-poster' ),
+								/* translators: %1$s: Service  */
+								esc_html__( '%s Pro provides options to limit which Post Types to show in the Settings screens, as well as prevent access to specific social media profiles linked to your Buffer account, on a per-WordPress Role basis.', 'postiz-auto-poster' ),
 								esc_html( $this->base->plugin->displayName )
 							);
 							?>
@@ -453,7 +464,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<p>
 							<?php
 							printf(
-								/* translators: %1$s: Service (Buffer, Hootsuite) */
+								/* translators: %1$s: Service  */
 								esc_html__( '%s Pro provides options to define Custom Field / ACF Tags, which will then populate with Post data when used in status messages.  Tags also appear in the Insert Tags dropdown.', 'postiz-auto-poster' ),
 								esc_html( $this->base->plugin->displayName )
 							);

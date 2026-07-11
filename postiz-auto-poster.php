@@ -9,7 +9,7 @@
  * Plugin Name: Postiz Auto Poster
  * Plugin URI: http://www.wpzinc.com
  * Version: 1.0.0
- * Author: WP
+ * Author: WP Zinc
  * Author URI: http://www.wpzinc.com
  * Description: Send WordPress Pages, Posts or Custom Post Types to your Postiz (postiz.io) account for scheduled publishing to social networks.
  * Text Domain: postiz-auto-poster

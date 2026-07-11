@@ -184,7 +184,7 @@ class WP_To_Social_Pro_Rank_Math {
 		 * @param   WP_Post     $post                   WordPress Post.
 		 * @param   WP_User     $author                 WordPress User (Author of the Post).
 		 */
-		$searches_replacements = apply_filters( $this->base->plugin->filter_name . '_publish_register_rank_math_searches_replacements', $searches_replacements, $post, $author );
+		$searches_replacements = apply_filters( 'postiz_auto_poster_publish_register_rank_math_searches_replacements', $searches_replacements, $post, $author );
 
 		// Return filtered results.
 		return $searches_replacements;

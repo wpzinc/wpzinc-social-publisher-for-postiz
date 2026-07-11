@@ -489,7 +489,7 @@ class WP_To_Social_Pro_Publish {
 			return new WP_Error(
 				'no_access_token',
 				sprintf(
-					/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite), %2$s: Plugin Name */
+					/* translators: %1$s: Social Media Service Name , %2$s: Plugin Name */
 					__( 'The Plugin has not been authorized with %1$s! Go to %2$s > Settings to setup the plugin.', 'postiz-auto-poster' ),
 					$this->base->plugin->account,
 					$this->base->plugin->displayName
@@ -502,19 +502,13 @@ class WP_To_Social_Pro_Publish {
 		foreach ( $this->base->get_class( 'settings' )->get_accounts() as $account_id => $account ) {
 			// Configure API for this account and fetch its profiles.
 			$this->base->get_class( 'api' )->set_tokens( $account['access_token'], $account['refresh_token'], $account['token_expires'] );
-			$account_profiles = $this->base->get_class( 'api' )->profiles( false, $this->base->get_class( 'common' )->get_transient_expiration_time(), $account_id );
+			$account_profiles = $this->base->get_class( 'api' )->profiles( false, $account_id );
 
 			// Display an error.
 			if ( is_wp_error( $account_profiles ) ) {
 				$this->base->get_class( 'notices' )->add_error_notice( $account_profiles->get_error_message() );
 				continue;
 			}
-
-			// Store profile IDs against account.
-			$this->base->get_class( 'settings' )->update_account_profile_ids(
-				$account_id,
-				array_keys( $account_profiles )
-			);
 
 			// Merge profiles with existing profiles from other accounts.
 			// array_merge() is not used here as it will re-index numeric keys.
@@ -611,7 +605,7 @@ class WP_To_Social_Pro_Publish {
 				$error = new WP_Error(
 					$this->base->plugin->filter_name . '_no_statuses_conditions',
 					sprintf(
-						/* translators: %1$s: Post Type Name, Singular, %2$s: Social Media Service Name (Buffer, Hootsuite), %3$s: Action (Publish, Update, Repost, Bulk Publish), %4$s, %5$s, %6$s: Post Type Name, Singular, %7$s: Social Media Service Name (Buffer, Hootsuite), %8$s: Plugin URL, %9$s: Plugin Name, %10$s: Post Type Name, Singular, %11$s: Action (Publish, Update, Repost, Bulk Publish) */
+						/* translators: %1$s: Post Type Name, Singular, %2$s: Social Media Service Name , %3$s: Action (Publish, Update, Repost, Bulk Publish), %4$s, %5$s, %6$s: Post Type Name, Singular, %7$s: Social Media Service Name , %8$s: Plugin URL, %9$s: Plugin Name, %10$s: Post Type Name, Singular, %11$s: Action (Publish, Update, Repost, Bulk Publish) */
 						__( 'Status(es) exist for sending this %1$s to %2$s when you %3$s a %4$s, but no status was sent because the %5$s did not meet the status conditions. If you want this %6$s to be sent to %7$s, navigate to <a href="%8$s" target="_blank">%9$s > Settings > %10$s Tab > %11$s Action Tab</a>, ensuring that no Conditions are set on the defined statuses.', 'postiz-auto-poster' ),
 						$post_type_object->labels->singular_name,
 						$this->base->plugin->account,
@@ -634,7 +628,7 @@ class WP_To_Social_Pro_Publish {
 				$error = new WP_Error(
 					$this->base->plugin->filter_name . '_no_statuses_enabled',
 					sprintf(
-						/* translators: %1$s: Post Type Name, Singular, %2$s: Social Media Service Name (Buffer, Hootsuite), %3$s: Action (Publish, Update, Repost, Bulk Publish), %4$s, %5$s, %6$s: Post Type Name, Singular, %7$s: Social Media Service Name (Buffer, Hootsuite), %8$s: Plugin URL, %9$s: Plugin Name, %10$s: Post Type Name, Singular, %11$s: Action (Publish, Update, Repost, Bulk Publish) */
+						/* translators: %1$s: Post Type Name, Singular, %2$s: Social Media Service Name , %3$s: Action (Publish, Update, Repost, Bulk Publish), %4$s, %5$s, %6$s: Post Type Name, Singular, %7$s: Social Media Service Name , %8$s: Plugin URL, %9$s: Plugin Name, %10$s: Post Type Name, Singular, %11$s: Action (Publish, Update, Repost, Bulk Publish) */
 						__( 'No Plugin Settings are defined for sending %1$s to %2$s when you %3$s a %4$s. To send statuses to %5$s on %6$s, navigate to <a href="%7$s" target="_blank">%8$s > Settings > %9$s Tab > %10$s Action Tab</a>, tick "Enabled", and also enable at least one social media profile.', 'postiz-auto-poster' ),
 						$post_type_object->labels->name,
 						$this->base->plugin->account,
@@ -665,7 +659,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   int     $post_id    Post ID.
 		 * @param   string  $action     Action (publish, update, repost).
 		 */
-		$statuses = apply_filters( $this->base->plugin->filter_name . '_publish_statuses', $statuses, $post_id, $action );
+		$statuses = apply_filters( 'postiz_auto_poster_publish_statuses', $statuses, $post_id, $action );
 
 		// Debugging.
 		$this->base->get_class( 'log' )->add_to_debug_log( 'Statuses: ' . print_r( $statuses, true ) ); // phpcs:ignore WordPress.PHP.DevelopmentFunctions
@@ -816,6 +810,9 @@ class WP_To_Social_Pro_Publish {
 			case 'link':
 			case 'pin':
 			case 'googlebusiness':
+				// If no URL is specified in the status, use the Post's URL.
+				$status['url'] = empty( $status['url'] ) ? '{url}' : $status['url'];
+
 				// Get URL.
 				$url = $this->parse_text( $post, $status['url'] );
 
@@ -884,7 +881,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   array       $status                     Parsed Status Message Settings.
 		 * @param   string      $action                     Action (publish|update|repost|bulk_publish).
 		 */
-		$args = apply_filters( $this->base->plugin->filter_name . '_publish_build_args', $args, $post, $profile_id, $service, $status, $action );
+		$args = apply_filters( 'postiz_auto_poster_publish_build_args', $args, $post, $profile_id, $service, $status, $action );
 
 		// Return args.
 		return $args;
@@ -1044,7 +1041,7 @@ class WP_To_Social_Pro_Publish {
 					 * @param   string      $tag_params['taxonomy']             Taxonomy.
 					 * @param   string      $text                               Status Text.
 					 */
-					$term_name = apply_filters( $this->base->plugin->filter_name . '_publish_parse_text_term_hashtag', $term_name, $tag_params['taxonomy_term_format'], $term, $tag_params['taxonomy'], $text );
+					$term_name = apply_filters( 'postiz_auto_poster_publish_parse_text_term_hashtag', $term_name, $tag_params['taxonomy_term_format'], $term, $tag_params['taxonomy'], $text );
 
 					/**
 					 * Backward compat filter to define the Taxonomy Term Name to replace the status template tag.
@@ -1058,7 +1055,7 @@ class WP_To_Social_Pro_Publish {
 					 * @param   string      $text                                   Status Text.
 					 * @param   string      $tag_params['taxonomy_term_format']     Term Format.
 					 */
-					$term_name = apply_filters( $this->base->plugin->filter_name . '_term', $term_name, $term->name, $tag_params['taxonomy'], $text, $tag_params['taxonomy_term_format'] );
+					$term_name = apply_filters( 'postiz_auto_poster_term', $term_name, $term->name, $tag_params['taxonomy'], $text, $tag_params['taxonomy_term_format'] );
 
 					// Add term to term names string.
 					$term_names .= $term_name . ' ';
@@ -1109,7 +1106,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   WP_Post     $post                                       WordPress Post.
 		 * @param   WP_User     $author                                     WordPress User (Author).
 		 */
-		$text = apply_filters( $this->base->plugin->filter_name . '_publish_parse_text', $text, $message, $this->searches_replacements, $this->all_possible_searches_replacements, $post, $author );
+		$text = apply_filters( 'postiz_auto_poster_publish_parse_text', $text, $message, $this->searches_replacements, $this->all_possible_searches_replacements, $post, $author );
 
 		return $text;
 
@@ -1211,7 +1208,7 @@ class WP_To_Social_Pro_Publish {
 						 * @param   array       $status                 Status.
 						 * @param   WP_Post     $post                   WordPress Post.
 						 */
-						$date = apply_filters( $this->base->plugin->filter_name . '_publish_parse_google_business_start_date_' . $status['googlebusiness']['start_date_option'], $date, $google_business_args, $status, $post );
+						$date = apply_filters( 'postiz_auto_poster_publish_parse_google_business_start_date_' . $status['googlebusiness']['start_date_option'], $date, $google_business_args, $status, $post );
 
 						// Ignore if no date defined.
 						if ( ! $date ) {
@@ -1271,7 +1268,7 @@ class WP_To_Social_Pro_Publish {
 						 * @param   array       $status                 Status.
 						 * @param   WP_Post     $post                   WordPress Post.
 						 */
-						$date = apply_filters( $this->base->plugin->filter_name . '_publish_parse_google_business_end_date_' . $status['googlebusiness']['end_date_option'], $date, $google_business_args, $status, $post );
+						$date = apply_filters( 'postiz_auto_poster_publish_parse_google_business_end_date_' . $status['googlebusiness']['end_date_option'], $date, $google_business_args, $status, $post );
 
 						// Ignore if no date defined.
 						if ( ! $date ) {
@@ -1433,7 +1430,7 @@ class WP_To_Social_Pro_Publish {
 				 * @param   string  $value              Value.
 				 * @param   string  $transformation     Transformation.
 				 */
-				$value = apply_filters( $this->base->plugin->filter_name . '_publish_apply_text_transformation', $value, $transformation );
+				$value = apply_filters( 'postiz_auto_poster_publish_apply_text_transformation', $value, $transformation );
 
 				return $value;
 		}
@@ -1473,7 +1470,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   WP_Post     $post                   WordPress Post.
 		 * @param   WP_User     $author                 WordPress User (Author of the Post).
 		 */
-		$searches_replacements = apply_filters( $this->base->plugin->filter_name . '_publish_get_all_possible_searches_replacements', $searches_replacements, $post, $author );
+		$searches_replacements = apply_filters( 'postiz_auto_poster_publish_get_all_possible_searches_replacements', $searches_replacements, $post, $author );
 
 		// Return filtered results.
 		return $searches_replacements;
@@ -1514,7 +1511,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   array       $searches_replacements  Registered Supported Tags and their Replacements.
 		 * @param   WP_Post     $post                   WordPress Post.
 		 */
-		$searches_replacements = apply_filters( $this->base->plugin->filter_name . '_publish_register_post_searches_replacements', $searches_replacements, $post );
+		$searches_replacements = apply_filters( 'postiz_auto_poster_publish_register_post_searches_replacements', $searches_replacements, $post );
 
 		// Return filtered results.
 		return $searches_replacements;
@@ -1547,7 +1544,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   WP_Post     $post                   WordPress Post.
 		 * @param   array       $taxonomies             Post Taxonomies.
 		 */
-		$searches_replacements = apply_filters( $this->base->plugin->filter_name . '_publish_register_post_searches_replacements', $searches_replacements, $post, $taxonomies );
+		$searches_replacements = apply_filters( 'postiz_auto_poster_publish_register_post_searches_replacements', $searches_replacements, $post, $taxonomies );
 
 		// Return filtered results.
 		return $searches_replacements;
@@ -1576,7 +1573,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   string      $title      Post Title.
 		 * @param   WP_Post     $post       WordPress Post.
 		 */
-		$title = apply_filters( $this->base->plugin->filter_name . '_publish_get_title', $title, $post );
+		$title = apply_filters( 'postiz_auto_poster_publish_get_title', $title, $post );
 
 		// Return.
 		return $title;
@@ -1621,7 +1618,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   string      $excerpt    Post Excerpt.
 		 * @param   WP_Post     $post       WordPress Post.
 		 */
-		$excerpt = apply_filters( $this->base->plugin->filter_name . '_publish_get_excerpt', $excerpt, $post );
+		$excerpt = apply_filters( 'postiz_auto_poster_publish_get_excerpt', $excerpt, $post );
 
 		// Return.
 		return $excerpt;
@@ -1698,7 +1695,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   WP_Post     $post                       WordPress Post.
 		 * @param   bool        $is_gutenberg_request_content  Is Gutenberg Post Content.
 		 */
-		$content = apply_filters( $this->base->plugin->filter_name . '_publish_get_content', $content, $post, $is_gutenberg_request_content );
+		$content = apply_filters( 'postiz_auto_poster_publish_get_content', $content, $post, $is_gutenberg_request_content );
 
 		// Return.
 		return $content;
@@ -1725,7 +1722,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   string      $date                       Date.
 		 * @param   WP_Post     $post                       WordPress Post.
 		 */
-		$date = apply_filters( $this->base->plugin->filter_name . '_publish_get_date', $date, $post );
+		$date = apply_filters( 'postiz_auto_poster_publish_get_date', $date, $post );
 
 		// Return.
 		return $date;
@@ -1768,7 +1765,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   WP_Post     $post                           WordPress Post.
 		 * @param   bool        $force_trailing_forwardslash    Force Trailing Forwardslash.
 		 */
-		$url = apply_filters( $this->base->plugin->filter_name . '_publish_get_permalink', $url, $post, $force_trailing_forwardslash );
+		$url = apply_filters( 'postiz_auto_poster_publish_get_permalink', $url, $post, $force_trailing_forwardslash );
 
 		// Return.
 		return $url;
@@ -1796,7 +1793,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   string      $url                            WordPress Post Permalink.
 		 * @param   WP_Post     $post                           WordPress Post.
 		 */
-		$url = apply_filters( $this->base->plugin->filter_name . '_publish_get_short_permalink', $url, $post );
+		$url = apply_filters( 'postiz_auto_poster_publish_get_short_permalink', $url, $post );
 
 		// Return.
 		return $url;
@@ -1948,7 +1945,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   int         $word_limit         Sentence Limit.
 		 * @param   string      $original_text      Original Text, with no limit applied.
 		 */
-		$text = apply_filters( $this->base->plugin->filter_name . '_publish_apply_word_limit', $text, $word_limit, $original_text );
+		$text = apply_filters( 'postiz_auto_poster_publish_apply_word_limit', $text, $word_limit, $original_text );
 
 		return $text;
 
@@ -2009,7 +2006,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   int         $sentence_limit     Sentence Limit.
 		 * @param   string      $original_text      Original Text, with no limit applied.
 		 */
-		$text = apply_filters( $this->base->plugin->filter_name . '_publish_apply_sentence_limit', $text, $sentence_limit, $original_text );
+		$text = apply_filters( 'postiz_auto_poster_publish_apply_sentence_limit', $text, $sentence_limit, $original_text );
 
 		// Return.
 		return $text;
@@ -2050,7 +2047,7 @@ class WP_To_Social_Pro_Publish {
 		 * @param   string      $text               Text, with character limit applied.
 		 * @param   int         $character_limit    Character Limit used.
 		 */
-		$text = apply_filters( $this->base->plugin->filter_name . '_publish_apply_character_limit', $text, $character_limit );
+		$text = apply_filters( 'postiz_auto_poster_publish_apply_character_limit', $text, $character_limit );
 
 		// Return.
 		return $text;

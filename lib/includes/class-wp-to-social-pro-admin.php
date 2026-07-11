@@ -62,7 +62,7 @@ class WP_To_Social_Pro_Admin {
 	/**
 	 * Exchanges the authorization code for an access token, if included in the request.
 	 *
-	 * This applies to Postiz Auto Poster Pro.
+	 * This applies to WordPress to Buffer Pro.
 	 *
 	 * @since   6.0.0
 	 */
@@ -121,7 +121,7 @@ class WP_To_Social_Pro_Admin {
 			}
 
 			// Fetch Profiles.
-			$profiles = $this->base->get_class( 'api' )->profiles( true, $this->base->get_class( 'common' )->get_transient_expiration_time(), $account['id'] );
+			$profiles = $this->base->get_class( 'api' )->profiles( true, $account['id'] );
 
 			// If something went wrong, show an error.
 			if ( is_wp_error( $profiles ) ) {
@@ -146,7 +146,7 @@ class WP_To_Social_Pro_Admin {
 		// Store success message.
 		$this->base->get_class( 'notices' )->add_success_notice(
 			sprintf(
-				/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite), %2$s: Social Media Service Name (Buffer, Hootsuite) */
+				/* translators: %1$s: Social Media Service Name , %2$s: Social Media Service Name  */
 				__( 'Thanks! You\'ve connected our Plugin to %1$s. Now select profiles below to enable, and define your statuses to start sending Posts to %2$s', 'postiz-auto-poster' ),
 				$this->base->plugin->account,
 				$this->base->plugin->account
@@ -179,7 +179,7 @@ class WP_To_Social_Pro_Admin {
 		 *
 		 * @since   4.2.0
 		 */
-		do_action( $this->base->plugin->filter_name . '_save_settings_auth' );
+		do_action( 'postiz_auto_poster_save_settings_auth' );
 
 		// If we've returned from the oAuth process and an error occured, add it to the notices.
 		if ( filter_has_var( INPUT_GET, $this->base->plugin->settingsName . '-oauth-error' ) ) {
@@ -192,7 +192,7 @@ class WP_To_Social_Pro_Admin {
 				case 'access_denied':
 					$this->base->get_class( 'notices' )->add_error_notice(
 						sprintf(
-							/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite), %2$s: Social Media Service Name (Buffer, Hootsuite) */
+							/* translators: %1$s: Social Media Service Name , %2$s: Social Media Service Name  */
 							__( 'You did not grant our Plugin access to your %1$s account. We are unable to post to %2$s until you do this. Please click on the Authorize Plugin button.', 'postiz-auto-poster' ),
 							$this->base->plugin->account,
 							$this->base->plugin->account
@@ -209,7 +209,7 @@ class WP_To_Social_Pro_Admin {
 						sprintf(
 							'%1$s <a href="%2$s" target="_blank">%3$s</a>',
 							sprintf(
-								/* translators: Social Media Service Name (Buffer, Hootsuite) */
+								/* translators: Social Media Service Name  */
 								__( 'We were unable to complete authentication with %s.  Please try again, or', 'postiz-auto-poster' ),
 								$this->base->plugin->account
 							),
@@ -269,11 +269,7 @@ class WP_To_Social_Pro_Admin {
 			}
 
 			// Fetch Profiles.
-			$profiles = $this->base->get_class( 'api' )->profiles(
-				true,
-				$this->base->get_class( 'common' )->get_transient_expiration_time(),
-				$account['id']
-			);
+			$profiles = $this->base->get_class( 'api' )->profiles( true, $account['id'] );
 
 			// If something went wrong, show an error.
 			if ( is_wp_error( $profiles ) ) {
@@ -298,7 +294,7 @@ class WP_To_Social_Pro_Admin {
 			$this->base->get_class( 'notices' )->enable_store();
 			$this->base->get_class( 'notices' )->add_success_notice(
 				sprintf(
-					/* translators: %1$s: Social Media Service Name (Buffer, Hootsuite), %2$s: Social Media Service Name (Buffer, Hootsuite) */
+					/* translators: %1$s: Social Media Service Name , %2$s: Social Media Service Name  */
 					__( 'Thanks! You\'ve connected our Plugin to %1$s. Now select profiles below to enable, and define your statuses to start sending Posts to %2$s', 'postiz-auto-poster' ),
 					$this->base->plugin->account,
 					$this->base->plugin->account
@@ -346,7 +342,7 @@ class WP_To_Social_Pro_Admin {
 				sprintf(
 					'%1$s <a href="%2$s">%3$s</a>',
 					sprintf(
-						/* translators: %1$s: Plugin Name, %2$s, %3$s: Social Media Service Name (Buffer, Hootsuite), %4$s: URL to Authorize Plugin Screen, %5$s: URL to Register Account with Service */
+						/* translators: %1$s: Plugin Name, %2$s, %3$s: Social Media Service Name , %4$s: URL to Authorize Plugin Screen, %5$s: URL to Register Account with Service */
 						esc_html__( '%1$s needs to be authorized with %2$s before you can start sending Posts to %3$s.', 'postiz-auto-poster' ),
 						$this->base->plugin->displayName,
 						$this->base->plugin->account,
@@ -364,7 +360,7 @@ class WP_To_Social_Pro_Admin {
 			if ( strpos( $account['access_token'], '2/' ) === 0 ) {
 				$this->base->get_class( 'notices' )->add_error_notice(
 					sprintf(
-						/* translators: %1$s: Plugin Name, %2$s: Social Media Service Name (Buffer, Hootsuite) */
+						/* translators: %1$s: Plugin Name, %2$s: Social Media Service Name  */
 						__( '%1$s uses a new API. Please click the `Reconnect` button at %2$s Settings > Authentication to reconnect your account. You won\'t need to do this again.', 'postiz-auto-poster' ),
 						$this->base->plugin->displayName,
 						$this->base->plugin->account
@@ -372,7 +368,6 @@ class WP_To_Social_Pro_Admin {
 				);
 			}
 		}
-
 	}
 
 	/**
@@ -437,7 +432,7 @@ class WP_To_Social_Pro_Admin {
 
 			'clear_log_nonce'          => wp_create_nonce( $this->base->plugin->name . '-clear-log' ),
 			'clear_log_completed'      => sprintf(
-				/* translators: Social Media Service Name (Buffer, Hootsuite) */
+				/* translators: Social Media Service Name  */
 				__( 'No log entries exist, or no status updates have been sent to %s.', 'postiz-auto-poster' ),
 				$this->base->plugin->account
 			),
@@ -594,7 +589,7 @@ class WP_To_Social_Pro_Admin {
 		 * @param   array   $autocomplete_configuration     Javascript  Autocomplete Configuration.
 		 * @param   string  $post_type                      Post Type.
 		 */
-		$autocomplete_configuration = apply_filters( $this->base->plugin->filter_name . '_admin_get_autocomplete_configuration', $autocomplete_configuration );
+		$autocomplete_configuration = apply_filters( 'postiz_auto_poster_admin_get_autocomplete_configuration', $autocomplete_configuration );
 
 		// Return.
 		return $autocomplete_configuration;
@@ -620,7 +615,7 @@ class WP_To_Social_Pro_Admin {
 		 * @param   string  $capability     Minimum Required Capability.
 		 * @return  string                  Minimum Required Capability
 		 */
-		$minimum_capability = apply_filters( $this->base->plugin->filter_name . '_admin_admin_menu_minimum_capability', $minimum_capability );
+		$minimum_capability = apply_filters( 'postiz_auto_poster_admin_admin_menu_minimum_capability', $minimum_capability );
 
 		/**
 		 * Add settings menus and sub menus for the Plugin's settings.
@@ -629,7 +624,7 @@ class WP_To_Social_Pro_Admin {
 		 *
 		 * @param   string  $minimum_capability     Minimum capability required.
 		 */
-		do_action( $this->base->plugin->filter_name . '_admin_admin_menu', $minimum_capability );
+		do_action( 'postiz_auto_poster_admin_admin_menu', $minimum_capability );
 
 	}
 
@@ -682,6 +677,9 @@ class WP_To_Social_Pro_Admin {
 		// Maybe disconnect an account.
 		$this->maybe_disconnect_account();
 
+		// Maybe refresh profiles.
+		$this->maybe_refresh_profiles();
+
 		// Maybe save settings.
 		$result = $this->save_settings();
 		if ( is_wp_error( $result ) ) {
@@ -699,12 +697,7 @@ class WP_To_Social_Pro_Admin {
 		}
 
 		// Get Profiles for accounts.
-		if ( $this->get_tab() === 'auth' ) {
-			$profiles = $this->get_profiles();
-		} else {
-			// Get profiles from cache.
-			$profiles = $this->get_cached_profiles();
-		}
+		$profiles = $this->get_cached_profiles();
 
 		// Get Settings Tab and Post Type we're managing settings for.
 		$tab                 = $this->get_tab( $profiles );
@@ -773,7 +766,7 @@ class WP_To_Social_Pro_Admin {
 						sprintf(
 							'%1$s <a href="%2$s" target="_blank">%3$s</a>',
 							sprintf(
-								/* translators: %1$s: Post Type, %2$s: Social Media Service Name (Buffer, Hootsuite), %3$s: Documentation URL */
+								/* translators: %1$s: Post Type, %2$s: Social Media Service Name , %3$s: Documentation URL */
 								__( 'To send %1$s to %2$s, at least one action on the Defaults tab must be enabled with a status defined, and at least one social media profile must be enabled below by clicking the applicable profile name and ticking the "Account Enabled" box.', 'postiz-auto-poster' ),
 								$post_type_object->label,
 								$this->base->plugin->account
@@ -869,6 +862,59 @@ class WP_To_Social_Pro_Admin {
 	}
 
 	/**
+	 * Fetches fresh profiles from the API for the given account, if the
+	 * user clicks the refresh profiles link. Bypasses the transient cache
+	 * and updates the stored profile IDs on the account.
+	 *
+	 * @since   6.1.2
+	 */
+	private function maybe_refresh_profiles() {
+
+		// Bail if no nonce.
+		if ( ! isset( $_GET['nonce'] ) ) {
+			return;
+		}
+
+		// Bail if nonce is invalid.
+		if ( ! wp_verify_nonce( sanitize_key( $_GET['nonce'] ), $this->base->plugin->name . '-refresh-profiles' ) ) {
+			return;
+		}
+
+		// Bail if account ID is not set.
+		if ( ! isset( $_GET[ $this->base->plugin->name . '-refresh-profiles' ] ) ) {
+			return;
+		}
+
+		// Get account.
+		$account_id = sanitize_text_field( wp_unslash( $_GET[ $this->base->plugin->name . '-refresh-profiles' ] ) );
+		$accounts   = $this->base->get_class( 'settings' )->get_accounts();
+		if ( ! isset( $accounts[ $account_id ] ) ) {
+			return;
+		}
+		$account = $accounts[ $account_id ];
+
+		// Configure API for this account.
+		$this->base->get_class( 'api' )->set_tokens( $account['access_token'], $account['refresh_token'], $account['token_expires'] );
+
+		// Fetch fresh profiles from the API.
+		$profiles = $this->base->get_class( 'api' )->profiles( true, $account_id );
+
+		// Display error and bail.
+		if ( is_wp_error( $profiles ) ) {
+			$this->base->get_class( 'notices' )->add_error_notice( $profiles->get_error_message() );
+			return;
+		}
+
+		// Update the stored profile IDs on the account.
+		$this->base->get_class( 'settings' )->update_account_profile_ids( $account_id, array_keys( $profiles ) );
+
+		$this->base->get_class( 'notices' )->add_success_notice(
+			__( 'Profiles refreshed successfully.', 'postiz-auto-poster' )
+		);
+
+	}
+
+	/**
 	 * Disconnects an account if the user clicks the disconnect link.
 	 *
 	 * @since   5.4.0
@@ -894,7 +940,7 @@ class WP_To_Social_Pro_Admin {
 		$this->base->get_class( 'settings' )->delete_account( sanitize_text_field( wp_unslash( $_GET[ $this->base->plugin->name . '-disconnect' ] ) ) );
 		$this->base->get_class( 'notices' )->add_success_notice(
 			sprintf(
-				/* translators: Social Media Service Name (Buffer, Hootsuite) */
+				/* translators: Social Media Service Name  */
 				__( '%s account disconnected successfully.', 'postiz-auto-poster' ),
 				$this->base->plugin->account
 			)
@@ -925,7 +971,7 @@ class WP_To_Social_Pro_Admin {
 		}
 
 		// Invalid nonce.
-		if ( ! wp_verify_nonce( sanitize_key( $_POST[ $this->base->plugin->name . '_nonce' ] ), $this->base->plugin->name ) ) {
+		if ( ! wp_verify_nonce( sanitize_key( $_POST[ $this->base->plugin->name . '_nonce' ] ), 'postiz-auto-poster' ) ) {
 			return new WP_Error(
 				'wp_to_social_pro_admin_save_settings_error',
 				__( 'Invalid nonce specified. Settings NOT saved.', 'postiz-auto-poster' )
@@ -1008,75 +1054,13 @@ class WP_To_Social_Pro_Admin {
 			$this->base->get_class( 'api' )->set_tokens( $account['access_token'], $account['refresh_token'], $account['token_expires'] );
 
 			// Get account profiles.
-			$account_profiles = $this->base->get_class( 'api' )->profiles(
-				false,
-				$this->base->get_class( 'common' )->get_transient_expiration_time(),
-				$account_id
-			);
+			$account_profiles = $this->base->get_class( 'api' )->profiles( false, $account_id );
 
 			// Display an error.
 			if ( is_wp_error( $account_profiles ) ) {
 				$this->base->get_class( 'notices' )->add_error_notice( $account_profiles->get_error_message() );
 				continue;
 			}
-
-			// Merge profiles with existing profiles from other accounts.
-			// array_merge() is not used here as it will re-index numeric keys.
-			foreach ( $account_profiles as $profile ) {
-				$profiles[ $profile['id'] ] = $profile;
-			}
-		}
-
-		return $profiles;
-
-	}
-
-	/**
-	 * Returns the profiles for all accounts, querying the API.
-	 *
-	 * @since   6.0.5
-	 *
-	 * @return  array
-	 */
-	private function get_profiles() {
-
-		$profiles = array();
-
-		foreach ( $this->base->get_class( 'settings' )->get_accounts() as $account_id => $account ) {
-			// Configure API for this account.
-			$this->base->get_class( 'api' )->set_tokens( $account['access_token'], $account['refresh_token'], $account['token_expires'] );
-
-			// Fetch account information.
-			$account_information = $this->base->get_class( 'api' )->account( $account_id );
-
-			// Display an error.
-			if ( is_wp_error( $account_information ) ) {
-				$this->base->get_class( 'notices' )->add_error_notice( $account_information->get_error_message() );
-				continue;
-			}
-
-			// Fetch account profiles.
-			$account_profiles = $this->base->get_class( 'api' )->profiles(
-				true,
-				$this->base->get_class( 'common' )->get_transient_expiration_time(),
-				$account_id
-			);
-
-			// Display an error.
-			if ( is_wp_error( $account_profiles ) ) {
-				$this->base->get_class( 'notices' )->add_error_notice( $account_profiles->get_error_message() );
-				continue;
-			}
-
-			// Update account information.
-			$this->base->get_class( 'settings' )->update_account_information(
-				$account_id,
-				$account_information['name'],
-				$account_information['email'],
-				$account_information['channel_limit'],
-				$account_information['plan'],
-				array_keys( $account_profiles )
-			);
 
 			// Merge profiles with existing profiles from other accounts.
 			// array_merge() is not used here as it will re-index numeric keys.

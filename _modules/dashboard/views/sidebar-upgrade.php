@@ -15,12 +15,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 <!-- Keep Updated -->
 <div class="postbox">
 	<h3 class="hndle">
-		<?php esc_html_e( 'Keep Updated', $this->base->plugin->name ); // phpcs:ignore WordPress.WP.I18n ?>
+		<?php esc_html_e( 'Keep Updated', 'postiz-auto-poster' ); ?>
 	</h3>
 
 	<div class="wpzinc-option">
 		<p class="description">
-			<?php esc_html_e( 'Subscribe to the newsletter and receive updates on our WordPress Plugins.', $this->base->plugin->name ); // phpcs:ignore WordPress.WP.I18n ?>
+			<?php esc_html_e( 'Subscribe to the newsletter and receive updates on our WordPress Plugins.', 'postiz-auto-poster' ); ?>
 		</p>
 	</div>
 

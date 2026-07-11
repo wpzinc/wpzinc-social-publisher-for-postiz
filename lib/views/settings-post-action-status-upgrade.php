@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php
 			echo esc_html(
 				sprintf(
-				/* translators: Social Media Service Name (Buffer, Hootsuite) */
+				/* translators: Social Media Service Name  */
 					__( 'Want to %1$s multiple status updates to %2$s?', 'postiz-auto-poster' ),
 					$post_action,
 					$this->base->plugin->displayName

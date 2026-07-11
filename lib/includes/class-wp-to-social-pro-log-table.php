@@ -216,12 +216,12 @@ class WP_To_Social_Pro_Log_Table extends WP_List_Table {
 			'result'            => __( 'Result', 'postiz-auto-poster' ),
 			'result_message'    => __( 'Response', 'postiz-auto-poster' ),
 			'status_created_at' => sprintf(
-				/* translators: Social Media Service Name (Buffer, Hootsuite) */
+				/* translators: Social Media Service Name  */
 				__( '%s: Status Created At', 'postiz-auto-poster' ),
 				$this->base->plugin->account
 			),
 			'status_due_at'     => sprintf(
-				/* translators: Social Media Service Name (Buffer, Hootsuite) */
+				/* translators: Social Media Service Name  */
 				__( '%s: Status Scheduled For', 'postiz-auto-poster' ),
 				$this->base->plugin->account
 			),

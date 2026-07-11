@@ -122,9 +122,9 @@ class WPZincDashboardWidget {
 		// Admin CSS, JS and Menu.
 		add_filter( 'admin_body_class', array( $this, 'admin_body_class' ) );
 		add_action( 'admin_enqueue_scripts', array( $this, 'admin_scripts_css' ) );
-		add_action( str_replace( '-', '_', $this->plugin->name ) . '_admin_menu_import_export', array( $this, 'register_import_export_menu' ), 99 );
-		add_action( str_replace( '-', '_', $this->plugin->name ) . '_admin_menu_support', array( $this, 'register_support_menu' ), 99 );
-		add_action( str_replace( '-', '_', $this->plugin->name ) . '_admin_menu', array( $this, 'admin_menu' ), 99 );
+		add_action( str_replace( '-', '_', 'postiz-auto-poster' ) . '_admin_menu_import_export', array( $this, 'register_import_export_menu' ), 99 );
+		add_action( str_replace( '-', '_', 'postiz-auto-poster' ) . '_admin_menu_support', array( $this, 'register_support_menu' ), 99 );
+		add_action( str_replace( '-', '_', 'postiz-auto-poster' ) . '_admin_menu', array( $this, 'admin_menu' ), 99 );
 
 		// Plugin Actions.
 		if ( ! isset( $this->plugin->hide_upgrade_menu ) || ! $this->plugin->hide_upgrade_menu ) {
@@ -133,7 +133,7 @@ class WPZincDashboardWidget {
 
 		// Reviews.
 		if ( $this->plugin->review_name !== false ) {
-			add_action( 'wp_ajax_' . str_replace( '-', '_', $this->plugin->name ) . '_dismiss_review', array( $this, 'dismiss_review' ) );
+			add_action( 'wp_ajax_' . str_replace( '-', '_', 'postiz-auto-poster' ) . '_dismiss_review', array( $this, 'dismiss_review' ) );
 			add_action( 'admin_notices', array( $this, 'maybe_display_review_request' ) );
 			add_filter( 'admin_footer_text', array( $this, 'maybe_display_footer_review_request' ) );
 		}
@@ -460,9 +460,9 @@ class WPZincDashboardWidget {
 		 *
 		 * @param   string  $minimum_capability   Minimum Capability.
 		 */
-		$minimum_capability = apply_filters( str_replace( '-', '_', $this->plugin->name ) . '_admin_admin_menu_minimum_capability', 'manage_options' ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
+		$minimum_capability = apply_filters( 'postiz_auto_poster_admin_admin_menu_minimum_capability', 'manage_options' ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
 
-		add_submenu_page( $slug, __( 'Import & Export', $this->plugin->name ), __( 'Import & Export', $this->plugin->name ), $minimum_capability, $this->plugin->name . '-import-export', array( $this, 'import_export_screen' ) ); // phpcs:ignore WordPress.WP.I18n
+		add_submenu_page( $slug, __( 'Import & Export', 'postiz-auto-poster' ), __( 'Import & Export', 'postiz-auto-poster' ), $minimum_capability, $this->plugin->name . '-import-export', array( $this, 'import_export_screen' ) );
 
 	}
 
@@ -491,9 +491,9 @@ class WPZincDashboardWidget {
 		 *
 		 * @param   string  $minimum_capability   Minimum Capability.
 		 */
-		$minimum_capability = apply_filters( str_replace( '-', '_', $this->plugin->name ) . '_admin_admin_menu_minimum_capability', 'manage_options' ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
+		$minimum_capability = apply_filters( str_replace( '-', '_', 'postiz-auto-poster' ) . '_admin_admin_menu_minimum_capability', 'manage_options' ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
 
-		add_submenu_page( $slug, __( 'Support', $this->plugin->name ), __( 'Support', $this->plugin->name ), $minimum_capability, $this->plugin->name . '-support', array( $this, 'support_screen' ) ); // phpcs:ignore WordPress.WP.I18n
+		add_submenu_page( $slug, __( 'Support', 'postiz-auto-poster' ), __( 'Support', 'postiz-auto-poster' ), $minimum_capability, $this->plugin->name . '-support', array( $this, 'support_screen' ) );
 
 	}
 
@@ -522,9 +522,9 @@ class WPZincDashboardWidget {
 		 *
 		 * @param   string  $minimum_capability   Minimum Capability.
 		 */
-		$minimum_capability = apply_filters( str_replace( '-', '_', $this->plugin->name ) . '_admin_admin_menu_minimum_capability', 'manage_options' ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
+		$minimum_capability = apply_filters( str_replace( '-', '_', 'postiz-auto-poster' ) . '_admin_admin_menu_minimum_capability', 'manage_options' ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
 
-		add_submenu_page( $slug, __( 'Upgrade', $this->plugin->name ), __( 'Upgrade', $this->plugin->name ), $minimum_capability, $this->plugin->name . '-upgrade', array( $this, 'upgrade_screen' ) ); // phpcs:ignore WordPress.WP.I18n
+		add_submenu_page( $slug, __( 'Upgrade', 'postiz-auto-poster' ), __( 'Upgrade', 'postiz-auto-poster' ), $minimum_capability, $this->plugin->name . '-upgrade', array( $this, 'upgrade_screen' ) );
 
 	}
 
@@ -571,7 +571,7 @@ class WPZincDashboardWidget {
 
 		// Add Links.
 		if ( $this->get_upgrade_url( 'plugins' ) ) {
-			$links[] = '<a href="' . esc_attr( $this->get_upgrade_url( 'plugins' ) ) . '" rel="noopener" target="_blank">' . __( 'Upgrade', $this->plugin->name ) . '</a>'; //phpcs:ignore WordPress.WP.I18n
+			$links[] = '<a href="' . esc_attr( $this->get_upgrade_url( 'plugins' ) ) . '" rel="noopener" target="_blank">' . __( 'Upgrade', 'postiz-auto-poster' ) . '</a>'; //phpcs:ignore WordPress.WP.I18n
 		}
 
 		/**
@@ -628,7 +628,7 @@ class WPZincDashboardWidget {
 			'wpzinc_admin_review_notice',
 			array(
 				'plugin_name' => $this->plugin->name,
-				'action'      => esc_attr( str_replace( '-', '_', $this->plugin->name ) ) . '_dismiss_review',
+				'action'      => esc_attr( str_replace( '-', '_', 'postiz-auto-poster' ) ) . '_dismiss_review',
 				'nonce'       => wp_create_nonce( 'wpzinc_admin_review_notice_dismiss_review' ),
 			)
 		);
@@ -658,14 +658,14 @@ class WPZincDashboardWidget {
 			return $text;
 		}
 		$page = filter_input( INPUT_GET, 'page', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-		if ( strpos( $page, $this->plugin->name ) === false ) {
+		if ( strpos( $page, 'postiz-auto-poster' ) === false ) {
 			return $text;
 		}
 
 		// Return review request text.
 		return sprintf(
 			/* translators: %1$s: Plugin Name, %2$s: Five Star Link to Review URL, %3$s: Link to Review URL, %4$s: Plugin Name */
-			__( 'Please rate %1$s %2$s on %3$s to help us grow %4$s. Thanks!', $this->plugin->name ), // phpcs:ignore WordPress.WP.I18n
+			__( 'Please rate %1$s %2$s on %3$s to help us grow %4$s. Thanks!', 'postiz-auto-poster' ),
 			'<strong>' . $this->plugin->displayName . '</strong>',
 			'<a href="' . $this->get_review_url() . '" target="_blank">&#9733;&#9733;&#9733;&#9733;&#9733;</a>',
 			'<a href="' . $this->get_review_url() . '" target="_blank">WordPress.org</a>',
@@ -826,7 +826,7 @@ class WPZincDashboardWidget {
 	public function import_export_screen() {
 
 		// Check nonce.
-		if ( isset( $_POST[ $this->plugin->name . '_nonce' ] ) && wp_verify_nonce( sanitize_key( $_POST[ $this->plugin->name . '_nonce' ] ), $this->plugin->name ) ) {
+		if ( isset( $_POST[ $this->plugin->name . '_nonce' ] ) && wp_verify_nonce( sanitize_key( $_POST[ $this->plugin->name . '_nonce' ] ), 'postiz-auto-poster' ) ) {
 			// Import if requested.
 			if ( isset( $_POST['import'] ) ) {
 				// Import JSON.
@@ -841,7 +841,7 @@ class WPZincDashboardWidget {
 		 *
 		 * @param   array   $import_sources   Import Sources.
 		 */
-		$import_sources = apply_filters( str_replace( '-', '_', $this->plugin->name ) . '_import_sources', array() ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
+		$import_sources = apply_filters( str_replace( '-', '_', 'postiz-auto-poster' ) . '_import_sources', array() ); // phpcs:ignore WordPress.NamingConventions.ValidHookName
 
 		// Output view.
 		include_once $this->dashboard_folder . '/views/import-export.php';
@@ -861,22 +861,22 @@ class WPZincDashboardWidget {
 			return;
 		}
 
-		if ( ! wp_verify_nonce( sanitize_key( $_POST[ $this->plugin->name . '_nonce' ] ), $this->plugin->name ) ) {
+		if ( ! wp_verify_nonce( sanitize_key( $_POST[ $this->plugin->name . '_nonce' ] ), 'postiz-auto-poster' ) ) {
 			// Invalid nonce.
 			return;
 		}
 
 		if ( ! is_array( $_FILES ) ) {
-			$this->error_message = __( 'No file was uploaded', $this->plugin->name ); // phpcs:ignore WordPress.WP.I18n
+			$this->error_message = __( 'No file was uploaded', 'postiz-auto-poster' );
 			return;
 		}
 		if ( ! isset( $_FILES['import']['type'] ) || ! isset( $_FILES['import']['tmp_name'] ) || ! isset( $_FILES['import']['size'] ) ) {
-			$this->error_message = __( 'Could not determine file type', $this->plugin->name ); // phpcs:ignore WordPress.WP.I18n
+			$this->error_message = __( 'Could not determine file type', 'postiz-auto-poster' );
 			return;
 		}
 
 		if ( isset( $_FILES['import']['error'] ) && $_FILES['import']['error'] !== 0 ) {
-			$this->error_message = __( 'Error when uploading file.', $this->plugin->name ); // phpcs:ignore WordPress.WP.I18n
+			$this->error_message = __( 'Error when uploading file.', 'postiz-auto-poster' );
 			return;
 		}
 
@@ -889,7 +889,7 @@ class WPZincDashboardWidget {
 				// Open ZIP file.
 				$zip = new ZipArchive();
 				if ( $zip->open( sanitize_text_field( wp_unslash( $_FILES['import']['tmp_name'] ) ) ) !== true ) {
-					$this->error_message = __( 'Could not extract the supplied ZIP file.', $this->plugin->name ); // phpcs:ignore WordPress.WP.I18n
+					$this->error_message = __( 'Could not extract the supplied ZIP file.', 'postiz-auto-poster' );
 					return;
 				}
 
@@ -924,13 +924,13 @@ class WPZincDashboardWidget {
 
 		// Check data is an array.
 		if ( ! is_array( $import ) ) {
-			$this->error_message = __( 'Supplied file is not a valid JSON settings file, or has become corrupt.', $this->plugin->name ); // phpcs:ignore WordPress.WP.I18n
+			$this->error_message = __( 'Supplied file is not a valid JSON settings file, or has become corrupt.', 'postiz-auto-poster' );
 			return;
 		}
 
 		// Allow Plugin to run its Import Routine using the supplied data now.
 		$result = true;
-		$result = apply_filters( str_replace( '-', '_', $this->plugin->name ) . '_import', $result, $import );  // phpcs:ignore WordPress.NamingConventions.ValidHookName
+		$result = apply_filters( str_replace( '-', '_', 'postiz-auto-poster' ) . '_import', $result, $import );  // phpcs:ignore WordPress.NamingConventions.ValidHookName
 
 		// Bail if an error occured.
 		if ( is_wp_error( $result ) ) {
@@ -938,7 +938,7 @@ class WPZincDashboardWidget {
 			return;
 		}
 
-		$this->message = __( 'Settings imported.', $this->plugin->name ); // phpcs:ignore WordPress.WP.I18n
+		$this->message = __( 'Settings imported.', 'postiz-auto-poster' );
 
 	}
 
@@ -1034,7 +1034,7 @@ class WPZincDashboardWidget {
 			return;
 		}
 
-		if ( ! wp_verify_nonce( sanitize_key( $_POST[ $this->plugin->name . '_nonce' ] ), $this->plugin->name ) ) {
+		if ( ! wp_verify_nonce( sanitize_key( $_POST[ $this->plugin->name . '_nonce' ] ), 'postiz-auto-poster' ) ) {
 			// Invalid nonce.
 			return;
 		}
@@ -1066,7 +1066,7 @@ class WPZincDashboardWidget {
 		 * @param   array   $data   Data.
 		 * @param   array   $_POST  POST Data.
 		 */
-		$data = apply_filters( str_replace( '-', '_', $this->plugin->name ) . '_export', $data, $_POST );
+		$data = apply_filters( str_replace( '-', '_', 'postiz-auto-poster' ) . '_export', $data, $_POST );
 
 		// Force a file download, depending on the export format.
 		switch ( sanitize_text_field( wp_unslash( $_POST['format'] ) ) ) {

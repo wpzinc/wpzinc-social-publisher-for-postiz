@@ -128,7 +128,7 @@ class WP_To_Social_Pro_Validation {
 		 *
 		 * @param   array   $status_keys_to_compare     Status Key Values to Compare.
 		 */
-		$status_keys_to_compare = apply_filters( $this->base->plugin->filter_name . '_validate_check_for_duplicates_status_keys', $status_keys_to_compare );
+		$status_keys_to_compare = apply_filters( 'postiz_auto_poster_validate_check_for_duplicates_status_keys', $status_keys_to_compare );
 
 		// Iterate through each profile.
 		foreach ( $settings as $profile_id => $actions ) {
