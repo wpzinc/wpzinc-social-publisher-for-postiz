@@ -857,17 +857,7 @@ class WP_To_Social_Pro_Publish {
 		}
 
 		// Scheduling.
-		switch ( $status['schedule'] ) {
-			case 'queue_end':
-			case 'queue_start':
-			case 'immediate':
-				$args['schedule_type'] = $status['schedule'];
-				break;
-
-			default:
-				$args['schedule_type'] = 'queue_end';
-				break;
-		}
+		$args['schedule_type'] = $status['schedule'];
 
 		/**
 		 * Determine the standardised arguments array to send via the API for a status message's settings.

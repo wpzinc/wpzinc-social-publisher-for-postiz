@@ -93,12 +93,5 @@ if ( ! defined( 'ABSPATH' ) ) {
 				</table>
 			</div>
 		</div>
-
-		<?php
-		// Upgrade Notice.
-		if ( class_exists( 'WP_To_Buffer' ) || class_exists( 'WP_To_Hootsuite' ) ) {
-			require $this->base->plugin->folder . 'lib/views/settings-post-action-status-upgrade.php';
-		}
-		?>
 	</div>
 </div>

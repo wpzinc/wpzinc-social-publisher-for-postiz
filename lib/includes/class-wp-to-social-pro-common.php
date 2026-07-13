@@ -80,21 +80,9 @@ class WP_To_Social_Pro_Common {
 	public function get_schedule_options( $post_type = false, $is_post_screen = false ) {
 
 		// Build schedule options, depending on the Plugin.
-		switch ( $this->base->plugin->name ) {
-
-			case 'wp-to-buffer':
-				$schedule = array(
-					'queue_end' => __( 'Add to End of Queue', 'postiz-auto-poster' ),
-				);
-				break;
-
-			case 'wp-to-hootsuite':
-				$schedule = array(
-					'immediate' => __( 'Post Immediately', 'postiz-auto-poster' ),
-				);
-				break;
-
-		}
+		$schedule = array(
+			'immediate' => __( 'Post Immediately', 'postiz-auto-poster' ),
+		);
 
 		/**
 		 * Defines the available schedule options for each individual status.

@@ -88,10 +88,10 @@ class Postiz_Auto_Poster {
 		);
 
 		// ConvertKit Form UID.
-		$this->plugin->convertkit_form_uid = '@TODO';
+		$this->plugin->convertkit_form_uid = 'adb5765302';
 
 		// Default Settings.
-		$this->plugin->default_schedule = 'queue_end';
+		$this->plugin->default_schedule = 'immediate';
 
 		// Defer loading of Plugin Classes.
 		add_action( 'init', array( $this, 'initialize' ), 1 );
@@ -122,8 +122,6 @@ class Postiz_Auto_Poster {
 			$log_page = add_submenu_page( $this->plugin->name . '-settings', __( 'Logs', 'postiz-auto-poster' ), __( 'Logs', 'postiz-auto-poster' ), $minimum_capability, $this->plugin->name . '-log', array( $this->get_class( 'admin' ), 'log_screen' ) );
 			add_action( "load-$log_page", array( $this->get_class( 'log' ), 'add_screen_options' ) );
 		}
-
-		$upgrade_page = add_submenu_page( $this->plugin->name . '-settings', __( 'Upgrade', 'postiz-auto-poster' ), __( 'Upgrade', 'postiz-auto-poster' ), $minimum_capability, $this->plugin->name . '-upgrade', array( $this->get_class( 'admin' ), 'upgrade_screen' ) );
 
 	}
 
@@ -168,12 +166,6 @@ class Postiz_Auto_Poster {
 		$this->classes->settings      = new WP_To_Social_Pro_Settings( self::$instance );
 		$this->classes->twitter_api   = new WP_To_Social_Pro_Twitter_API( self::$instance );
 		$this->classes->validation    = new WP_To_Social_Pro_Validation( self::$instance );
-
-		// Integrations.
-		$this->classes->aioseo    = new WP_To_Social_Pro_AIOSEO( self::$instance );
-		$this->classes->rank_math = new WP_To_Social_Pro_Rank_Math( self::$instance );
-		$this->classes->seopress  = new WP_To_Social_Pro_SEOPress( self::$instance );
-		$this->classes->yoast_seo = new WP_To_Social_Pro_Yoast_SEO( self::$instance );
 
 	}
 

@@ -95,7 +95,7 @@ class WP_To_Social_Pro_Ajax {
 
 		// Parse request.
 		$post_type = sanitize_text_field( wp_unslash( $_REQUEST['post_type'] ) );
-		$statuses  = json_decode( wp_unslash( $_REQUEST['statuses'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$statuses  = json_decode( wp_unslash( $_REQUEST['statuses'] ), true ); // @TODO Sanitize.
 
 		// Get some other information.
 		$post_type_object  = get_post_type_object( $post_type );
@@ -140,7 +140,7 @@ class WP_To_Social_Pro_Ajax {
 		}
 
 		// Parse request.
-		$status    = json_decode( wp_unslash( $_REQUEST['status'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$status    = json_decode( wp_unslash( $_REQUEST['status'] ), true ); // @TODO Sanitize.
 		$post_type = sanitize_text_field( wp_unslash( $_REQUEST['post_type'] ) );
 		$action    = sanitize_text_field( wp_unslash( $_REQUEST['post_action'] ) );
 

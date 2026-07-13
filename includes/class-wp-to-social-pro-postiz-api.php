@@ -67,7 +67,7 @@ class WP_To_Social_Pro_Postiz_API {
 	 *
 	 * @var     string.
 	 */
-	private $api_endpoint = 'https://api.postiz.com/public/v1';
+	private $api_endpoint = 'https://api.postiz.com/public/v1/';
 
 	/**
 	 * Access Token
@@ -169,7 +169,7 @@ class WP_To_Social_Pro_Postiz_API {
 	 * Returns the Postiz URL where the user can connect their social media accounts
 	 * to Buffer
 	 *
-	 * @since   3.8.4
+	 * @since   1.0.0
 	 *
 	 * @return  string  URL
 	 */
@@ -183,7 +183,7 @@ class WP_To_Social_Pro_Postiz_API {
 	 * Returns the Postiz URL where the user can change the timezone for the
 	 * given profile ID.
 	 *
-	 * @since   3.8.1
+	 * @since   1.0.0
 	 *
 	 * @param   string $profile_id     Profile ID.
 	 * @return  string                  Timezone Settings URL
@@ -248,28 +248,22 @@ class WP_To_Social_Pro_Postiz_API {
 	}
 
 	/**
-	 * Returns the user's information.
+	 * Returns the account details.
 	 *
 	 * @since   1.0.0
 	 *
-	 * @param   int $transient_expiration_time  Transient Expiration Time, in seconds (default: 12 hours).
-	 * @return  WP_Error|array
+	 * @return  array
 	 */
-	public function user( $transient_expiration_time = 43200 ) {
+	public function account() {
 
-		// Get user.
-		$user = $this->get( 'user' );
-
-		// Check for errors.
-		if ( is_wp_error( $user ) ) {
-			return $user;
-		}
-
-		// Store user in transient.
-		set_transient( 'social_post_flow_api_user', $user['data'], $transient_expiration_time );
-
-		// Return user.
-		return $user['data'];
+		// Postiz doesn't have an account() or user() API endpoint, so return sensible defaults.
+		return array(
+			'id'            => 'default',
+			'name'          => 'Default',
+			'email'         => 'noreply@postiz.io',
+			'channel_limit' => 0,
+			'plan'          => 'postiz',
+		);
 
 	}
 
@@ -278,53 +272,204 @@ class WP_To_Social_Pro_Postiz_API {
 	 *
 	 * @since   1.0.0
 	 *
-	 * @param   bool $force                      Force API call (false = use WordPress transient).
-	 * @param   int  $transient_expiration_time  Transient Expiration Time, in seconds (default: 12 hours).
+	 * @param   bool   $force        Force API call (false = use stored option).
+	 * @param   string $account_id   Account ID.
 	 * @return  WP_Error|array
 	 */
-	public function profiles( $force = false, $transient_expiration_time = 43200 ) {
+	public function profiles( $force = false, $account_id = 'default' ) {
 
 		// Setup profiles array.
 		$profiles = array();
 
-		// Check if our WordPress transient already has this data.
-		// This reduces the number of times we query the API.
-		$profiles = get_transient( 'social_post_flow_api_profiles' );
-		if ( $force || false === $profiles ) {
-			// Setup profiles array.
-			$profiles = array();
-
-			// Get profiles.
-			$results = $this->get( 'profiles' );
-
-			// Check for errors.
-			if ( is_wp_error( $results ) ) {
-				return $results;
-			}
-
-			// Build array of profiles, with the profile ID as the key.
-			foreach ( $results['data'] as $profile ) {
-				$profiles[ $profile['id'] ] = $profile;
-			}
-
-			// Store profiles in transient.
-			set_transient( 'social_post_flow_api_profiles', $profiles, $transient_expiration_time );
+		// Return stored profiles if available and not forcing a refresh.
+		$option_name = $this->base->plugin->name . '-profiles-' . $account_id;
+		$profiles    = get_option( $option_name );
+		if ( ! $force && is_array( $profiles ) ) {
+			return $profiles;
 		}
 
-		// Return results.
+		// Get profiles.
+		$results = $this->get( 'integrations' );
+
+		// Check for errors.
+		if ( is_wp_error( $results ) ) {
+			return $results;
+		}
+
+		// Build profiles array from results.
+		$profiles = array();
+		foreach ( $results as $channel ) {
+			$profiles[ $channel['id'] ] = array(
+				'id'                 => $channel['id'],
+				'formatted_service'  => $this->get_formatted_service( $channel['identifier'] ),
+				'formatted_username' => $channel['name'],
+				'service'            => $this->get_service( $channel['identifier'] ),
+				'timezone'           => '',
+				'can_be_subprofile'  => false,
+			);
+		}
+
+		// Store profiles in a non-autoloaded option so they persist across
+		// object cache eviction, and don't load on every WP request.
+		update_option( $option_name, $profiles, false );
+
 		return $profiles;
 
 	}
 
 	/**
-	 * Creates a Post on Social Post Flow.
+	 * Depending on the social media profile type, return the formatted service name.
 	 *
 	 * @since   1.0.0
 	 *
-	 * @param   array $params     Params.
+	 * @param   string $type   Social Media Profile Type.
+	 * @return  string          Formatted Social Media Profile Service Name
+	 */
+	private function get_formatted_service( $type ) {
+
+		switch ( $type ) {
+
+			case 'x':
+				return __( 'Twitter', 'postiz-auto-poster' );
+
+			case 'linkedin':
+				return __( 'LinkedIn Profile', 'postiz-auto-poster' );
+
+			case 'linkedin-page':
+				return __( 'LinkedIn Page', 'postiz-auto-poster' );
+
+			case 'facebook':
+				return __( 'Facebook Page', 'postiz-auto-poster' );
+
+			case 'instagram':
+			case 'instagram-standalone':
+				return __( 'Instagram', 'postiz-auto-poster' );
+
+			case 'threads':
+				return __( 'Threads', 'postiz-auto-poster' );
+
+			case 'bluesky':
+				return __( 'Bluesky', 'postiz-auto-poster' );
+
+			case 'mastodon':
+				return __( 'Mastodon', 'postiz-auto-poster' );
+
+			case 'warpcast':
+				return __( 'Warpcast', 'postiz-auto-poster' );
+
+			case 'nostr':
+				return __( 'Nostr', 'postiz-auto-poster' );
+
+			case 'vk':
+				return __( 'VK', 'postiz-auto-poster' );
+
+			case 'youtube':
+				return __( 'YouTube', 'postiz-auto-poster' );
+
+			case 'tiktok':
+				return __( 'TikTok', 'postiz-auto-poster' );
+
+			case 'reddit':
+				return __( 'Reddit', 'postiz-auto-poster' );
+
+			case 'lemmy':
+				return __( 'Lemmy', 'postiz-auto-poster' );
+
+			case 'discord':
+				return __( 'Discord', 'postiz-auto-poster' );
+
+			case 'slack':
+				return __( 'Slack', 'postiz-auto-poster' );
+
+			case 'telegram':
+				return __( 'Telegram', 'postiz-auto-poster' );
+
+			case 'kick':
+				return __( 'Kick', 'postiz-auto-poster' );
+
+			case 'twitch':
+				return __( 'Twitch', 'postiz-auto-poster' );
+
+			case 'pinterest':
+				return __( 'Pinterest', 'postiz-auto-poster' );
+
+			case 'dribbble':
+				return __( 'Dribbble', 'postiz-auto-poster' );
+
+			case 'medium':
+				return __( 'Medium', 'postiz-auto-poster' );
+
+			case 'devto':
+				return __( 'Dev.to', 'postiz-auto-poster' );
+
+			case 'hashnode':
+				return __( 'Hashnode', 'postiz-auto-poster' );
+
+			case 'WordPress':
+				return __( 'WordPress', 'postiz-auto-poster' );
+
+			case 'gmb':
+				return __( 'Google My Business', 'postiz-auto-poster' );
+
+			case 'listmonk':
+				return __( 'Listmonk', 'postiz-auto-poster' );
+
+			case 'moltbook':
+				return __( 'Moltbook', 'postiz-auto-poster' );
+
+			case 'skool':
+				return __( 'Skool', 'postiz-auto-poster' );
+
+			case 'whop':
+				return __( 'Whop', 'postiz-auto-poster' );
+
+			default:
+				return '';
+
+		}
+
+	}
+
+	/**
+	 * Depending on the social media profile type, return the service name.
+	 *
+	 * @since   1.0.0
+	 *
+	 * @param   string $type   Social Media Profile Type.
+	 * @return  string          Social Media Profile Service Name
+	 */
+	private function get_service( $type ) {
+
+		switch ( $type ) {
+
+			case 'linkedin-page':
+				return 'linkedin';
+
+			case 'instagram':
+			case 'instagram-standalone':
+				return 'instagram';
+
+			default:
+				return $type;
+
+		}
+
+	}
+
+	/**
+	 * Creates an update (status)
+	 *
+	 * @since   1.0.0
+	 *
+	 * @param   array  $params     Params.
+	 * @param   string $service    Service.
 	 * @return  WP_Error|array
 	 */
-	public function create_post( $params ) {
+	public function updates_create( $params, $service = '' ) {
+
+		// @TODO.
+		var_dump( $params );
+		die();
 
 		return $this->post( 'posts', $params );
 
@@ -390,7 +535,7 @@ class WP_To_Social_Pro_Postiz_API {
 					$url,
 					array(
 						'headers'   => array(
-							'Authorization' => 'Bearer ' . $this->access_token,
+							'Authorization' => $this->access_token,
 							'Accept'        => 'application/json',
 						),
 						'body'      => $params,
@@ -408,7 +553,7 @@ class WP_To_Social_Pro_Postiz_API {
 					$url,
 					array(
 						'headers'   => array(
-							'Authorization' => 'Bearer ' . $this->access_token,
+							'Authorization' => $this->access_token,
 							'Accept'        => 'application/json',
 						),
 						'body'      => $params,
@@ -431,26 +576,7 @@ class WP_To_Social_Pro_Postiz_API {
 		// Decode response.
 		$body = json_decode( $response, true );
 
-		// If the body contains a message, an error occured.
-		if ( isset( $body['message'] ) ) {
-			// OAuth and non-authenticated requests will just return a `message` key.
-			// Authenticated requests will return a `message` key and an `errors` array.
-			if ( isset( $body['errors'] ) ) {
-				$error_message = array();
-				foreach ( $body['errors'] as $error_key => $errors ) {
-					$error_message = array_merge( $error_message, $errors );
-				}
-			} else {
-				$error_message = array(
-					$body['message'],
-				);
-			}
-
-			return new WP_Error(
-				$http_code,
-				implode( "\n", $error_message )
-			);
-		}
+		// @TODO WP_Error returns on errors.
 
 		return $body;
 
@@ -475,7 +601,7 @@ class WP_To_Social_Pro_Postiz_API {
 		 *
 		 * @param   int     $timeout    Timeout, in seconds
 		 */
-		$timeout = apply_filters( 'social_post_flow_api_get_timeout', $timeout );
+		$timeout = apply_filters( 'postiz_auto_poster_api_get_timeout', $timeout );
 
 		return $timeout;
 
@@ -499,7 +625,7 @@ class WP_To_Social_Pro_Postiz_API {
 		 *
 		 * @param   bool    $enable_ssl_verification    Enable SSL verification.
 		 */
-		$enable_ssl_verification = apply_filters( 'social_post_flow_api_enable_ssl_verification', $enable_ssl_verification );
+		$enable_ssl_verification = apply_filters( 'postiz_auto_poster_api_enable_ssl_verification', $enable_ssl_verification );
 
 		return $enable_ssl_verification;
 

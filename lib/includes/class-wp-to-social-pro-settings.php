@@ -391,7 +391,7 @@ class WP_To_Social_Pro_Settings {
 	 * @param   string $default_schedule   Default Schedule.
 	 * @return  array                       Status
 	 */
-	public function get_default_status( $post_type, $default_message = false, $default_schedule = 'queue_end' ) {
+	public function get_default_status( $post_type, $default_message = false, $default_schedule = 'immediate' ) {
 
 		// Get Taxonomies supported by this Post Type.
 		$conditions = array();

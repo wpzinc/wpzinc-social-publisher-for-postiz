@@ -49,7 +49,6 @@ class WP_To_Social_Pro_Admin {
 		$this->base = $base;
 
 		// Actions.
-		add_action( 'init', array( $this, 'maybe_get_access_token' ) );
 		add_action( 'init', array( $this, 'oauth' ) );
 		add_action( 'init', array( $this, 'check_plugin_setup' ) );
 		add_action( 'admin_notices', array( $this, 'admin_notices' ) );
@@ -60,112 +59,8 @@ class WP_To_Social_Pro_Admin {
 	}
 
 	/**
-	 * Exchanges the authorization code for an access token, if included in the request.
-	 *
-	 * This applies to WordPress to Buffer Pro.
-	 *
-	 * @since   6.0.0
-	 */
-	public function maybe_get_access_token() {
-
-		// If a code is included in the request, exchange it for an access token.
-		if ( ! filter_has_var( INPUT_GET, $this->base->plugin->settingsName . '-code' ) ) {
-			return;
-		}
-
-		// Setup notices class.
-		$this->base->get_class( 'notices' )->set_key_prefix( $this->base->plugin->filter_name . '_' . wp_get_current_user()->ID );
-
-		// Sanitize token.
-		$authorization_code = filter_input( INPUT_GET, $this->base->plugin->settingsName . '-code', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-
-		// Exchange the authorization code and verifier for an access token.
-		// If this succeeds, the API class will have its tokens and expiry set, and
-		// the return value will be an array with the tokens and expiry.
-		$tokens = $this->base->get_class( 'api' )->get_access_token( $authorization_code );
-
-		// If an error occured, add it to the notices.
-		if ( is_wp_error( $tokens ) ) {
-			$this->base->get_class( 'notices' )->add_error_notice( $tokens->get_error_message() );
-			return;
-		}
-
-		// Store messages.
-		$this->base->get_class( 'notices' )->enable_store();
-
-		// Fetch Organizations.
-		$organizations = $this->base->get_class( 'api' )->organizations(
-			true,
-			$this->base->get_class( 'common' )->get_transient_expiration_time()
-		);
-
-		// If an error occured, add it to the notices.
-		if ( is_wp_error( $organizations ) ) {
-			$this->base->get_class( 'notices' )->add_error_notice( $organizations->get_error_message() );
-			return;
-		}
-
-		// If an account ID is included in the request, delete that account before adding the account.
-		// This handles account re-connection where we're coming from the old API.
-		$existing_account_id = false;
-		if ( filter_has_var( INPUT_GET, 'account_id' ) ) {
-			$existing_account_id = filter_input( INPUT_GET, 'account_id', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-			$this->base->get_class( 'settings' )->delete_account( $existing_account_id );
-		}
-
-		// For each organization, fetch the profiles and store the organization as an account in the Plugin.
-		foreach ( $organizations as $account ) {
-			// If the existing account ID is set, and it matches the current account ID, skip.
-			if ( $existing_account_id && $existing_account_id !== 'default' && $existing_account_id !== $account['id'] ) {
-				continue;
-			}
-
-			// Fetch Profiles.
-			$profiles = $this->base->get_class( 'api' )->profiles( true, $account['id'] );
-
-			// If something went wrong, show an error.
-			if ( is_wp_error( $profiles ) ) {
-				$this->base->get_class( 'notices' )->add_error_notice( $profiles->get_error_message() );
-				continue;
-			}
-
-			// Update account.
-			$this->base->get_class( 'settings' )->update_account(
-				$tokens['access_token'],
-				$tokens['refresh_token'],
-				$tokens['token_expires'],
-				$account['id'],
-				$account['name'],
-				$account['email'],
-				$account['channel_limit'],
-				$account['plan'],
-				array_keys( $profiles )
-			);
-		}
-
-		// Store success message.
-		$this->base->get_class( 'notices' )->add_success_notice(
-			sprintf(
-				/* translators: %1$s: Social Media Service Name , %2$s: Social Media Service Name  */
-				__( 'Thanks! You\'ve connected our Plugin to %1$s. Now select profiles below to enable, and define your statuses to start sending Posts to %2$s', 'postiz-auto-poster' ),
-				$this->base->plugin->account,
-				$this->base->plugin->account
-			)
-		);
-
-		// Redirect to Post tab.
-		wp_safe_redirect( 'admin.php?page=' . $this->base->plugin->name . '-settings&tab=post&type=post' );
-		die();
-
-	}
-
-	/**
 	 * Handles displaying any errors from the OAuth process, and storing the access token if supplied,
 	 * when the OAuth gateway exchanges the authorization code for an access token.
-	 *
-	 * Used by:
-	 * - WP to Hootsuite
-	 * - WP to Hootsuite Pro
 	 *
 	 * @since   3.3.3
 	 */
@@ -183,67 +78,11 @@ class WP_To_Social_Pro_Admin {
 
 		// If we've returned from the oAuth process and an error occured, add it to the notices.
 		if ( filter_has_var( INPUT_GET, $this->base->plugin->settingsName . '-oauth-error' ) ) {
-			$oauth_error = filter_input( INPUT_GET, $this->base->plugin->settingsName . '-oauth-error', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-			switch ( $oauth_error ) {
-				/**
-				 * Access Denied
-				 * - User denied our app access
-				 */
-				case 'access_denied':
-					$this->base->get_class( 'notices' )->add_error_notice(
-						sprintf(
-							/* translators: %1$s: Social Media Service Name , %2$s: Social Media Service Name  */
-							__( 'You did not grant our Plugin access to your %1$s account. We are unable to post to %2$s until you do this. Please click on the Authorize Plugin button.', 'postiz-auto-poster' ),
-							$this->base->plugin->account,
-							$this->base->plugin->account
-						)
-					);
-					break;
+			$this->base->get_class( 'notices' )->add_error_notice(
+				filter_input( INPUT_GET, $this->base->plugin->settingsName . '-oauth-error', FILTER_SANITIZE_FULL_SPECIAL_CHARS )
+			);
 
-				/**
-				 * Invalid Grant
-				 * - A parameter sent by the oAuth gateway is wrong
-				 */
-				case 'invalid_grant':
-					$this->base->get_class( 'notices' )->add_error_notice(
-						sprintf(
-							'%1$s <a href="%2$s" target="_blank">%3$s</a>',
-							sprintf(
-								/* translators: Social Media Service Name  */
-								__( 'We were unable to complete authentication with %s.  Please try again, or', 'postiz-auto-poster' ),
-								$this->base->plugin->account
-							),
-							esc_html( $this->base->plugin->support_url ),
-							__( 'contact us for support', 'postiz-auto-poster' )
-						)
-					);
-					break;
-
-				/**
-				 * Expired Token
-				 * - The oAuth gateway did not exchange the code for an access token within 30 seconds
-				 */
-				case 'expired_token':
-					$this->base->get_class( 'notices' )->add_error_notice(
-						sprintf(
-							'%1$s <a href="%2$s" target="_blank">%3$s</a> %4$s',
-							__( 'The oAuth process has expired.  Please try again, or', 'postiz-auto-poster' ),
-							esc_html( $this->base->plugin->support_url ),
-							__( 'contact us for support', 'postiz-auto-poster' ),
-							__( 'if this issue persists.', 'postiz-auto-poster' )
-						)
-					);
-					break;
-
-				/**
-				 * Other Error
-				 */
-				default:
-					$this->base->get_class( 'notices' )->add_error_notice(
-						filter_input( INPUT_GET, $this->base->plugin->settingsName . '-oauth-error', FILTER_SANITIZE_FULL_SPECIAL_CHARS )
-					);
-					break;
-			}
+			return;
 		}
 
 		// If an Access Token is included in the request, store it and show a success message.
@@ -352,21 +191,6 @@ class WP_To_Social_Pro_Admin {
 					esc_html__( 'Click here to Authorize.', 'postiz-auto-poster' )
 				)
 			);
-		}
-
-		// Buffer: If an access token begins with '2/', it's from the old API.
-		$accounts = $this->base->get_class( 'settings' )->get_accounts();
-		foreach ( $accounts as $account ) {
-			if ( strpos( $account['access_token'], '2/' ) === 0 ) {
-				$this->base->get_class( 'notices' )->add_error_notice(
-					sprintf(
-						/* translators: %1$s: Plugin Name, %2$s: Social Media Service Name  */
-						__( '%1$s uses a new API. Please click the `Reconnect` button at %2$s Settings > Authentication to reconnect your account. You won\'t need to do this again.', 'postiz-auto-poster' ),
-						$this->base->plugin->displayName,
-						$this->base->plugin->account
-					)
-				);
-			}
 		}
 	}
 
@@ -1029,7 +853,7 @@ class WP_To_Social_Pro_Admin {
 				}
 
 				// Unslash and decode JSON field.
-				$settings = json_decode( wp_unslash( $_POST[ $this->base->plugin->name ]['statuses'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$settings = json_decode( wp_unslash( $_POST[ $this->base->plugin->name ]['statuses'] ), true ); // @TODO Sanitize.
 
 				// Save Settings for this Post Type.
 				return $this->base->get_class( 'settings' )->update_settings( $post_type, $settings );
