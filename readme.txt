@@ -1,8 +1,8 @@
-=== Social Media Auto Poster - Schedule & Publish to Postiz ===
+=== Postiz Auto Poster ===
 Contributors: n7studios,wpzinc
 Donate link: https://www.wpzinc.com/documentation/postiz-auto-poster
 Tags: social media automation, auto post, postiz, social media scheduler, auto publish
-Requires at least: 5.0
+Requires at least: 5.3
 Tested up to: 7.0
 Requires PHP: 7.4
 Stable tag: 1.0.0

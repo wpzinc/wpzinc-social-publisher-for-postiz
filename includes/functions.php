@@ -6,6 +6,10 @@
  * @author WP Zinc
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Saves the new access token, refresh token and its expiry against
  * all accounts that have the existing access token.

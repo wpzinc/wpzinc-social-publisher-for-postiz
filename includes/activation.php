@@ -6,6 +6,10 @@
  * @author WP Zinc
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Runs the installation and update routines when the plugin is activated.
  *

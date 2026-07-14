@@ -6,6 +6,10 @@
  * @author WP Zinc
  */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Define the WP Cron function to perform the log cleanup
  *
