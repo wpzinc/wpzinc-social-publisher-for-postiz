@@ -13,7 +13,7 @@ Automatically post and schedule your WordPress content to Facebook, X/Twitter, L
 
 == Description ==
 
-Social Media Auto Poster connects your WordPress site to Postiz, enabling automatic social media publishing whenever you create or update content. Share your blog posts, pages, and custom post types to multiple social networks without manual posting.
+Unofficial Plugin to connects your WordPress site to Postiz, enabling automatic social media publishing whenever you create or update content. Share your blog posts, pages, and custom post types to multiple social networks without manual posting.
 
 === Why Choose This Social Media Automation Plugin? ===
 

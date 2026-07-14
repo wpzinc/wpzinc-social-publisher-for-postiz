@@ -299,6 +299,11 @@ class WP_To_Social_Pro_Postiz_API {
 		// Build profiles array from results.
 		$profiles = array();
 		foreach ( $results as $channel ) {
+			// Skip some unsupported services.
+			if ( in_array( $channel['identifier'], array( 'youtube', 'kick', 'twitch', 'reddit', 'lemmy', 'discord', 'slack', 'warpcast', 'nostr', 'dribbble', 'medium', 'devto', 'hashnode', 'wordpress', 'listmonk', 'whop', 'skool', 'kick', 'moltbook' ), true ) ) {
+				continue;
+			}
+
 			$profiles[ $channel['id'] ] = array(
 				'id'                 => $channel['id'],
 				'formatted_service'  => $this->get_formatted_service( $channel['identifier'] ),
@@ -354,74 +359,20 @@ class WP_To_Social_Pro_Postiz_API {
 			case 'mastodon':
 				return __( 'Mastodon', 'postiz-auto-poster' );
 
-			case 'warpcast':
-				return __( 'Warpcast', 'postiz-auto-poster' );
-
-			case 'nostr':
-				return __( 'Nostr', 'postiz-auto-poster' );
-
 			case 'vk':
 				return __( 'VK', 'postiz-auto-poster' );
-
-			case 'youtube':
-				return __( 'YouTube', 'postiz-auto-poster' );
 
 			case 'tiktok':
 				return __( 'TikTok', 'postiz-auto-poster' );
 
-			case 'reddit':
-				return __( 'Reddit', 'postiz-auto-poster' );
-
-			case 'lemmy':
-				return __( 'Lemmy', 'postiz-auto-poster' );
-
-			case 'discord':
-				return __( 'Discord', 'postiz-auto-poster' );
-
-			case 'slack':
-				return __( 'Slack', 'postiz-auto-poster' );
-
 			case 'telegram':
 				return __( 'Telegram', 'postiz-auto-poster' );
-
-			case 'kick':
-				return __( 'Kick', 'postiz-auto-poster' );
-
-			case 'twitch':
-				return __( 'Twitch', 'postiz-auto-poster' );
 
 			case 'pinterest':
 				return __( 'Pinterest', 'postiz-auto-poster' );
 
-			case 'dribbble':
-				return __( 'Dribbble', 'postiz-auto-poster' );
-
-			case 'medium':
-				return __( 'Medium', 'postiz-auto-poster' );
-
-			case 'devto':
-				return __( 'Dev.to', 'postiz-auto-poster' );
-
-			case 'hashnode':
-				return __( 'Hashnode', 'postiz-auto-poster' );
-
-			case 'WordPress':
-				return __( 'WordPress', 'postiz-auto-poster' );
-
 			case 'gmb':
 				return __( 'Google My Business', 'postiz-auto-poster' );
-
-			case 'listmonk':
-				return __( 'Listmonk', 'postiz-auto-poster' );
-
-			case 'moltbook':
-				return __( 'Moltbook', 'postiz-auto-poster' );
-
-			case 'skool':
-				return __( 'Skool', 'postiz-auto-poster' );
-
-			case 'whop':
-				return __( 'Whop', 'postiz-auto-poster' );
 
 			default:
 				return '';
@@ -467,11 +418,148 @@ class WP_To_Social_Pro_Postiz_API {
 	 */
 	public function updates_create( $params, $service = '' ) {
 
-		// @TODO.
-		var_dump( $params );
-		die();
+		// Build arguments.
+		$args = array(
+			'type'      => array_key_exists( 'is_draft', $params ) && $params['is_draft'] ? 'draft' : $params['schedule_type'],
+			'date'      => gmdate( 'Y-m-d\TH:i:s\Z', strtotime( '+1 day' ) ), // Setting to now as a draft results in no errors but no post is created in the Postiz UI.
+			'shortLink' => false,
+			'tags'      => array(),
+			'posts'     => array(
+				array(
+					'integration' => array(
+						'id' => $params['profile_ids'][0],
+					),
+					'value'       => array(
+						array(
+							'content' => $params['text'],
+							'image'   => array(),
+						),
 
-		return $this->post( 'posts', $params );
+						// First comment would go here.
+					),
+					'settings'    => array(
+						'__type' => $service,
+					),
+				),
+			),
+		);
+
+		// Scheduling.
+		switch ( $params['schedule_type'] ) {
+			case 'schedule':
+				$args['type'] = 'schedule';
+				$args['date'] = gmdate( 'Y-m-d\TH:i:s\Z', strtotime( $params['scheduled_at'] ) );
+				break;
+		}
+
+		// Images.
+		switch ( $params['post_type'] ) {
+			case 'image':
+			case 'story':
+			case 'pin':
+			case 'googlebusiness':
+				// Bail if no images are defined.
+				if ( ! array_key_exists( 'media_urls', $params ) ) {
+					break;
+				}
+
+				// Build images array.
+				$images = array();
+				foreach ( $params['media_urls'] as $media ) {
+					$images[] = array(
+						'id'   => '',
+						'path' => $media['image'],
+					);
+				}
+
+				// Add images to args.
+				$args['posts'][0]['value'][0]['image'] = $images;
+				break;
+		}
+
+		// Settings.
+		switch ( $service ) {
+			case 'twitter':
+				$settings = array(
+					'who_can_reply_post' => 'everyone',
+				);
+				break;
+
+			case 'facebook':
+				if ( $params['post_type'] === 'link' ) {
+					$settings = array(
+						'url' => $params['url'],
+					);
+				}
+				break;
+
+			case 'instagram':
+				$settings = array(
+					'post_type' => $params['post_type'], // image, story.
+				);
+				break;
+
+			case 'tiktok':
+				$settings = array(
+					'privacy_level'          => 'PUBLIC_TO_EVERYONE',
+					'duet'                   => false,
+					'stitch'                 => false,
+					'comment'                => true,
+					'autoAddMusic'           => 'no',
+					'brand_content_toggle'   => false,
+					'brand_organic_toggle'   => true,
+					'content_posting_method' => 'DIRECT_POST',
+				);
+				break;
+
+			case 'pinterest':
+				$settings = array(
+					'board' => '',
+					'title' => '',
+					'link'  => $params['url'],
+				);
+				break;
+
+		}
+
+		// If service specific settings have been defined, add them to the args.
+		if ( isset( $settings ) ) {
+			$args['posts'][0]['settings'] = array_merge( $args['posts'][0]['settings'], $settings );
+		}
+
+		// Send update.
+		$result = $this->post( 'posts', $args );
+
+		// Bail if the result is an error.
+		if ( is_wp_error( $result ) ) {
+			return $result;
+		}
+
+		// Get post.
+		$post = $this->get_post( $result[0]['postId'] );
+
+		// Return array of just the data we need to send to the Plugin.
+		return array(
+			'profile_id'        => $params['profile_ids'][0],
+			'message'           => 'scheduled',
+			'status_text'       => $params['text'],
+			'status_created_at' => strtotime( 'now' ),
+			'due_at'            => strtotime( $args['date'] ),
+		);
+
+	}
+
+	/**
+	 * Gets a post by ID.
+	 *
+	 * @since   1.0.0
+	 *
+	 * @param   string $id   Post ID.
+	 * @return  WP_Error|array
+	 */
+	public function get_post( $id ) {
+
+		return $this->get( 'posts/' . $id );
 
 	}
 
@@ -482,7 +570,7 @@ class WP_To_Social_Pro_Postiz_API {
 	 *
 	 * @param  string $cmd        Command (required).
 	 * @param  array  $params     Params (optional).
-	 * @return mixed               WP_Error | object
+	 * @return WP_Error|array
 	 */
 	private function get( $cmd, $params = array() ) {
 
@@ -497,7 +585,7 @@ class WP_To_Social_Pro_Postiz_API {
 	 *
 	 * @param  string $cmd        Command (required).
 	 * @param  array  $params     Params (optional).
-	 * @return mixed               WP_Error | object
+	 * @return WP_Error|array
 	 */
 	private function post( $cmd, $params = array() ) {
 
@@ -513,7 +601,7 @@ class WP_To_Social_Pro_Postiz_API {
 	 * @param   string $cmd        Command.
 	 * @param   string $method     Method (get|post).
 	 * @param   array  $params     Parameters (optional).
-	 * @return  mixed               WP_Error | object
+	 * @return  WP_Error|array
 	 */
 	private function request( $cmd, $method = 'get', $params = array() ) {
 
@@ -555,8 +643,9 @@ class WP_To_Social_Pro_Postiz_API {
 						'headers'   => array(
 							'Authorization' => $this->access_token,
 							'Accept'        => 'application/json',
+							'Content-Type'  => 'application/json',
 						),
-						'body'      => $params,
+						'body'      => wp_json_encode( $params ),
 						'timeout'   => $this->get_timeout(),
 						'sslverify' => $this->enable_ssl_verification(),
 					)
@@ -576,8 +665,19 @@ class WP_To_Social_Pro_Postiz_API {
 		// Decode response.
 		$body = json_decode( $response, true );
 
-		// @TODO WP_Error returns on errors.
+		// If an error is detected, return it.
+		if ( array_key_exists( 'error', $body ) ) {
+			// Messages can be a string or array.
+			$messages = is_array( $body['message'] ) ? $body['message'] : array( $body['message'] );
 
+			// Return WP_Error.
+			return new WP_Error(
+				'postiz_auto_poster_api_error',
+				implode( '; ', $messages )
+			);
+		}
+
+		// Return response body.
 		return $body;
 
 	}

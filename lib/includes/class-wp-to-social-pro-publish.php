@@ -533,12 +533,6 @@ class WP_To_Social_Pro_Publish {
 				continue;
 			}
 
-			// If the Profile's ID belongs to a Google Social Media Profile, skip it, as this is no longer supported
-			// as Google+ closed down.
-			if ( $profile_id !== 'default' && $profiles[ $profile_id ]['service'] === 'google' ) {
-				continue;
-			}
-
 			// Get detailed settings from Post or Plugin.
 			// Use Plugin Settings.
 			$profile_enabled  = $this->base->get_class( 'settings' )->get_setting( $post->post_type, '[' . $profile_id . '][enabled]', 0 );
@@ -574,7 +568,7 @@ class WP_To_Social_Pro_Publish {
 			// Iterate through each Status.
 			foreach ( $status_settings as $index => $status ) {
 				// Add the status to our array for it to be sent to the API.
-				$status = $this->build_args( $post, $profile_id, $service, $status, $action, $account );
+				$status = $this->build_args( $post, $profile_id, $service, $status, $action );
 
 				// If the status built is a WP_Error, something went wrong with e.g. the image.
 				// Include the error object and the profile ID, so the error is logged.
@@ -735,15 +729,14 @@ class WP_To_Social_Pro_Publish {
 	 *
 	 * @since   3.0.0
 	 *
-	 * @param   WP_Post    $post                       Post.
-	 * @param   string     $profile_id                 Profile ID.
-	 * @param   string     $service                    Service.
-	 * @param   array      $status                     Status Settings.
-	 * @param   string     $action                     Action (publish|update|repost|bulk_publish).
-	 * @param   bool|array $account                    Account.
+	 * @param   WP_Post $post                       Post.
+	 * @param   string  $profile_id                 Profile ID.
+	 * @param   string  $service                    Service.
+	 * @param   array   $status                     Status Settings.
+	 * @param   string  $action                     Action (publish|update|repost|bulk_publish).
 	 * @return  bool
 	 */
-	private function build_args( $post, $profile_id, $service, $status, $action, $account = false ) {
+	private function build_args( $post, $profile_id, $service, $status, $action ) {
 
 		// For some services, the post_type may need to be changed to a supported post type.
 		// This might happen if e.g. only defaults are set, and per-profile settings are not defined.
@@ -786,7 +779,6 @@ class WP_To_Social_Pro_Publish {
 		// Build API compatible arguments.
 		$thumbnail = $this->get_post_image( $post, $service, $status['post_type'] );
 		$args      = array(
-			'account'     => $account,
 			'post_type'   => $status['post_type'],
 			'profile_ids' => array( $profile_id ),
 			'text'        => $this->parse_text( $post, $status['message'], ( $service === 'instagram' ? true : false ) ),
@@ -2168,10 +2160,6 @@ class WP_To_Social_Pro_Publish {
 			}
 			delete_post_meta( $post_id, '_' . $this->base->plugin->filter_name . '_error' );
 			delete_post_meta( $post_id, '_' . $this->base->plugin->filter_name . '_errors' );
-
-			// Request that the user review the plugin. Notification displayed later,
-			// can be called multiple times and won't re-display the notification if dismissed.
-			$this->base->dashboard->request_review();
 		} else {
 			update_post_meta( $post_id, '_' . $this->base->plugin->filter_name . '_success', 0 );
 			update_post_meta( $post_id, '_' . $this->base->plugin->filter_name . '_error', 1 );
