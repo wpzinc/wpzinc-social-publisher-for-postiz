@@ -95,7 +95,17 @@ class WP_To_Social_Pro_Ajax {
 
 		// Parse request.
 		$post_type = sanitize_text_field( wp_unslash( $_REQUEST['post_type'] ) );
-		$statuses  = json_decode( wp_unslash( $_REQUEST['statuses'] ), true ); // @TODO Sanitize.
+
+		// Unslash and decode JSON field.
+		$statuses = json_decode( wp_unslash( $_REQUEST['statuses'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+
+		// Bail if the JSON was malformed.
+		if ( ! is_array( $statuses ) ) {
+			wp_send_json_error( __( 'Statuses field is invalid.', 'postiz-auto-poster' ) );
+		}
+
+		// Sanitize.
+		$statuses = map_deep( $statuses, 'sanitize_textarea_field' );
 
 		// Get some other information.
 		$post_type_object  = get_post_type_object( $post_type );
@@ -140,7 +150,11 @@ class WP_To_Social_Pro_Ajax {
 		}
 
 		// Parse request.
-		$status    = json_decode( wp_unslash( $_REQUEST['status'] ), true ); // @TODO Sanitize.
+		$status = json_decode( wp_unslash( $_REQUEST['status'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		if ( ! is_array( $status ) ) {
+			wp_send_json_error( __( 'Status field is invalid.', 'postiz-auto-poster' ) );
+		}
+		$status    = map_deep( $status, 'sanitize_textarea_field' );
 		$post_type = sanitize_text_field( wp_unslash( $_REQUEST['post_type'] ) );
 		$action    = sanitize_text_field( wp_unslash( $_REQUEST['post_action'] ) );
 

@@ -66,10 +66,12 @@ class WP_To_Social_Pro_Post {
 		}
 
 		// Check we have a Post ID.
-		if ( ! isset( $_GET['post'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification
+		if ( ! filter_has_var( INPUT_GET, 'post' ) ) {
 			return;
 		}
-		$post_id = absint( $_GET['post'] ); // phpcs:ignore WordPress.Security.NonceVerification
+
+		// Get Post ID.
+		$post_id = absint( filter_input( INPUT_GET, 'post', FILTER_SANITIZE_NUMBER_INT ) );
 
 		// Check if this Post has a success or error meta key set by this plugin.
 		$success = get_post_meta( $post_id, '_' . $this->base->plugin->filter_name . '_success', true );

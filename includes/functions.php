@@ -19,7 +19,7 @@
 function postiz_auto_poster_update_credentials( $result, $client_id, $existing_access_token ) {
 
 	// Get Plugin instance.
-	$postiz_auto_poster = Postiz_Auto_Poster::get_instance();
+	$postiz_auto_poster = postiz_auto_poster::get_instance();
 
 	// Get the account IDs based on the existing access token.
 	$account_ids = $postiz_auto_poster->get_class( 'settings' )->get_account_ids_by_access_token( $existing_access_token );

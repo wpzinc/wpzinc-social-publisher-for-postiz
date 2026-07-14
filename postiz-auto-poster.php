@@ -41,7 +41,7 @@ define( 'POSTIZ_AUTO_POSTER_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
  *
  * @param   string $class_name     The class to load.
  */
-function Postiz_Auto_Poster_Autoloader( $class_name ) { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+function postiz_auto_poster_autoloader( $class_name ) {
 
 	// Define the required start of the class name.
 	$class_start_name = 'WP_To_Social_Pro';
@@ -109,12 +109,12 @@ register_deactivation_hook( __FILE__, 'postiz_auto_poster_deactivate' );
  *
  * @since   1.0.0
  */
-function Postiz_Auto_Poster() { // phpcs:ignore WordPress.NamingConventions.ValidFunctionName
+function postiz_auto_poster() {
 
-	return Postiz_Auto_Poster::get_instance();
+	return postiz_auto_poster::get_instance();
 
 }
 
 // Finally, initialize the Plugin.
 require_once POSTIZ_AUTO_POSTER_PLUGIN_PATH . 'includes/class-postiz-auto-poster.php';
-$postiz_auto_poster = Postiz_Auto_Poster();
+$postiz_auto_poster = postiz_auto_poster();

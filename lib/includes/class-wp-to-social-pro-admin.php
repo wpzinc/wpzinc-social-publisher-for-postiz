@@ -853,7 +853,18 @@ class WP_To_Social_Pro_Admin {
 				}
 
 				// Unslash and decode JSON field.
-				$settings = json_decode( wp_unslash( $_POST[ $this->base->plugin->name ]['statuses'] ), true ); // @TODO Sanitize.
+				$settings = json_decode( wp_unslash( $_POST[ $this->base->plugin->name ]['statuses'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+
+				// Bail if the JSON was malformed.
+				if ( ! is_array( $settings ) ) {
+					return new WP_Error(
+						'wp_to_social_pro_admin_save_settings_error',
+						__( 'Statuses field is invalid. Settings NOT saved.', 'postiz-auto-poster' )
+					);
+				}
+
+				// Sanitize.
+				$settings = map_deep( $settings, 'sanitize_textarea_field' );
 
 				// Save Settings for this Post Type.
 				return $this->base->get_class( 'settings' )->update_settings( $post_type, $settings );

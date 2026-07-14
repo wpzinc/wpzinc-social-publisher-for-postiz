@@ -14,7 +14,7 @@
 function postiz_auto_poster_log_cleanup_cron() {
 
 	// Initialise Plugin.
-	$postiz_auto_poster = Postiz_Auto_Poster::get_instance();
+	$postiz_auto_poster = postiz_auto_poster::get_instance();
 	$postiz_auto_poster->initialize();
 
 	// Call CRON Log Cleanup function.
@@ -35,7 +35,7 @@ add_action( 'postiz_auto_poster_log_cleanup_cron', 'postiz_auto_poster_log_clean
 function postiz_auto_poster_media_cleanup_cron() {
 
 	// Initialise Plugin.
-	$postiz_auto_poster = Postiz_Auto_Poster::get_instance();
+	$postiz_auto_poster = postiz_auto_poster::get_instance();
 	$postiz_auto_poster->initialize();
 
 	// Call Media Cleanup function.

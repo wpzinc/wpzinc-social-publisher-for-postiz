@@ -16,7 +16,7 @@
 function postiz_auto_poster_deactivate( $network_wide ) {
 
 	// Initialise Plugin.
-	$postiz_auto_poster = Postiz_Auto_Poster::get_instance();
+	$postiz_auto_poster = postiz_auto_poster::get_instance();
 	$postiz_auto_poster->initialize();
 
 	// Check if we are on a multisite install, activating network wide, or a single install.
