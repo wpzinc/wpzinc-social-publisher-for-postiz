@@ -53,7 +53,7 @@ class WP_To_Social_Pro_Image {
 	public function get_status_image_options( $network = false, $post_type = false ) {
 
 		// If a Post Type has been specified, get its featured_image label.
-		$label = __( 'Feat. Image', 'postiz-auto-poster' );
+		$label = __( 'Feat. Image', 'social-publisher-for-postiz' );
 		if ( $post_type !== false && $post_type !== 'bulk' ) {
 			$post_type_object = get_post_type_object( $post_type );
 			$label            = $post_type_object->labels->featured_image;
@@ -78,7 +78,7 @@ class WP_To_Social_Pro_Image {
 		 * @param   string  $network    Social Network.
 		 * @param   string  $post_type  Post Type.
 		 */
-		$options = apply_filters( 'postiz_auto_poster_get_status_image_options', $options, $network, $post_type );
+		$options = apply_filters( 'social_publisher_for_postiz_get_status_image_options', $options, $network, $post_type );
 
 		// Return filtered results.
 		return $options;

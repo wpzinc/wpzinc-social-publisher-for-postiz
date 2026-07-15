@@ -109,7 +109,7 @@ class WP_To_Social_Pro_Settings {
 		 * @param   array   $settings   Settings.
 		 * @param   string  $type       Post Type.
 		 */
-		$settings = apply_filters( 'postiz_auto_poster_get_settings', $settings, $type );
+		$settings = apply_filters( 'social_publisher_for_postiz_get_settings', $settings, $type );
 
 		// Return result.
 		return $settings;
@@ -142,7 +142,7 @@ class WP_To_Social_Pro_Settings {
 		 * @param   string  $type                Post Type.
 		 * @param   array   $existing_settings   Existing Settings.
 		 */
-		$settings = apply_filters( 'postiz_auto_poster_update_settings', $settings, $type, $existing_settings );
+		$settings = apply_filters( 'social_publisher_for_postiz_update_settings', $settings, $type, $existing_settings );
 
 		// Save.
 		$result = $this->update_option( $type, $settings );
@@ -158,7 +158,7 @@ class WP_To_Social_Pro_Settings {
 						$this->base->plugin->filter_name . '_settings_update_settings_db_collation_error',
 						sprintf(
 							/* translators: %1$s: Documentation URL */
-							__( 'Unable to save settings due to an invalid database collation and charset on the options table. Please refer to the <a href="%1$s" target="_blank">Documentation</a>.', 'postiz-auto-poster' ),
+							__( 'Unable to save settings due to an invalid database collation and charset on the options table. Please refer to the <a href="%1$s" target="_blank">Documentation</a>.', 'social-publisher-for-postiz' ),
 							'https://www.wpzinc.com/documentation/wordpress-buffer-pro/debugging-issues/#unable-to-save-settings-due-to-an-invalid-database-collation-and-charset-on-the-options-table'
 						),
 					);
@@ -167,7 +167,7 @@ class WP_To_Social_Pro_Settings {
 				// No changes were made to the settings.
 				return new WP_Error(
 					$this->base->plugin->filter_name . '_settings_update_settings_no_changes',
-					__( 'Unable to save settings due to an error. Please try again.', 'postiz-auto-poster' )
+					__( 'Unable to save settings due to an error. Please try again.', 'social-publisher-for-postiz' )
 				);
 			}
 		}
@@ -178,7 +178,7 @@ class WP_To_Social_Pro_Settings {
 			// Fetch Post Type Name, Profile Name and Action Name.
 			$post_type_object = get_post_type_object( $type );
 			if ( $duplicates['profile_id'] === 'default' ) {
-				$profile = __( 'Defaults', 'postiz-auto-poster' );
+				$profile = __( 'Defaults', 'social-publisher-for-postiz' );
 			} elseif ( isset( $profiles[ $profile_id ] ) ) {
 				$profile = $profiles[ $profile_id ]['formatted_service'] . ': ' . $profiles[ $profile_id ]['formatted_username'];
 			}
@@ -190,7 +190,7 @@ class WP_To_Social_Pro_Settings {
 				$this->base->plugin->filter_name . '_settings_update_settings_duplicates',
 				sprintf(
 					/* translators: %1$s: Post Type Name, Plural, %2$s: Social Media Profile Name, %3$s: Action (Publish, Update, Repost, Bulk Publish), %4$s: Social Media Service Name  */
-					__( 'Two or more statuses defined in %1$s > %2$s > %3$s are the same. Please correct this to ensure each status update is unique, otherwise your status updates will NOT publish to %4$s as they will be seen as duplicates, which violate Facebook and Twitter\'s Terms of Service.', 'postiz-auto-poster' ),
+					__( 'Two or more statuses defined in %1$s > %2$s > %3$s are the same. Please correct this to ensure each status update is unique, otherwise your status updates will NOT publish to %4$s as they will be seen as duplicates, which violate Facebook and Twitter\'s Terms of Service.', 'social-publisher-for-postiz' ),
 					$post_type_object->label,
 					$profile,
 					$action,
@@ -254,7 +254,7 @@ class WP_To_Social_Pro_Settings {
 		 * @param   array   $settings   Settings.
 		 * @param   string  $type       Post Type.
 		 */
-		$settings = apply_filters( 'postiz_auto_poster_default_installation_settings', $settings );
+		$settings = apply_filters( 'social_publisher_for_postiz_default_installation_settings', $settings );
 
 		// Return.
 		return $settings;
@@ -493,7 +493,7 @@ class WP_To_Social_Pro_Settings {
 		 *
 		 * @param   array   $status     Status.
 		 */
-		$status = apply_filters( 'postiz_auto_poster_settings_get_default_status', $status );
+		$status = apply_filters( 'social_publisher_for_postiz_settings_get_default_status', $status );
 
 		// Return.
 		return $status;
@@ -614,7 +614,7 @@ class WP_To_Social_Pro_Settings {
 		 *
 		 * @param   array   $status     Status.
 		 */
-		$status = apply_filters( 'postiz_auto_poster_settings_validate_status', $status );
+		$status = apply_filters( 'social_publisher_for_postiz_settings_validate_status', $status );
 
 		// Return.
 		return $status;
@@ -963,7 +963,7 @@ class WP_To_Social_Pro_Settings {
 		 * @param   string  $value  Option Value.
 		 * @param   string  $key    Option Key.
 		 */
-		$value = apply_filters( 'postiz_auto_poster_update_option', $value, $key );
+		$value = apply_filters( 'social_publisher_for_postiz_update_option', $value, $key );
 
 		// Update.
 		return update_option( $this->base->plugin->settingsName . '-' . $key, $value );

@@ -1,19 +1,19 @@
 <?php
 /**
- * Postiz Auto Poster class.
+ * Social Publisher for Postiz class.
  *
- * @package Postiz_Auto_Poster
+ * @package social_publisher_for_postiz
  * @author WP Zinc
  */
 
 /**
- * Main Postiz Auto Poster class, used to load the Plugin.
+ * Main Social Publisher for Postiz class, used to load the Plugin.
  *
- * @package   Postiz_Auto_Poster
+ * @package   social_publisher_for_postiz
  * @author    WP Zinc
  * @version   1.0.0
  */
-class Postiz_Auto_Poster {
+class Social_Publisher_For_Postiz {
 
 	/**
 	 * Holds the class object.
@@ -60,27 +60,27 @@ class Postiz_Auto_Poster {
 
 		// Plugin Details.
 		$this->plugin              = new stdClass();
-		$this->plugin->name        = 'postiz-auto-poster';
-		$this->plugin->filter_name = 'postiz_auto_poster';
-		$this->plugin->displayName = 'Postiz Auto Poster';
+		$this->plugin->name        = 'social-publisher-for-postiz';
+		$this->plugin->filter_name = 'social_publisher_for_postiz';
+		$this->plugin->displayName = 'Social Publisher for Postiz';
 
-		$this->plugin->settingsName      = 'postiz-auto-poster-pro'; // Settings key - used in both Free + Pro, and for oAuth.
+		$this->plugin->settingsName      = 'social-publisher-for-postiz-pro'; // Settings key - used in both Free + Pro, and for oAuth.
 		$this->plugin->account           = 'Postiz';
-		$this->plugin->version           = POSTIZ_AUTO_POSTER_PLUGIN_VERSION;
-		$this->plugin->buildDate         = POSTIZ_AUTO_POSTER_PLUGIN_BUILD_DATE;
-		$this->plugin->folder            = POSTIZ_AUTO_POSTER_PLUGIN_PATH;
-		$this->plugin->url               = POSTIZ_AUTO_POSTER_PLUGIN_URL;
-		$this->plugin->documentation_url = 'https://www.wpzinc.com/documentation/postiz-auto-poster';
+		$this->plugin->version           = SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_VERSION;
+		$this->plugin->buildDate         = SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_BUILD_DATE;
+		$this->plugin->folder            = SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH;
+		$this->plugin->url               = SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_URL;
+		$this->plugin->documentation_url = 'https://www.wpzinc.com/documentation/wordpress-buffer-pro/';
 		$this->plugin->support_url       = 'https://www.wpzinc.com/support';
 
 		// Logo.
-		$this->plugin->logo                        = POSTIZ_AUTO_POSTER_PLUGIN_URL . 'lib/assets/images/icons/postiz-dark.svg';
+		$this->plugin->logo                        = SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_URL . 'lib/assets/images/icons/postiz-dark.svg';
 		$this->plugin->header_background_color     = '#ffffff';
 		$this->plugin->header_primary_text_color   = '#3d3d3d';
 		$this->plugin->header_secondary_text_color = '#6e6e6e';
 
 		// Review.
-		$this->plugin->review_name   = 'postiz-auto-poster';
+		$this->plugin->review_name   = 'social-publisher-for-postiz';
 		$this->plugin->review_notice = sprintf(
 			'Thanks for using %s to schedule your social media statuses on %s!',
 			$this->plugin->displayName,
@@ -115,11 +115,11 @@ class Postiz_Auto_Poster {
 		add_menu_page( $this->plugin->displayName, $this->plugin->displayName, $minimum_capability, $this->plugin->name . '-settings', array( $this->get_class( 'admin' ), 'settings_screen' ), $this->plugin->url . 'lib/assets/images/icons/' . strtolower( $this->plugin->account ) . '-light.svg' );
 
 		// Register Submenu Pages.
-		$settings_page = add_submenu_page( $this->plugin->name . '-settings', __( 'Settings', 'postiz-auto-poster' ), __( 'Settings', 'postiz-auto-poster' ), $minimum_capability, $this->plugin->name . '-settings', array( $this->get_class( 'admin' ), 'settings_screen' ) );
+		$settings_page = add_submenu_page( $this->plugin->name . '-settings', __( 'Settings', 'social-publisher-for-postiz' ), __( 'Settings', 'social-publisher-for-postiz' ), $minimum_capability, $this->plugin->name . '-settings', array( $this->get_class( 'admin' ), 'settings_screen' ) );
 
 		// Logs.
 		if ( $this->get_class( 'log' )->is_enabled() ) {
-			$log_page = add_submenu_page( $this->plugin->name . '-settings', __( 'Logs', 'postiz-auto-poster' ), __( 'Logs', 'postiz-auto-poster' ), $minimum_capability, $this->plugin->name . '-log', array( $this->get_class( 'admin' ), 'log_screen' ) );
+			$log_page = add_submenu_page( $this->plugin->name . '-settings', __( 'Logs', 'social-publisher-for-postiz' ), __( 'Logs', 'social-publisher-for-postiz' ), $minimum_capability, $this->plugin->name . '-log', array( $this->get_class( 'admin' ), 'log_screen' ) );
 			add_action( "load-$log_page", array( $this->get_class( 'log' ), 'add_screen_options' ) );
 		}
 
@@ -135,7 +135,7 @@ class Postiz_Auto_Poster {
 		// Define translation strings.
 		$this->plugin->review_notice = sprintf(
 			/* translators: Plugin Name */
-			__( 'Thanks for using %s to schedule your social media statuses on Postiz!', 'postiz-auto-poster' ),
+			__( 'Thanks for using %s to schedule your social media statuses on Postiz!', 'social-publisher-for-postiz' ),
 			$this->plugin->displayName
 		);
 
@@ -164,7 +164,6 @@ class Postiz_Auto_Poster {
 		$this->classes->publish       = new WP_To_Social_Pro_Publish( self::$instance );
 		$this->classes->screen        = new WP_To_Social_Pro_Screen( self::$instance );
 		$this->classes->settings      = new WP_To_Social_Pro_Settings( self::$instance );
-		$this->classes->twitter_api   = new WP_To_Social_Pro_Twitter_API( self::$instance );
 		$this->classes->validation    = new WP_To_Social_Pro_Validation( self::$instance );
 
 	}
@@ -195,10 +194,10 @@ class Postiz_Auto_Poster {
 		if ( ! isset( $this->classes->{ $name } ) ) {
 			// Define the error.
 			$error = new WP_Error(
-				'postiz_auto_poster_get_class',
+				'social_publisher_for_postiz_get_class',
 				sprintf(
 					/* translators: %1$s: Plugin Name, %2$s: PHP class name */
-					__( '%1$s: Error: Could not load Plugin class %2$s', 'postiz-auto-poster' ),
+					__( '%1$s: Error: Could not load Plugin class %2$s', 'social-publisher-for-postiz' ),
 					$this->plugin->displayName,
 					$name
 				)
@@ -211,7 +210,7 @@ class Postiz_Auto_Poster {
 					esc_html( $error->get_error_message() ),
 					sprintf(
 						/* translators: Plugin Name */
-						esc_html__( '%s: Error', 'postiz-auto-poster' ),
+						esc_html__( '%s: Error', 'social-publisher-for-postiz' ),
 						esc_html( $this->plugin->displayName )
 					),
 					array(

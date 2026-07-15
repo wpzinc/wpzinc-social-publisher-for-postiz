@@ -2,7 +2,7 @@
 /**
  * Defines functions that are called by WordPress' Cron.
  *
- * @package Postiz_Auto_Poster
+ * @package social_publisher_for_postiz
  * @author WP Zinc
  */
 
@@ -15,20 +15,20 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since   1.0.0
  */
-function postiz_auto_poster_log_cleanup_cron() {
+function social_publisher_for_postiz_log_cleanup_cron() {
 
 	// Initialise Plugin.
-	$postiz_auto_poster = postiz_auto_poster::get_instance();
-	$postiz_auto_poster->initialize();
+	$social_publisher_for_postiz = social_publisher_for_postiz::get_instance();
+	$social_publisher_for_postiz->initialize();
 
 	// Call CRON Log Cleanup function.
-	$postiz_auto_poster->get_class( 'cron' )->log_cleanup();
+	$social_publisher_for_postiz->get_class( 'cron' )->log_cleanup();
 
 	// Shutdown.
-	unset( $postiz_auto_poster );
+	unset( $social_publisher_for_postiz );
 
 }
-add_action( 'postiz_auto_poster_log_cleanup_cron', 'postiz_auto_poster_log_cleanup_cron' );
+add_action( 'social_publisher_for_postiz_log_cleanup_cron', 'social_publisher_for_postiz_log_cleanup_cron' );
 
 /**
  * Define the WP Cron function to perform the Media Library cleanup
@@ -36,17 +36,17 @@ add_action( 'postiz_auto_poster_log_cleanup_cron', 'postiz_auto_poster_log_clean
  *
  * @since   1.0.0
  */
-function postiz_auto_poster_media_cleanup_cron() {
+function social_publisher_for_postiz_media_cleanup_cron() {
 
 	// Initialise Plugin.
-	$postiz_auto_poster = postiz_auto_poster::get_instance();
-	$postiz_auto_poster->initialize();
+	$social_publisher_for_postiz = social_publisher_for_postiz::get_instance();
+	$social_publisher_for_postiz->initialize();
 
 	// Call Media Cleanup function.
-	$postiz_auto_poster->get_class( 'media_library' )->cleanup();
+	$social_publisher_for_postiz->get_class( 'media_library' )->cleanup();
 
 	// Shutdown.
-	unset( $postiz_auto_poster );
+	unset( $social_publisher_for_postiz );
 
 }
-add_action( 'postiz_auto_poster_media_cleanup_cron', 'postiz_auto_poster_media_cleanup_cron' );
+add_action( 'social_publisher_for_postiz_media_cleanup_cron', 'social_publisher_for_postiz_media_cleanup_cron' );

@@ -63,10 +63,10 @@ class WP_To_Social_Pro_Log_Table extends WP_List_Table {
 		$bulk_actions_name = 'bulk_action' . ( $which !== 'top' ? '2' : '' );
 		?>
 		<label for="bulk-action-selector-<?php echo esc_attr( $which ); ?>" class="screen-reader-text">
-			<?php esc_html_e( 'Select bulk action', 'postiz-auto-poster' ); ?>
+			<?php esc_html_e( 'Select bulk action', 'social-publisher-for-postiz' ); ?>
 		</label>
 		<select name="<?php echo esc_attr( $bulk_actions_name ); ?>" id="bulk-action-selector-<?php echo esc_attr( $which ); ?>" size="1">
-			<option value="-1"><?php esc_attr_e( 'Bulk Actions', 'postiz-auto-poster' ); ?></option>
+			<option value="-1"><?php esc_attr_e( 'Bulk Actions', 'social-publisher-for-postiz' ); ?></option>
 
 			<?php
 			foreach ( $this->_actions as $name => $title ) {
@@ -84,7 +84,7 @@ class WP_To_Social_Pro_Log_Table extends WP_List_Table {
 			?>
 			<!-- Custom Filters -->
 			<select name="action" size="1">
-				<option value=""<?php selected( $this->get_action(), '' ); ?>><?php esc_attr_e( 'Filter by Action', 'postiz-auto-poster' ); ?></option>
+				<option value=""<?php selected( $this->get_action(), '' ); ?>><?php esc_attr_e( 'Filter by Action', 'social-publisher-for-postiz' ); ?></option>
 				<?php
 				foreach ( $this->base->get_class( 'common' )->get_post_actions() as $action => $label ) {
 					?>
@@ -94,7 +94,7 @@ class WP_To_Social_Pro_Log_Table extends WP_List_Table {
 				?>
 			</select>
 			<select name="profile_id" size="1">
-				<option value=""<?php selected( $this->get_profile(), '' ); ?>><?php esc_attr_e( 'Filter by Profile', 'postiz-auto-poster' ); ?></option>
+				<option value=""<?php selected( $this->get_profile(), '' ); ?>><?php esc_attr_e( 'Filter by Profile', 'social-publisher-for-postiz' ); ?></option>
 				<?php
 				foreach ( $profiles as $profile_id => $label ) {
 					?>
@@ -104,7 +104,7 @@ class WP_To_Social_Pro_Log_Table extends WP_List_Table {
 				?>
 			</select>
 			<select name="result" size="1">
-				<option value=""<?php selected( $this->get_result(), '' ); ?>><?php esc_attr_e( 'Filter by Result', 'postiz-auto-poster' ); ?></option>
+				<option value=""<?php selected( $this->get_result(), '' ); ?>><?php esc_attr_e( 'Filter by Result', 'social-publisher-for-postiz' ); ?></option>
 				<?php
 				foreach ( $this->base->get_class( 'log' )->get_result_options() as $result_option => $label ) {
 					?>
@@ -122,7 +122,7 @@ class WP_To_Social_Pro_Log_Table extends WP_List_Table {
 			<?php
 		}
 
-		submit_button( __( 'Apply', 'postiz-auto-poster' ), 'action', '', false, array( 'id' => 'doaction' ) );
+		submit_button( __( 'Apply', 'social-publisher-for-postiz' ), 'action', '', false, array( 'id' => 'doaction' ) );
 
 		$clear_logs_url = add_query_arg(
 			array(
@@ -134,8 +134,8 @@ class WP_To_Social_Pro_Log_Table extends WP_List_Table {
 		);
 		?>
 
-		<a href="<?php echo esc_url( $clear_logs_url ); ?>" class="<?php echo esc_attr( $this->base->plugin->name ); ?>-clear-log button wpzinc-button-red" data-message="<?php esc_html_e( 'Are you sure you want to clear ALL logs?', 'postiz-auto-poster' ); ?>">
-			<?php esc_html_e( 'Clear Log', 'postiz-auto-poster' ); ?>
+		<a href="<?php echo esc_url( $clear_logs_url ); ?>" class="<?php echo esc_attr( $this->base->plugin->name ); ?>-clear-log button wpzinc-button-red" data-message="<?php esc_html_e( 'Are you sure you want to clear ALL logs?', 'social-publisher-for-postiz' ); ?>">
+			<?php esc_html_e( 'Clear Log', 'social-publisher-for-postiz' ); ?>
 		</a>
 		<?php
 
@@ -148,7 +148,7 @@ class WP_To_Social_Pro_Log_Table extends WP_List_Table {
 	 */
 	public function no_items() {
 
-		esc_html_e( 'No log entries found based on the given search and filter criteria.', 'postiz-auto-poster' );
+		esc_html_e( 'No log entries found based on the given search and filter criteria.', 'social-publisher-for-postiz' );
 
 	}
 
@@ -191,7 +191,7 @@ class WP_To_Social_Pro_Log_Table extends WP_List_Table {
 		?>
 		<p class="search-box">
 			<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_attr( $text ); ?>:</label>
-			<input type="search" id="<?php echo esc_attr( $input_id ); ?>" name="s" value="<?php _admin_search_query(); ?>" placeholder="<?php esc_attr_e( 'Post ID or Title', 'postiz-auto-poster' ); ?>" />
+			<input type="search" id="<?php echo esc_attr( $input_id ); ?>" name="s" value="<?php _admin_search_query(); ?>" placeholder="<?php esc_attr_e( 'Post ID or Title', 'social-publisher-for-postiz' ); ?>" />
 			<?php submit_button( $text, '', '', false, array( 'id' => 'search-submit' ) ); ?>
 		</p>
 		<?php
@@ -208,21 +208,21 @@ class WP_To_Social_Pro_Log_Table extends WP_List_Table {
 
 		return array(
 			'cb'                => '<input type="checkbox" class="toggle" />',
-			'post_id'           => __( 'Post ID', 'postiz-auto-poster' ),
-			'request_sent'      => __( 'Request Sent', 'postiz-auto-poster' ),
-			'action'            => __( 'Action', 'postiz-auto-poster' ),
-			'profile_name'      => __( 'Profile', 'postiz-auto-poster' ),
-			'status_text'       => __( 'Status Text', 'postiz-auto-poster' ),
-			'result'            => __( 'Result', 'postiz-auto-poster' ),
-			'result_message'    => __( 'Response', 'postiz-auto-poster' ),
+			'post_id'           => __( 'Post ID', 'social-publisher-for-postiz' ),
+			'request_sent'      => __( 'Request Sent', 'social-publisher-for-postiz' ),
+			'action'            => __( 'Action', 'social-publisher-for-postiz' ),
+			'profile_name'      => __( 'Profile', 'social-publisher-for-postiz' ),
+			'status_text'       => __( 'Status Text', 'social-publisher-for-postiz' ),
+			'result'            => __( 'Result', 'social-publisher-for-postiz' ),
+			'result_message'    => __( 'Response', 'social-publisher-for-postiz' ),
 			'status_created_at' => sprintf(
 				/* translators: Social Media Service Name  */
-				__( '%s: Status Created At', 'postiz-auto-poster' ),
+				__( '%s: Status Created At', 'social-publisher-for-postiz' ),
 				$this->base->plugin->account
 			),
 			'status_due_at'     => sprintf(
 				/* translators: Social Media Service Name  */
-				__( '%s: Status Scheduled For', 'postiz-auto-poster' ),
+				__( '%s: Status Scheduled For', 'social-publisher-for-postiz' ),
 				$this->base->plugin->account
 			),
 		);
@@ -262,7 +262,7 @@ class WP_To_Social_Pro_Log_Table extends WP_List_Table {
 	public function get_bulk_actions() {
 
 		return array(
-			'delete' => __( 'Delete', 'postiz-auto-poster' ),
+			'delete' => __( 'Delete', 'social-publisher-for-postiz' ),
 		);
 
 	}

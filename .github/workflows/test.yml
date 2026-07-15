@@ -29,8 +29,8 @@ jobs:
     # Use ${{ secrets.NAME }} to include any GitHub Secrets in ${{ env.NAME }}
     env:
       ROOT_DIR: /var/www/html
-      PLUGIN_DIR: /var/www/html/wp-content/plugins/postiz-auto-poster
-      WORKING_DIR: /home/runner/work/postiz-auto-poster/postiz-auto-poster/postiz-auto-poster
+      PLUGIN_DIR: /var/www/html/wp-content/plugins/social-publisher-for-postiz
+      WORKING_DIR: /home/runner/work/social-publisher-for-postiz/social-publisher-for-postiz/social-publisher-for-postiz
       DB_NAME: test
       DB_USER: root
       DB_PASS: root
@@ -208,7 +208,7 @@ jobs:
         with:
           path: ${{ env.PLUGIN_DIR }}/.env.testing
           contents: |
-            POSTIZ_AUTO_POSTER_LICENSE_KEY=12345
+            social_publisher_for_postiz_LICENSE_KEY=12345
             
           write-mode: append
 

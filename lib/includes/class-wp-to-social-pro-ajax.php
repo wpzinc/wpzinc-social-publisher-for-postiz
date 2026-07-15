@@ -58,10 +58,10 @@ class WP_To_Social_Pro_Ajax {
 
 		// Bail if no user ID or username was provided.
 		if ( ! isset( $_REQUEST['user_id'] ) ) {
-			wp_send_json_error( __( 'No user ID was provided.', 'postiz-auto-poster' ) );
+			wp_send_json_error( __( 'No user ID was provided.', 'social-publisher-for-postiz' ) );
 		}
 		if ( ! isset( $_REQUEST['username'] ) ) {
-			wp_send_json_error( __( 'No username was provided.', 'postiz-auto-poster' ) );
+			wp_send_json_error( __( 'No username was provided.', 'social-publisher-for-postiz' ) );
 		}
 
 		// Sanitize inputs.
@@ -87,10 +87,10 @@ class WP_To_Social_Pro_Ajax {
 
 		// Bail if no post type was provided.
 		if ( ! isset( $_REQUEST['post_type'] ) ) {
-			wp_send_json_error( __( 'No post type was provided.', 'postiz-auto-poster' ) );
+			wp_send_json_error( __( 'No post type was provided.', 'social-publisher-for-postiz' ) );
 		}
 		if ( ! isset( $_REQUEST['statuses'] ) ) {
-			wp_send_json_error( __( 'No statuses were provided.', 'postiz-auto-poster' ) );
+			wp_send_json_error( __( 'No statuses were provided.', 'social-publisher-for-postiz' ) );
 		}
 
 		// Parse request.
@@ -101,7 +101,7 @@ class WP_To_Social_Pro_Ajax {
 
 		// Bail if the JSON was malformed.
 		if ( ! is_array( $statuses ) ) {
-			wp_send_json_error( __( 'Statuses field is invalid.', 'postiz-auto-poster' ) );
+			wp_send_json_error( __( 'Statuses field is invalid.', 'social-publisher-for-postiz' ) );
 		}
 
 		// Sanitize.
@@ -140,19 +140,19 @@ class WP_To_Social_Pro_Ajax {
 
 		// Bail if expect parameters were not was provided.
 		if ( ! isset( $_REQUEST['status'] ) ) {
-			wp_send_json_error( __( 'No status was provided.', 'postiz-auto-poster' ) );
+			wp_send_json_error( __( 'No status was provided.', 'social-publisher-for-postiz' ) );
 		}
 		if ( ! isset( $_REQUEST['post_type'] ) ) {
-			wp_send_json_error( __( 'No post type was provided.', 'postiz-auto-poster' ) );
+			wp_send_json_error( __( 'No post type was provided.', 'social-publisher-for-postiz' ) );
 		}
 		if ( ! isset( $_REQUEST['post_action'] ) ) {
-			wp_send_json_error( __( 'No post action was provided.', 'postiz-auto-poster' ) );
+			wp_send_json_error( __( 'No post action was provided.', 'social-publisher-for-postiz' ) );
 		}
 
 		// Parse request.
 		$status = json_decode( wp_unslash( $_REQUEST['status'] ), true ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 		if ( ! is_array( $status ) ) {
-			wp_send_json_error( __( 'Status field is invalid.', 'postiz-auto-poster' ) );
+			wp_send_json_error( __( 'Status field is invalid.', 'social-publisher-for-postiz' ) );
 		}
 		$status    = map_deep( $status, 'sanitize_textarea_field' );
 		$post_type = sanitize_text_field( wp_unslash( $_REQUEST['post_type'] ) );
@@ -176,7 +176,7 @@ class WP_To_Social_Pro_Ajax {
 
 		// Bail if no post ID was provided.
 		if ( ! isset( $_REQUEST['post'] ) ) {
-			wp_send_json_error( __( 'No post ID was provided.', 'postiz-auto-poster' ) );
+			wp_send_json_error( __( 'No post ID was provided.', 'social-publisher-for-postiz' ) );
 		}
 
 		// Get Post ID.
@@ -199,7 +199,7 @@ class WP_To_Social_Pro_Ajax {
 
 		// Bail if no post ID was provided.
 		if ( ! isset( $_REQUEST['post'] ) ) {
-			wp_send_json_error( __( 'No post ID was provided.', 'postiz-auto-poster' ) );
+			wp_send_json_error( __( 'No post ID was provided.', 'social-publisher-for-postiz' ) );
 		}
 
 		// Get Post ID.

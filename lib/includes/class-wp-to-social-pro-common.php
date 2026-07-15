@@ -49,9 +49,9 @@ class WP_To_Social_Pro_Common {
 
 		// Build status post type options.
 		$status_post_type_options = array(
-			'text'  => __( 'Text', 'postiz-auto-poster' ),
-			'link'  => __( 'Link', 'postiz-auto-poster' ),
-			'image' => __( 'Image', 'postiz-auto-poster' ),
+			'text'  => __( 'Text', 'social-publisher-for-postiz' ),
+			'link'  => __( 'Link', 'social-publisher-for-postiz' ),
+			'image' => __( 'Image', 'social-publisher-for-postiz' ),
 		);
 
 		/**
@@ -61,7 +61,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $status_post_type_options   Status Post Type Options.
 		 */
-		$status_post_type_options = apply_filters( 'postiz_auto_poster_get_status_post_type_options', $status_post_type_options );
+		$status_post_type_options = apply_filters( 'social_publisher_for_postiz_get_status_post_type_options', $status_post_type_options );
 
 		// Return filtered results.
 		return $status_post_type_options;
@@ -81,7 +81,7 @@ class WP_To_Social_Pro_Common {
 
 		// Build schedule options, depending on the Plugin.
 		$schedule = array(
-			'immediate' => __( 'Post Immediately', 'postiz-auto-poster' ),
+			'immediate' => __( 'Post Immediately', 'social-publisher-for-postiz' ),
 		);
 
 		/**
@@ -93,7 +93,7 @@ class WP_To_Social_Pro_Common {
 		 * @param   string  $post_type          Post Type.
 		 * @param   bool    $is_post_screen     On Post Edit Screen.
 		 */
-		$schedule = apply_filters( 'postiz_auto_poster_get_schedule_options', $schedule, $post_type, $is_post_screen );
+		$schedule = apply_filters( 'social_publisher_for_postiz_get_schedule_options', $schedule, $post_type, $is_post_screen );
 
 		// Return filtered results.
 		return $schedule;
@@ -112,7 +112,7 @@ class WP_To_Social_Pro_Common {
 
 		// Build schedule options.
 		$schedule = array(
-			'custom' => __( 'Custom Field / Post Meta Value', 'postiz-auto-poster' ),
+			'custom' => __( 'Custom Field / Post Meta Value', 'social-publisher-for-postiz' ),
 		);
 
 		/**
@@ -122,7 +122,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $schedule   Schedule Options.
 		 */
-		$schedule = apply_filters( 'postiz_auto_poster_get_google_business_start_date_options', $schedule, $post_type );
+		$schedule = apply_filters( 'social_publisher_for_postiz_get_google_business_start_date_options', $schedule, $post_type );
 
 		// Return filtered results.
 		return $schedule;
@@ -141,7 +141,7 @@ class WP_To_Social_Pro_Common {
 
 		// Build schedule options.
 		$schedule = array(
-			'custom' => __( 'Custom Field / Post Meta Value', 'postiz-auto-poster' ),
+			'custom' => __( 'Custom Field / Post Meta Value', 'social-publisher-for-postiz' ),
 		);
 
 		/**
@@ -151,7 +151,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $schedule   Schedule Options.
 		 */
-		$schedule = apply_filters( 'postiz_auto_poster_get_google_business_end_date_options', $schedule, $post_type );
+		$schedule = apply_filters( 'social_publisher_for_postiz_get_google_business_end_date_options', $schedule, $post_type );
 
 		// Return filtered results.
 		return $schedule;
@@ -190,7 +190,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $types  Post Types.
 		 */
-		$types = apply_filters( 'postiz_auto_poster_get_post_types', $types );
+		$types = apply_filters( 'social_publisher_for_postiz_get_post_types', $types );
 
 		// Return filtered results.
 		return $types;
@@ -221,7 +221,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $types  Post Types.
 		 */
-		$types = apply_filters( 'postiz_auto_poster_get_excluded_post_types', $types );
+		$types = apply_filters( 'social_publisher_for_postiz_get_excluded_post_types', $types );
 
 		// Return filtered results.
 		return $types;
@@ -250,7 +250,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $taxonomies     Excluded Taxonomies.
 		 */
-		$taxonomies = apply_filters( 'postiz_auto_poster_get_excluded_taxonomies', $taxonomies );
+		$taxonomies = apply_filters( 'social_publisher_for_postiz_get_excluded_taxonomies', $taxonomies );
 
 		// Return filtered results.
 		return $taxonomies;
@@ -289,7 +289,7 @@ class WP_To_Social_Pro_Common {
 		 * @param   array   $taxonomies             Taxonomies.
 		 * @param   string  $post_type              Post Type.
 		 */
-		$taxonomies = apply_filters( 'postiz_auto_poster_get_taxonomies', $taxonomies, $post_type );
+		$taxonomies = apply_filters( 'social_publisher_for_postiz_get_taxonomies', $taxonomies, $post_type );
 
 		// Return filtered results.
 		return $taxonomies;
@@ -326,7 +326,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $taxonomies             Taxonomies.
 		 */
-		$taxonomies = apply_filters( 'postiz_auto_poster_get_all_taxonomies', $taxonomies );
+		$taxonomies = apply_filters( 'social_publisher_for_postiz_get_all_taxonomies', $taxonomies );
 
 		// Return filtered results.
 		return $taxonomies;
@@ -349,51 +349,51 @@ class WP_To_Social_Pro_Common {
 		// Build tags array.
 		$tags = array(
 			'post' => array(
-				'{sitename}'              => __( 'Site Name', 'postiz-auto-poster' ),
-				'{title}'                 => __( 'Post Title', 'postiz-auto-poster' ),
-				'{excerpt}'               => __( 'Post Excerpt (Full)', 'postiz-auto-poster' ),
+				'{sitename}'              => __( 'Site Name', 'social-publisher-for-postiz' ),
+				'{title}'                 => __( 'Post Title', 'social-publisher-for-postiz' ),
+				'{excerpt}'               => __( 'Post Excerpt (Full)', 'social-publisher-for-postiz' ),
 				'{excerpt:characters(?)}' => array(
-					'question'      => __( 'Enter the maximum number of characters the Post Excerpt should display.', 'postiz-auto-poster' ),
+					'question'      => __( 'Enter the maximum number of characters the Post Excerpt should display.', 'social-publisher-for-postiz' ),
 					'default_value' => '150',
 					'replace'       => '?',
-					'label'         => __( 'Post Excerpt (Character Limited)', 'postiz-auto-poster' ),
+					'label'         => __( 'Post Excerpt (Character Limited)', 'social-publisher-for-postiz' ),
 				),
 				'{excerpt:words(?)}'      => array(
-					'question'      => __( 'Enter the maximum number of words the Post Excerpt should display.', 'postiz-auto-poster' ),
+					'question'      => __( 'Enter the maximum number of words the Post Excerpt should display.', 'social-publisher-for-postiz' ),
 					'default_value' => '55',
 					'replace'       => '?',
-					'label'         => __( 'Post Excerpt (Word Limited)', 'postiz-auto-poster' ),
+					'label'         => __( 'Post Excerpt (Word Limited)', 'social-publisher-for-postiz' ),
 				),
 				'{excerpt:sentences(?)}'  => array(
-					'question'      => __( 'Enter the maximum number of sentences the Post Excerpt should display.', 'postiz-auto-poster' ),
+					'question'      => __( 'Enter the maximum number of sentences the Post Excerpt should display.', 'social-publisher-for-postiz' ),
 					'default_value' => '1',
 					'replace'       => '?',
-					'label'         => __( 'Post Excerpt (Sentence Limited)', 'postiz-auto-poster' ),
+					'label'         => __( 'Post Excerpt (Sentence Limited)', 'social-publisher-for-postiz' ),
 				),
-				'{content}'               => __( 'Post Content (Full)', 'postiz-auto-poster' ),
-				'{content_more_tag}'      => __( 'Post Content (Up to More Tag)', 'postiz-auto-poster' ),
+				'{content}'               => __( 'Post Content (Full)', 'social-publisher-for-postiz' ),
+				'{content_more_tag}'      => __( 'Post Content (Up to More Tag)', 'social-publisher-for-postiz' ),
 				'{content:characters(?)}' => array(
-					'question'      => __( 'Enter the maximum number of characters the Post Content should display.', 'postiz-auto-poster' ),
+					'question'      => __( 'Enter the maximum number of characters the Post Content should display.', 'social-publisher-for-postiz' ),
 					'default_value' => '150',
 					'replace'       => '?',
-					'label'         => __( 'Post Content (Character Limited)', 'postiz-auto-poster' ),
+					'label'         => __( 'Post Content (Character Limited)', 'social-publisher-for-postiz' ),
 				),
 				'{content:words(?)}'      => array(
-					'question'      => __( 'Enter the maximum number of words the Post Content should display.', 'postiz-auto-poster' ),
+					'question'      => __( 'Enter the maximum number of words the Post Content should display.', 'social-publisher-for-postiz' ),
 					'default_value' => '55',
 					'replace'       => '?',
-					'label'         => __( 'Post Content (Word Limited)', 'postiz-auto-poster' ),
+					'label'         => __( 'Post Content (Word Limited)', 'social-publisher-for-postiz' ),
 				),
 				'{content:sentences(?)}'  => array(
-					'question'      => __( 'Enter the maximum number of sentences the Post Content should display.', 'postiz-auto-poster' ),
+					'question'      => __( 'Enter the maximum number of sentences the Post Content should display.', 'social-publisher-for-postiz' ),
 					'default_value' => '1',
 					'replace'       => '?',
-					'label'         => __( 'Post Content (Sentence Limited)', 'postiz-auto-poster' ),
+					'label'         => __( 'Post Content (Sentence Limited)', 'social-publisher-for-postiz' ),
 				),
-				'{date}'                  => __( 'Post Date', 'postiz-auto-poster' ),
-				'{url}'                   => __( 'Post URL', 'postiz-auto-poster' ),
-				'{url_short}'             => __( 'Post URL, Shortened', 'postiz-auto-poster' ),
-				'{id}'                    => __( 'Post ID', 'postiz-auto-poster' ),
+				'{date}'                  => __( 'Post Date', 'social-publisher-for-postiz' ),
+				'{url}'                   => __( 'Post URL', 'social-publisher-for-postiz' ),
+				'{url_short}'             => __( 'Post URL, Shortened', 'social-publisher-for-postiz' ),
+				'{id}'                    => __( 'Post ID', 'social-publisher-for-postiz' ),
 			),
 		);
 
@@ -413,7 +413,7 @@ class WP_To_Social_Pro_Common {
 			foreach ( $taxonomies as $tax => $details ) {
 				$tags['taxonomy'][ '{taxonomy_' . $tax . '}' ] = sprintf(
 					/* translators: Taxonomy Name, Singular */
-					__( 'Taxonomy: %s: Hashtag Format', 'postiz-auto-poster' ),
+					__( 'Taxonomy: %s: Hashtag Format', 'social-publisher-for-postiz' ),
 					$details->labels->singular_name
 				);
 			}
@@ -428,7 +428,7 @@ class WP_To_Social_Pro_Common {
 		 * @param   array   $tags       Dynamic Status Tags.
 		 * @param   string  $post_type  Post Type.
 		 */
-		$tags = apply_filters( 'postiz_auto_poster_get_tags', $tags, $post_type );
+		$tags = apply_filters( 'social_publisher_for_postiz_get_tags', $tags, $post_type );
 
 		// Return filtered results.
 		return $tags;
@@ -471,8 +471,8 @@ class WP_To_Social_Pro_Common {
 
 		// Build post actions.
 		$actions = array(
-			'publish' => __( 'Publish', 'postiz-auto-poster' ),
-			'update'  => __( 'Update', 'postiz-auto-poster' ),
+			'publish' => __( 'Publish', 'social-publisher-for-postiz' ),
+			'update'  => __( 'Update', 'social-publisher-for-postiz' ),
 		);
 
 		/**
@@ -482,7 +482,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $actions    Post Actions.
 		 */
-		$actions = apply_filters( 'postiz_auto_poster_get_post_actions', $actions );
+		$actions = apply_filters( 'social_publisher_for_postiz_get_post_actions', $actions );
 
 		// Return filtered results.
 		return $actions;
@@ -500,8 +500,8 @@ class WP_To_Social_Pro_Common {
 
 		// Build post actions.
 		$actions = array(
-			'publish' => __( 'Published', 'postiz-auto-poster' ),
-			'update'  => __( 'Updated', 'postiz-auto-poster' ),
+			'publish' => __( 'Published', 'social-publisher-for-postiz' ),
+			'update'  => __( 'Updated', 'social-publisher-for-postiz' ),
 		);
 
 		/**
@@ -512,7 +512,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $actions    Post Actions.
 		 */
-		$actions = apply_filters( 'postiz_auto_poster_get_post_actions_past_tense', $actions );
+		$actions = apply_filters( 'social_publisher_for_postiz_get_post_actions_past_tense', $actions );
 
 		// Return filtered results.
 		return $actions;
@@ -544,7 +544,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $tags   Tags.
 		 */
-		$tags = apply_filters( 'postiz_auto_poster_get_tags_excluded_from_character_limit', $tags );
+		$tags = apply_filters( 'social_publisher_for_postiz_get_tags_excluded_from_character_limit', $tags );
 
 		// Return filtered results.
 		return $tags;
@@ -570,7 +570,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   int     $expiration_time    Transient Expiration Time, in seconds.
 		 */
-		$expiration_time = apply_filters( 'postiz_auto_poster_get_transient_expiration_time', $expiration_time );
+		$expiration_time = apply_filters( 'social_publisher_for_postiz_get_transient_expiration_time', $expiration_time );
 
 		// Return filtered results.
 		return $expiration_time;
@@ -604,7 +604,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $filters    Filters.
 		 */
-		$filters = apply_filters( 'postiz_auto_poster_get_log_filters', $filters );
+		$filters = apply_filters( 'social_publisher_for_postiz_get_log_filters', $filters );
 
 		// Return filtered results.
 		return $filters;

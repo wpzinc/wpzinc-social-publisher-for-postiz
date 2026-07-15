@@ -74,7 +74,7 @@ class WP_To_Social_Pro_Admin {
 		 *
 		 * @since   4.2.0
 		 */
-		do_action( 'postiz_auto_poster_save_settings_auth' );
+		do_action( 'social_publisher_for_postiz_save_settings_auth' );
 
 		// If we've returned from the oAuth process and an error occured, add it to the notices.
 		if ( filter_has_var( INPUT_GET, $this->base->plugin->settingsName . '-oauth-error' ) ) {
@@ -134,7 +134,7 @@ class WP_To_Social_Pro_Admin {
 			$this->base->get_class( 'notices' )->add_success_notice(
 				sprintf(
 					/* translators: %1$s: Social Media Service Name , %2$s: Social Media Service Name  */
-					__( 'Thanks! You\'ve connected our Plugin to %1$s. Now select profiles below to enable, and define your statuses to start sending Posts to %2$s', 'postiz-auto-poster' ),
+					__( 'Thanks! You\'ve connected our Plugin to %1$s. Now select profiles below to enable, and define your statuses to start sending Posts to %2$s', 'social-publisher-for-postiz' ),
 					$this->base->plugin->account,
 					$this->base->plugin->account
 				)
@@ -162,7 +162,7 @@ class WP_To_Social_Pro_Admin {
 			$this->base->get_class( 'notices' )->add_error_notice(
 				sprintf(
 					/* translators: Plugin Name */
-					__( '%s requires the PHP cURL extension to be installed and enabled by your web host.', 'postiz-auto-poster' ),
+					__( '%s requires the PHP cURL extension to be installed and enabled by your web host.', 'social-publisher-for-postiz' ),
 					$this->base->plugin->displayName
 				)
 			);
@@ -182,13 +182,13 @@ class WP_To_Social_Pro_Admin {
 					'%1$s <a href="%2$s">%3$s</a>',
 					sprintf(
 						/* translators: %1$s: Plugin Name, %2$s, %3$s: Social Media Service Name , %4$s: URL to Authorize Plugin Screen, %5$s: URL to Register Account with Service */
-						esc_html__( '%1$s needs to be authorized with %2$s before you can start sending Posts to %3$s.', 'postiz-auto-poster' ),
+						esc_html__( '%1$s needs to be authorized with %2$s before you can start sending Posts to %3$s.', 'social-publisher-for-postiz' ),
 						$this->base->plugin->displayName,
 						$this->base->plugin->account,
 						$this->base->plugin->account
 					),
 					admin_url( 'admin.php?page=' . $this->base->plugin->name . '-settings' ),
-					esc_html__( 'Click here to Authorize.', 'postiz-auto-poster' )
+					esc_html__( 'Click here to Authorize.', 'social-publisher-for-postiz' )
 				)
 			);
 		}
@@ -257,14 +257,14 @@ class WP_To_Social_Pro_Admin {
 			'clear_log_nonce'          => wp_create_nonce( $this->base->plugin->name . '-clear-log' ),
 			'clear_log_completed'      => sprintf(
 				/* translators: Social Media Service Name  */
-				__( 'No log entries exist, or no status updates have been sent to %s.', 'postiz-auto-poster' ),
+				__( 'No log entries exist, or no status updates have been sent to %s.', 'social-publisher-for-postiz' ),
 				$this->base->plugin->account
 			),
 
 			'get_log_nonce'            => wp_create_nonce( $this->base->plugin->name . '-get-log' ),
 
-			'delete_condition_message' => __( 'Are you sure you want to delete this condition?', 'postiz-auto-poster' ),
-			'delete_status_message'    => __( 'Are you sure you want to delete this status?', 'postiz-auto-poster' ),
+			'delete_condition_message' => __( 'Are you sure you want to delete this condition?', 'social-publisher-for-postiz' ),
+			'delete_status_message'    => __( 'Are you sure you want to delete this status?', 'social-publisher-for-postiz' ),
 
 			'get_status_row_action'    => $this->base->plugin->filter_name . '_get_status_row',
 			'get_status_row_nonce'     => wp_create_nonce( $this->base->plugin->name . '-get-status-row' ),
@@ -350,8 +350,8 @@ class WP_To_Social_Pro_Admin {
 						$localization['prompt_unsaved_changes'] = true;
 						$localization['save_statuses_action']   = $this->base->plugin->filter_name . '_save_statuses';
 						$localization['save_statuses_modal']    = array(
-							'title'         => __( 'Saving', 'postiz-auto-poster' ),
-							'title_success' => __( 'Saved!', 'postiz-auto-poster' ),
+							'title'         => __( 'Saving', 'social-publisher-for-postiz' ),
+							'title_success' => __( 'Saved!', 'social-publisher-for-postiz' ),
 						);
 						$localization['save_statuses_nonce']    = wp_create_nonce( $this->base->plugin->name . '-save-statuses' );
 
@@ -413,7 +413,7 @@ class WP_To_Social_Pro_Admin {
 		 * @param   array   $autocomplete_configuration     Javascript  Autocomplete Configuration.
 		 * @param   string  $post_type                      Post Type.
 		 */
-		$autocomplete_configuration = apply_filters( 'postiz_auto_poster_admin_get_autocomplete_configuration', $autocomplete_configuration );
+		$autocomplete_configuration = apply_filters( 'social_publisher_for_postiz_admin_get_autocomplete_configuration', $autocomplete_configuration );
 
 		// Return.
 		return $autocomplete_configuration;
@@ -439,7 +439,7 @@ class WP_To_Social_Pro_Admin {
 		 * @param   string  $capability     Minimum Required Capability.
 		 * @return  string                  Minimum Required Capability
 		 */
-		$minimum_capability = apply_filters( 'postiz_auto_poster_admin_admin_menu_minimum_capability', $minimum_capability );
+		$minimum_capability = apply_filters( 'social_publisher_for_postiz_admin_admin_menu_minimum_capability', $minimum_capability );
 
 		/**
 		 * Add settings menus and sub menus for the Plugin's settings.
@@ -448,7 +448,7 @@ class WP_To_Social_Pro_Admin {
 		 *
 		 * @param   string  $minimum_capability     Minimum capability required.
 		 */
-		do_action( 'postiz_auto_poster_admin_admin_menu', $minimum_capability );
+		do_action( 'social_publisher_for_postiz_admin_admin_menu', $minimum_capability );
 
 	}
 
@@ -471,7 +471,7 @@ class WP_To_Social_Pro_Admin {
 				),
 				admin_url( 'admin.php' )
 			),
-			__( 'Settings', 'postiz-auto-poster' )
+			__( 'Settings', 'social-publisher-for-postiz' )
 		);
 
 		// Return.
@@ -511,7 +511,7 @@ class WP_To_Social_Pro_Admin {
 			$this->base->get_class( 'notices' )->add_error_notice( $result->get_error_message() );
 		} elseif ( $result === true ) {
 			// Success notice.
-			$this->base->get_class( 'notices' )->add_success_notice( __( 'Settings saved successfully.', 'postiz-auto-poster' ) );
+			$this->base->get_class( 'notices' )->add_success_notice( __( 'Settings saved successfully.', 'social-publisher-for-postiz' ) );
 		}
 
 		// If the Plugin isn't connected an account, show the screen to do this now.
@@ -591,12 +591,12 @@ class WP_To_Social_Pro_Admin {
 							'%1$s <a href="%2$s" target="_blank">%3$s</a>',
 							sprintf(
 								/* translators: %1$s: Post Type, %2$s: Social Media Service Name , %3$s: Documentation URL */
-								__( 'To send %1$s to %2$s, at least one action on the Defaults tab must be enabled with a status defined, and at least one social media profile must be enabled below by clicking the applicable profile name and ticking the "Account Enabled" box.', 'postiz-auto-poster' ),
+								__( 'To send %1$s to %2$s, at least one action on the Defaults tab must be enabled with a status defined, and at least one social media profile must be enabled below by clicking the applicable profile name and ticking the "Account Enabled" box.', 'social-publisher-for-postiz' ),
 								$post_type_object->label,
 								$this->base->plugin->account
 							),
 							$documentation_url,
-							__( 'See Documentation', 'postiz-auto-poster' )
+							__( 'See Documentation', 'social-publisher-for-postiz' )
 						)
 					);
 				}
@@ -718,7 +718,7 @@ class WP_To_Social_Pro_Admin {
 		$this->base->get_class( 'settings' )->update_account_profile_ids( $account_id, array_keys( $profiles ) );
 
 		$this->base->get_class( 'notices' )->add_success_notice(
-			__( 'Profiles refreshed successfully.', 'postiz-auto-poster' )
+			__( 'Profiles refreshed successfully.', 'social-publisher-for-postiz' )
 		);
 
 	}
@@ -750,7 +750,7 @@ class WP_To_Social_Pro_Admin {
 		$this->base->get_class( 'notices' )->add_success_notice(
 			sprintf(
 				/* translators: Social Media Service Name  */
-				__( '%s account disconnected successfully.', 'postiz-auto-poster' ),
+				__( '%s account disconnected successfully.', 'social-publisher-for-postiz' ),
 				$this->base->plugin->account
 			)
 		);
@@ -775,15 +775,15 @@ class WP_To_Social_Pro_Admin {
 		if ( ! isset( $_POST[ $this->base->plugin->name . '_nonce' ] ) ) {
 			return new WP_Error(
 				'wp_to_social_pro_admin_save_settings_error',
-				__( 'Nonce field is missing. Settings NOT saved.', 'postiz-auto-poster' )
+				__( 'Nonce field is missing. Settings NOT saved.', 'social-publisher-for-postiz' )
 			);
 		}
 
 		// Invalid nonce.
-		if ( ! wp_verify_nonce( sanitize_key( $_POST[ $this->base->plugin->name . '_nonce' ] ), 'postiz-auto-poster' ) ) {
+		if ( ! wp_verify_nonce( sanitize_key( $_POST[ $this->base->plugin->name . '_nonce' ] ), 'social-publisher-for-postiz' ) ) {
 			return new WP_Error(
 				'wp_to_social_pro_admin_save_settings_error',
-				__( 'Invalid nonce specified. Settings NOT saved.', 'postiz-auto-poster' )
+				__( 'Invalid nonce specified. Settings NOT saved.', 'social-publisher-for-postiz' )
 			);
 		}
 
@@ -833,7 +833,7 @@ class WP_To_Social_Pro_Admin {
 				if ( ! isset( $_POST[ $this->base->plugin->name ]['statuses'] ) ) {
 					return new WP_Error(
 						'wp_to_social_pro_admin_save_settings_error',
-						__( 'Statuses field is missing. Settings NOT saved.', 'postiz-auto-poster' )
+						__( 'Statuses field is missing. Settings NOT saved.', 'social-publisher-for-postiz' )
 					);
 				}
 
@@ -844,7 +844,7 @@ class WP_To_Social_Pro_Admin {
 				if ( ! is_array( $settings ) ) {
 					return new WP_Error(
 						'wp_to_social_pro_admin_save_settings_error',
-						__( 'Statuses field is invalid. Settings NOT saved.', 'postiz-auto-poster' )
+						__( 'Statuses field is invalid. Settings NOT saved.', 'social-publisher-for-postiz' )
 					);
 				}
 

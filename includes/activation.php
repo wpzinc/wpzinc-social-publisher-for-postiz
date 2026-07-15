@@ -2,7 +2,7 @@
 /**
  * Defines activation functions, which are run when the Plugin is activated.
  *
- * @package Postiz_Auto_Poster
+ * @package social_publisher_for_postiz
  * @author WP Zinc
  */
 
@@ -17,16 +17,16 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @param   bool $network_wide   Is network wide activation.
  */
-function postiz_auto_poster_activate( $network_wide ) {
+function social_publisher_for_postiz_activate( $network_wide ) {
 
 	// Initialise Plugin.
-	$postiz_auto_poster = postiz_auto_poster::get_instance();
-	$postiz_auto_poster->initialize();
+	$social_publisher_for_postiz = social_publisher_for_postiz::get_instance();
+	$social_publisher_for_postiz->initialize();
 
 	// Check if we are on a multisite install, activating network wide, or a single install.
 	if ( ! is_multisite() || ! $network_wide ) {
 		// Single Site activation.
-		$postiz_auto_poster->get_class( 'install' )->install();
+		$social_publisher_for_postiz->get_class( 'install' )->install();
 	} else {
 		// Multisite network wide activation.
 		$sites = get_sites(
@@ -36,7 +36,7 @@ function postiz_auto_poster_activate( $network_wide ) {
 		);
 		foreach ( $sites as $site ) {
 			switch_to_blog( $site->blog_id );
-			$postiz_auto_poster->get_class( 'install' )->install();
+			$social_publisher_for_postiz->get_class( 'install' )->install();
 			restore_current_blog();
 		}
 	}
@@ -51,7 +51,7 @@ function postiz_auto_poster_activate( $network_wide ) {
  *
  * @param   mixed $site_or_blog_id    WP_Site or Blog ID.
  */
-function postiz_auto_poster_activate_new_site( $site_or_blog_id ) {
+function social_publisher_for_postiz_activate_new_site( $site_or_blog_id ) {
 
 	// Check if $site_or_blog_id is a WP_Site or a blog ID.
 	if ( is_a( $site_or_blog_id, 'WP_Site' ) ) {
@@ -59,12 +59,12 @@ function postiz_auto_poster_activate_new_site( $site_or_blog_id ) {
 	}
 
 	// Initialise Plugin.
-	$postiz_auto_poster = postiz_auto_poster::get_instance();
-	$postiz_auto_poster->initialize();
+	$social_publisher_for_postiz = social_publisher_for_postiz::get_instance();
+	$social_publisher_for_postiz->initialize();
 
 	// Run installation routine.
 	switch_to_blog( $site_or_blog_id );
-	$postiz_auto_poster->get_class( 'install' )->install();
+	$social_publisher_for_postiz->get_class( 'install' )->install();
 	restore_current_blog();
 
 }

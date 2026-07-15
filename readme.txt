@@ -1,6 +1,6 @@
-=== Postiz Auto Poster ===
+=== Social Publisher for Postiz ===
 Contributors: n7studios,wpzinc
-Donate link: https://www.wpzinc.com/documentation/postiz-auto-poster
+Donate link: https://www.wpzinc.com/documentation/wordpress-buffer-pro/
 Tags: social media automation, auto post, postiz, social media scheduler, auto publish
 Requires at least: 6.2
 Tested up to: 7.0
@@ -13,7 +13,7 @@ Automatically post and schedule your WordPress content to Facebook, X/Twitter, L
 
 == Description ==
 
-Unofficial Plugin to connects your WordPress site to Postiz, enabling automatic social media publishing whenever you create or update content. Share your blog posts, pages, and custom post types to multiple social networks without manual posting.
+Unofficial Plugin to connect your WordPress site to Postiz, enabling automatic social media publishing whenever you create or update content. Share your blog posts, pages, and custom post types to multiple social networks without manual posting.
 
 === Why Choose This Social Media Automation Plugin? ===
 
@@ -56,46 +56,19 @@ Create unique social media messages using template tags:
 * **{url}** - Post permalink
 * **{date}** - Publication date
 * **{taxonomy_post_tag}** - Tags as hashtags
-* **{taxoomy_category}** - Categories as hashtags
-
-=== Better Than Traditional Auto Posting Plugins ===
-
-Unlike direct posting plugins (WP to Facebook, WP to Twitter clones), this plugin uses Postiz's smart queue system. Benefits include:
-
-**Prevents Social Media Penalties** - Postiz spaces posts naturally, avoiding spam flags from posting too frequently
-**Optimized Timing** - Schedule posts for when your audience is most active
-**Cross-Network Management** - Manage all social networks from one Postiz dashboard
-**No API Complications** - Postiz handles all social network API connections and changes
-**Duplicate Prevention** - Built-in protection ensures you never post the same content twice
-
-=== How to Schedule Social Media Posts ===
-
-**Default Postiz Schedule** - Postiz automatically spaces posts throughout the day based on your time zone preferences
-
-**Custom Posting Schedule** (Pro) - Define specific days and times in Postiz when posts should publish to each social network
-
-**Immediate Posting** (Pro) - Override the queue and post immediately to social media
-
-**Scheduled Publishing** (Pro) - Set exact date and time for each social media post
+* **{taxonomy_category}** - Categories as hashtags
 
 === Support for Free Version ===
 
-We provide community support through the <a href="https://wordpress.org/support/plugin/postiz-auto-poster/">WordPress support forums</a>.
+We provide community support through the <a href="https://wordpress.org/support/plugin/social-publisher-for-postiz/">WordPress support forums</a>.
 
-=== Privacy and Data Usage ===
+=== External Services: Privacy and Data Usage ===
 
-Our [API](https://www.wpzinc.com/documentation/wordpress-postiz/data/) connects your website to [Postiz](https://postiz.pro/wpzinc). An account with Postiz is required.
+This plugin connects to the following APIs and services:
 
-We connect directly to your Postiz (postiz.io) account, via their API, to:
-- Fetch your social media profile names and IDs, 
-- Send your WordPress Posts to one or more of your social media profiles.  The profiles and content sent will depend on the plugin settings you have configured.
-
-We connect to our own [API](https://www.wpzinc.com/documentation/wordpress-postiz-pro/data/) to pass the following requests through to Postiz:
-- Connect our Plugin to Postiz, when you click the Authorize button (this obtains an access token from Postiz, once you have approved authorization)
-
-Both of these are done via our own API, to ensure that no secret data (such as oAuth client secret keys) are included in this Plugin's code or made public.
-
-We **never** store any information on our web site or API during this process.
+- [WP Zinc API](https://www.wpzinc.com/documentation/wordpress-buffer-pro/data/): To facilitate the OAuth connection process
+- [Postiz API](https://docs.postiz.com/public-api/introduction): To fetch your connected social media profile names and IDs, and publish WordPress content to those accounts via Postiz' API, based on the Plugin's settings
+- [Kit (formerly ConvertKit)](https://kit.com/privacy): To display the newsletter subscription form in the settings screen
 
 == Installation ==
 
@@ -103,10 +76,10 @@ We **never** store any information on our web site or API during this process.
 
 1. Log in to your WordPress admin dashboard
 2. Navigate to Plugins > Add New
-3. Search for "Postiz Auto Poster"
-4. Click "Install Now" on the Postiz Auto Poster plugin
+3. Search for "Social Publisher for Postiz"
+4. Click "Install Now" on the Social Publisher for Postiz plugin
 5. Click "Activate" once installation completes
-6. Go to Postiz Auto Poster in your admin menu
+6. Go to Social Publisher for Postiz in your admin menu
 7. Click "Authorize" to connect your Postiz account
 8. Configure your social media posting settings
 
@@ -117,7 +90,7 @@ We **never** store any information on our web site or API during this process.
 3. Navigate to Plugins > Add New > Upload Plugin
 4. Choose the downloaded ZIP file and click "Install Now"
 5. Click "Activate Plugin"
-6. Go to Postiz Auto Poster in your admin menu
+6. Go to Social Publisher for Postiz in your admin menu
 7. Click "Authorize" to connect your Postiz account
 8. Configure your social media posting settings
 
@@ -213,11 +186,11 @@ Yes. Enable "Test Mode" in General Settings. This logs what would be sent to Pos
 
 The plugin includes a logging system. View logs by:
 
-1. Go to Postiz Auto Poster > Logs in your admin menu
+1. Go to Social Publisher for Postiz > Logs in your admin menu
 2. View logs for all posts or filter by specific posts
 3. See what was sent, when, and any errors encountered
 
-Enable logging in Postiz Auto Poster > Settings > Log Settings.
+Enable logging in Social Publisher for Postiz > Settings > Log Settings.
 
 = Does this work with custom post types? =
 
@@ -244,7 +217,7 @@ No. The plugin uses WordPress's standard HTTP API for communication with Postiz.
 
 = What if I need help setting up the plugin? =
 
-Free version support is available through the [WordPress support forums](https://wordpress.org/support/plugin/postiz-auto-poster/).
+Free version support is available through the [WordPress support forums](https://wordpress.org/support/plugin/social-publisher-for-postiz/).
 
 == Screenshots ==
 

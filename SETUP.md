@@ -93,13 +93,13 @@ parameters:
     # Paths to scan
     # This should comprise of the base Plugin PHP file, plus directories that contain Plugin PHP files
     paths:
-        - postiz-auto-poster.php
+        - social-publisher-for-postiz.php
         - includes/
         - lib/
 
     # Files that include Plugin-specific PHP constants
     bootstrapFiles:
-        - postiz-auto-poster.php
+        - social-publisher-for-postiz.php
 
     # Location of WordPress Plugins for PHPStan to scan, building symbols.
     scanDirectories:

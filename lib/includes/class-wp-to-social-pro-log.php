@@ -162,7 +162,7 @@ class WP_To_Social_Pro_Log {
 		add_screen_option(
 			'per_page',
 			array(
-				'label'   => __( 'Log Entries per Page', 'postiz-auto-poster' ),
+				'label'   => __( 'Log Entries per Page', 'social-publisher-for-postiz' ),
 				'default' => 20,
 				'option'  => $this->base->plugin->filter_name . '_logs_per_page',
 			)
@@ -225,7 +225,7 @@ class WP_To_Social_Pro_Log {
 				// Get Post IDs.
 				if ( ! isset( $_REQUEST['ids'] ) ) {
 					$this->base->get_class( 'notices' )->add_error_notice(
-						__( 'No logs were selected for deletion.', 'postiz-auto-poster' )
+						__( 'No logs were selected for deletion.', 'social-publisher-for-postiz' )
 					);
 					break;
 				}
@@ -238,7 +238,7 @@ class WP_To_Social_Pro_Log {
 				$this->base->get_class( 'notices' )->add_success_notice(
 					sprintf(
 						/* translators: Number of log entries deleted */
-						__( '%s Logs deleted.', 'postiz-auto-poster' ),
+						__( '%s Logs deleted.', 'social-publisher-for-postiz' ),
 						count( $ids )
 					)
 				);
@@ -253,7 +253,7 @@ class WP_To_Social_Pro_Log {
 
 				// Add success notice.
 				$this->base->get_class( 'notices' )->add_success_notice(
-					__( 'All Logs deleted.', 'postiz-auto-poster' )
+					__( 'All Logs deleted.', 'social-publisher-for-postiz' )
 				);
 				break;
 
@@ -351,7 +351,7 @@ class WP_To_Social_Pro_Log {
 				$this->base->plugin->name . '-log',
 				sprintf(
 					/* translators: Social Media Service Name  */
-					__( '%s Log', 'postiz-auto-poster' ),
+					__( '%s Log', 'social-publisher-for-postiz' ),
 					$this->base->plugin->displayName
 				),
 				array( $this, 'output_post_log' ),
@@ -501,7 +501,7 @@ class WP_To_Social_Pro_Log {
 		 * @param   array   $log        Post Log.
 		 * @param   int     $post_id    Post ID.
 		 */
-		$log = apply_filters( 'postiz_auto_poster_get_log', $log, $post_id );
+		$log = apply_filters( 'social_publisher_for_postiz_get_log', $log, $post_id );
 
 		// Return.
 		return $log;
@@ -537,7 +537,7 @@ class WP_To_Social_Pro_Log {
 			if ( empty( $result['profile_id'] ) ) {
 				continue;
 			}
-			$profiles[ $result['profile_id'] ] = ( empty( $result['profile_name'] ) ? __( 'Unknown', 'postiz-auto-poster' ) : $result['profile_name'] );
+			$profiles[ $result['profile_id'] ] = ( empty( $result['profile_name'] ) ? __( 'Unknown', 'social-publisher-for-postiz' ) : $result['profile_name'] );
 		}
 
 		return $profiles;
@@ -555,10 +555,10 @@ class WP_To_Social_Pro_Log {
 
 		// Define log result options.
 		$result_options = array(
-			'success' => __( 'Success', 'postiz-auto-poster' ),
-			'test'    => __( 'Test', 'postiz-auto-poster' ),
-			'warning' => __( 'Warning', 'postiz-auto-poster' ),
-			'error'   => __( 'Error', 'postiz-auto-poster' ),
+			'success' => __( 'Success', 'social-publisher-for-postiz' ),
+			'test'    => __( 'Test', 'social-publisher-for-postiz' ),
+			'warning' => __( 'Warning', 'social-publisher-for-postiz' ),
+			'error'   => __( 'Error', 'social-publisher-for-postiz' ),
 		);
 
 		/**
@@ -568,7 +568,7 @@ class WP_To_Social_Pro_Log {
 		 *
 		 * @param   array   $result_options   Result Options.
 		 */
-		$result_options = apply_filters( 'postiz_auto_poster_log_get_result_options', $result_options );
+		$result_options = apply_filters( 'social_publisher_for_postiz_log_get_result_options', $result_options );
 
 		// Return filtered results.
 		return $result_options;
@@ -586,11 +586,11 @@ class WP_To_Social_Pro_Log {
 
 		// Define log levels.
 		$log_levels = array(
-			'success' => __( 'Success', 'postiz-auto-poster' ),
-			'test'    => __( 'Tests', 'postiz-auto-poster' ),
-			'pending' => __( 'Pending', 'postiz-auto-poster' ),
-			'warning' => __( 'Warnings', 'postiz-auto-poster' ),
-			'error'   => __( 'Errors', 'postiz-auto-poster' ),
+			'success' => __( 'Success', 'social-publisher-for-postiz' ),
+			'test'    => __( 'Tests', 'social-publisher-for-postiz' ),
+			'pending' => __( 'Pending', 'social-publisher-for-postiz' ),
+			'warning' => __( 'Warnings', 'social-publisher-for-postiz' ),
+			'error'   => __( 'Errors', 'social-publisher-for-postiz' ),
 		);
 
 		/**
@@ -600,7 +600,7 @@ class WP_To_Social_Pro_Log {
 		 *
 		 * @param   array   $log_levels   Log Levels.
 		 */
-		$log_levels = apply_filters( 'postiz_auto_poster_log_get_log_levels', $log_levels );
+		$log_levels = apply_filters( 'social_publisher_for_postiz_log_get_log_levels', $log_levels );
 
 		// Return filtered results.
 		return $log_levels;
@@ -1057,7 +1057,7 @@ class WP_To_Social_Pro_Log {
                         <td colspan="' . $colspan . '">' .
 							sprintf(
 								/* translators: Social Media Service Name  */
-								__( 'No log entries exist, or no status updates have been sent to %s.', 'postiz-auto-poster' ),
+								__( 'No log entries exist, or no status updates have been sent to %s.', 'social-publisher-for-postiz' ),
 								$this->base->plugin->account
 							)
 							.
@@ -1090,8 +1090,8 @@ class WP_To_Social_Pro_Log {
                 ' . ( $is_wp_list_table ? $checkbox_id : '' ) . '
                 <td class="request_sent column-request_sent' . ( in_array( 'request_sent', $hidden, true ) ? ' hidden' : '' ) . '">' . get_date_from_gmt( $result['request_sent'], get_option( 'date_format' ) . ' H:i:s' ) . '</td>
                 <td class="action column-action' . ( in_array( 'action', $hidden, true ) ? ' hidden' : '' ) . '">' . ( isset( $post_actions[ $result['action'] ] ) ? $post_actions[ $result['action'] ] : '&nbsp;' ) . '</td>
-                <td class="profile_name column-profile_name' . ( in_array( 'profile_name', $hidden, true ) ? ' hidden' : '' ) . '">' . ( empty( $result['profile_name'] ) ? __( 'N/A', 'postiz-auto-poster' ) : $result['profile_name'] ) . '</td>
-                <td class="status_text column-status_text' . ( in_array( 'status_text', $hidden, true ) ? ' hidden' : '' ) . '">' . ( empty( $result['status_text'] ) ? __( 'N/A', 'postiz-auto-poster' ) : nl2br( $result['status_text'] ) ) . '</td>
+                <td class="profile_name column-profile_name' . ( in_array( 'profile_name', $hidden, true ) ? ' hidden' : '' ) . '">' . ( empty( $result['profile_name'] ) ? __( 'N/A', 'social-publisher-for-postiz' ) : $result['profile_name'] ) . '</td>
+                <td class="status_text column-status_text' . ( in_array( 'status_text', $hidden, true ) ? ' hidden' : '' ) . '">' . ( empty( $result['status_text'] ) ? __( 'N/A', 'social-publisher-for-postiz' ) : nl2br( $result['status_text'] ) ) . '</td>
                 <td class="result column-result' . ( in_array( 'result', $hidden, true ) ? ' hidden' : '' ) . '">' . ucfirst( $result['result'] ) . '</td>';
 
 			switch ( $result['result'] ) {

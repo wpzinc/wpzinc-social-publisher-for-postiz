@@ -6,8 +6,8 @@ rm -rf vendor
 composer install --no-dev
 
 # Build ZIP file, excluding non-Plugin files
-rm postiz-auto-poster.zip
-zip -r postiz-auto-poster.zip . \
+rm social-publisher-for-postiz.zip
+zip -r social-publisher-for-postiz.zip . \
 -x "*.git*" \
 -x ".devcontainer/*" \
 -x ".scripts/*" \

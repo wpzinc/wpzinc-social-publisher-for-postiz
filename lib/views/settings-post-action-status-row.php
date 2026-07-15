@@ -13,9 +13,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 <tr class="status sortable<?php echo esc_attr( $key === 0 ? ' first' : '' ); ?>" data-status-index="<?php echo esc_attr( $key ); ?>" data-status='<?php echo wp_json_encode( $status, JSON_HEX_APOS ); ?>' data-labels='<?php echo wp_json_encode( $labels, JSON_HEX_APOS ); ?>'>
 	<td class="count">#<?php echo esc_html( $key + 1 ); ?></td>
 	<td class="actions">
-		<a href="#" class="dashicons dashicons-move move-status" title="<?php esc_attr_e( 'Reorder Status', 'postiz-auto-poster' ); ?>"></a>
-		<a href="#" class="dashicons dashicons-edit edit-status" title="<?php esc_attr_e( 'Edit Status', 'postiz-auto-poster' ); ?>"></a>
-		<a href="#" class="dashicons dashicons-trash delete-status" title="<?php esc_attr_e( 'Delete Status', 'postiz-auto-poster' ); ?>"></a>
+		<a href="#" class="dashicons dashicons-move move-status" title="<?php esc_attr_e( 'Reorder Status', 'social-publisher-for-postiz' ); ?>"></a>
+		<a href="#" class="dashicons dashicons-edit edit-status" title="<?php esc_attr_e( 'Edit Status', 'social-publisher-for-postiz' ); ?>"></a>
+		<a href="#" class="dashicons dashicons-trash delete-status" title="<?php esc_attr_e( 'Delete Status', 'social-publisher-for-postiz' ); ?>"></a>
 	</td>
 	<td class="post_type"><?php echo esc_html( $row['post_type'] ); ?></td>
 	<td class="message"><?php echo esc_html( $row['message'] ); ?></td>

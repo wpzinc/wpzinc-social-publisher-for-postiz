@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			echo esc_html(
 				sprintf(
 				/* translators: Social Media Service Name  */
-					__( 'Visit your %s account to resolve this error.', 'postiz-auto-poster' ),
+					__( 'Visit your %s account to resolve this error.', 'social-publisher-for-postiz' ),
 					$this->base->plugin->account
 				)
 			);
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			echo esc_html(
 				sprintf(
 				/* translators: Social Media Service Name  */
-					__( 'Visit %s', 'postiz-auto-poster' ),
+					__( 'Visit %s', 'social-publisher-for-postiz' ),
 					$this->base->plugin->account
 				)
 			);

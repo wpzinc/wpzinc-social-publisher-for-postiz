@@ -108,7 +108,7 @@ class WP_To_Social_Pro_Postiz_API {
 		// Store base class.
 		$this->base = $base;
 
-		add_action( 'postiz_auto_poster_output_auth', array( $this, 'output_oauth' ) );
+		add_action( 'social_publisher_for_postiz_output_auth', array( $this, 'output_oauth' ) );
 
 	}
 
@@ -123,7 +123,7 @@ class WP_To_Social_Pro_Postiz_API {
 		<div class="wpzinc-option">
 			<div class="full">
 				<a href="<?php echo esc_attr( $this->get_oauth_url() ); ?>" class="button button-primary">
-					<?php esc_html_e( 'Connect a Postiz Account', 'postiz-auto-poster' ); ?>
+					<?php esc_html_e( 'Connect a Postiz Account', 'social-publisher-for-postiz' ); ?>
 				</a>
 			</div>
 		</div>
@@ -335,44 +335,44 @@ class WP_To_Social_Pro_Postiz_API {
 		switch ( $type ) {
 
 			case 'x':
-				return __( 'Twitter', 'postiz-auto-poster' );
+				return __( 'Twitter', 'social-publisher-for-postiz' );
 
 			case 'linkedin':
-				return __( 'LinkedIn Profile', 'postiz-auto-poster' );
+				return __( 'LinkedIn Profile', 'social-publisher-for-postiz' );
 
 			case 'linkedin-page':
-				return __( 'LinkedIn Page', 'postiz-auto-poster' );
+				return __( 'LinkedIn Page', 'social-publisher-for-postiz' );
 
 			case 'facebook':
-				return __( 'Facebook Page', 'postiz-auto-poster' );
+				return __( 'Facebook Page', 'social-publisher-for-postiz' );
 
 			case 'instagram':
 			case 'instagram-standalone':
-				return __( 'Instagram', 'postiz-auto-poster' );
+				return __( 'Instagram', 'social-publisher-for-postiz' );
 
 			case 'threads':
-				return __( 'Threads', 'postiz-auto-poster' );
+				return __( 'Threads', 'social-publisher-for-postiz' );
 
 			case 'bluesky':
-				return __( 'Bluesky', 'postiz-auto-poster' );
+				return __( 'Bluesky', 'social-publisher-for-postiz' );
 
 			case 'mastodon':
-				return __( 'Mastodon', 'postiz-auto-poster' );
+				return __( 'Mastodon', 'social-publisher-for-postiz' );
 
 			case 'vk':
-				return __( 'VK', 'postiz-auto-poster' );
+				return __( 'VK', 'social-publisher-for-postiz' );
 
 			case 'tiktok':
-				return __( 'TikTok', 'postiz-auto-poster' );
+				return __( 'TikTok', 'social-publisher-for-postiz' );
 
 			case 'telegram':
-				return __( 'Telegram', 'postiz-auto-poster' );
+				return __( 'Telegram', 'social-publisher-for-postiz' );
 
 			case 'pinterest':
-				return __( 'Pinterest', 'postiz-auto-poster' );
+				return __( 'Pinterest', 'social-publisher-for-postiz' );
 
 			case 'gmb':
-				return __( 'Google My Business', 'postiz-auto-poster' );
+				return __( 'Google My Business', 'social-publisher-for-postiz' );
 
 			default:
 				return '';
@@ -607,7 +607,7 @@ class WP_To_Social_Pro_Postiz_API {
 
 		// Check required parameters exist.
 		if ( empty( $this->access_token ) ) {
-			return new WP_Error( 'postiz_auto_poster_no_access_token', __( 'No access token was specified', 'postiz-auto-poster' ) );
+			return new WP_Error( 'social_publisher_for_postiz_no_access_token', __( 'No access token was specified', 'social-publisher-for-postiz' ) );
 		}
 
 		// Build endpoint URL.
@@ -672,7 +672,7 @@ class WP_To_Social_Pro_Postiz_API {
 
 			// Return WP_Error.
 			return new WP_Error(
-				'postiz_auto_poster_api_error',
+				'social_publisher_for_postiz_api_error',
 				implode( '; ', $messages )
 			);
 		}
@@ -701,7 +701,7 @@ class WP_To_Social_Pro_Postiz_API {
 		 *
 		 * @param   int     $timeout    Timeout, in seconds
 		 */
-		$timeout = apply_filters( 'postiz_auto_poster_api_get_timeout', $timeout );
+		$timeout = apply_filters( 'social_publisher_for_postiz_api_get_timeout', $timeout );
 
 		return $timeout;
 
@@ -725,7 +725,7 @@ class WP_To_Social_Pro_Postiz_API {
 		 *
 		 * @param   bool    $enable_ssl_verification    Enable SSL verification.
 		 */
-		$enable_ssl_verification = apply_filters( 'postiz_auto_poster_api_enable_ssl_verification', $enable_ssl_verification );
+		$enable_ssl_verification = apply_filters( 'social_publisher_for_postiz_api_enable_ssl_verification', $enable_ssl_verification );
 
 		return $enable_ssl_verification;
 

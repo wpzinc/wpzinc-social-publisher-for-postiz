@@ -3,7 +3,7 @@
  * Creates the ACTIONS-FILTERS.md markdown file, comprising of all
  * action and filter hooks parsed from the Plugin code.
  *
- * @package Postiz Auto Poster
+ * @package Social Publisher for Postiz
  * @author WP Zinc
  */
 
@@ -22,7 +22,7 @@ $filter_docs = $read_actions_filters->run(
     true, // Extract filters.
     false, // Extract actions.
     'markdown', // Return as HTML/markdown compatible with GitHub.
-    '\'postiz_auto_poster_', // Only build Docs for actions starting with postiz_auto_poster_.
+    '\'social_publisher_for_postiz_', // Only build Docs for actions starting with social_publisher_for_postiz_.
     false, // Change prefix.
     true // Return by file.
 );
@@ -36,7 +36,7 @@ $action_docs = $read_actions_filters->run(
     false, // Extract filters.
     true, // Extract actions.
     'markdown', // Return as HTML/markdown compatible with GitHub.
-    '\'postiz_auto_poster_', // Only build Docs for actions starting with postiz_auto_poster_.
+    '\'social_publisher_for_postiz_', // Only build Docs for actions starting with social_publisher_for_postiz_.
     false, // Change prefix.
     true // Return by file.
 );

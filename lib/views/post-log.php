@@ -15,18 +15,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<table class="widefat wp-to-social-log">
 			<thead>
 				<tr>
-					<th><?php esc_html_e( 'Request Sent', 'postiz-auto-poster' ); ?></th>
-					<th><?php esc_html_e( 'Action', 'postiz-auto-poster' ); ?></th>
-					<th><?php esc_html_e( 'Profile', 'postiz-auto-poster' ); ?></th>
-					<th><?php esc_html_e( 'Status Text', 'postiz-auto-poster' ); ?></th>
-					<th><?php esc_html_e( 'Result', 'postiz-auto-poster' ); ?></th>
-					<th><?php esc_html_e( 'Response', 'postiz-auto-poster' ); ?></th>
+					<th><?php esc_html_e( 'Request Sent', 'social-publisher-for-postiz' ); ?></th>
+					<th><?php esc_html_e( 'Action', 'social-publisher-for-postiz' ); ?></th>
+					<th><?php esc_html_e( 'Profile', 'social-publisher-for-postiz' ); ?></th>
+					<th><?php esc_html_e( 'Status Text', 'social-publisher-for-postiz' ); ?></th>
+					<th><?php esc_html_e( 'Result', 'social-publisher-for-postiz' ); ?></th>
+					<th><?php esc_html_e( 'Response', 'social-publisher-for-postiz' ); ?></th>
 					<th>
 						<?php
 						echo esc_html(
 							sprintf(
 							/* translators: Social Media Service Name  */
-								__( '%s: Status Created At', 'postiz-auto-poster' ),
+								__( '%s: Status Created At', 'social-publisher-for-postiz' ),
 								$this->base->plugin->account
 							)
 						);
@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						echo esc_html(
 							sprintf(
 								/* translators: Social Media Service Name  */
-								__( '%s: Status Scheduled For', 'postiz-auto-poster' ),
+								__( '%s: Status Scheduled For', 'social-publisher-for-postiz' ),
 								$this->base->plugin->account
 							)
 						);
@@ -71,13 +71,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 <div class="wpzinc-option">
 	<div class="full">
 		<a href="<?php echo esc_attr( $urls['refresh'] ); ?>" class="<?php echo esc_attr( $this->base->plugin->name ); ?>-refresh-log button" data-action="<?php echo esc_attr( $this->base->plugin->filter_name ); ?>_get_log" data-target="#<?php echo esc_attr( $this->base->plugin->name ); ?>-log">
-			<?php esc_html_e( 'Refresh Log', 'postiz-auto-poster' ); ?>
+			<?php esc_html_e( 'Refresh Log', 'social-publisher-for-postiz' ); ?>
 		</a>
 		<a href="<?php echo esc_attr( $urls['export'] ); ?>" class="<?php echo esc_attr( $this->base->plugin->name ); ?>-export-log button">
-			<?php esc_html_e( 'Export Log', 'postiz-auto-poster' ); ?>
+			<?php esc_html_e( 'Export Log', 'social-publisher-for-postiz' ); ?>
 		</a>
-		<a href="<?php echo esc_attr( $urls['clear'] ); ?>" class="<?php echo esc_attr( $this->base->plugin->name ); ?>-clear-log button wpzinc-button-red" data-action="<?php echo esc_attr( $this->base->plugin->filter_name ); ?>_clear_log" data-target="#<?php echo esc_attr( $this->base->plugin->name ); ?>-log" data-message="<?php esc_attr_e( 'Are you sure you want to clear the logs associated with this Post?', 'postiz-auto-poster' ); ?>">
-			<?php esc_html_e( 'Clear Log', 'postiz-auto-poster' ); ?>
+		<a href="<?php echo esc_attr( $urls['clear'] ); ?>" class="<?php echo esc_attr( $this->base->plugin->name ); ?>-clear-log button wpzinc-button-red" data-action="<?php echo esc_attr( $this->base->plugin->filter_name ); ?>_clear_log" data-target="#<?php echo esc_attr( $this->base->plugin->name ); ?>-log" data-message="<?php esc_attr_e( 'Are you sure you want to clear the logs associated with this Post?', 'social-publisher-for-postiz' ); ?>">
+			<?php esc_html_e( 'Clear Log', 'social-publisher-for-postiz' ); ?>
 		</a>
 	</div>
 </div>
