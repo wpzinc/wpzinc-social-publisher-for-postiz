@@ -12,15 +12,15 @@ On your local machine, switch to the `master` branch.
 
 Run the `.scripts/build.sh` script, which will:
 
-- Generate the `languages/social-publisher-for-postiz.pot` file
+- Generate the `languages/wpzinc-social-publisher-for-postiz.pot` file
 - Generate the [ACTIONS-FILTERS.md](ACTIONS-FILTERS.md) file
 
 ## Update the Plugin's Version Number
 
 We follow [Semantic Versioning](https://semver.org/).
 
-- In `social-publisher-for-postiz.php`, change the Version header to the new version number.
-- In `social-publisher-for-postiz.php`, change the `PLUGIN_VERSION` constant to the new version number.
+- In `wpzinc-social-publisher-for-postiz.php`, change the Version header to the new version number.
+- In `wpzinc-social-publisher-for-postiz.php`, change the `PLUGIN_VERSION` constant to the new version number.
 
 ## Update the Plugin's readme.txt Changelog
 
@@ -41,14 +41,14 @@ Each line in the changelog should start with `Added` or `Fix`.
 
 Commit the updated files, which should comprise of:
 
-- `languages/social-publisher-for-postiz.pot`
+- `languages/wpzinc-social-publisher-for-postiz.pot`
 - `readme.txt`
-- `social-publisher-for-postiz.php`
+- `wpzinc-social-publisher-for-postiz.php`
 - `ACTIONS-FILTERS.md`
 
 ## Create a New Release
 
-[Create a New Release](https://github.com/wpzinc/social-publisher-for-postiz/releases/new), completing the following:
+[Create a New Release](https://github.com/wpzinc/wpzinc-social-publisher-for-postiz/releases/new), completing the following:
 
 - Choose a tag: Click this button and enter the new version number (e.g. `1.9.6`)
 - Release title: The version number (e.g. `1.9.6`)

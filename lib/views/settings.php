@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php echo esc_html( $this->base->plugin->displayName ); ?>
 
 		<span>
-			<?php esc_html_e( 'Settings', 'social-publisher-for-postiz' ); ?>
+			<?php esc_html_e( 'Settings', 'wpzinc-social-publisher-for-postiz' ); ?>
 		</span>
 	</h1>
 </header>
@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- Tabs -->
 		<h2 class="nav-tab-wrapper wpzinc-horizontal-tabbed-ui">
 			<!-- Settings -->
-			<a href="admin.php?page=<?php echo esc_attr( $this->base->plugin->name ); ?>-settings" class="nav-tab<?php echo esc_attr( $tab === 'auth' ? ' nav-tab-active' : '' ) . ( $this->base->get_class( 'settings' )->account_connected() ? ' enabled' : ' error' ); ?>" title="<?php esc_attr_e( 'Settings', 'social-publisher-for-postiz' ); ?>">
+			<a href="admin.php?page=<?php echo esc_attr( $this->base->plugin->name ); ?>-settings" class="nav-tab<?php echo esc_attr( $tab === 'auth' ? ' nav-tab-active' : '' ) . ( $this->base->get_class( 'settings' )->account_connected() ? ' enabled' : ' error' ); ?>" title="<?php esc_attr_e( 'Settings', 'wpzinc-social-publisher-for-postiz' ); ?>">
 				<span class="dashicons dashicons-lock"></span> 
 				<?php
 				if ( $this->base->get_class( 'settings' )->account_connected() ) {
@@ -51,7 +51,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				}
 				?>
 				<span class="text">
-					<?php esc_html_e( 'Settings', 'social-publisher-for-postiz' ); ?>
+					<?php esc_html_e( 'Settings', 'wpzinc-social-publisher-for-postiz' ); ?>
 				</span>
 			</a>
 
@@ -84,12 +84,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 			?>
 
 			<!-- Documentation -->
-			<a href="<?php echo esc_attr( $documentation_url ); ?>" class="nav-tab last documentation" title="<?php esc_html_e( 'Documentation', 'social-publisher-for-postiz' ); ?>" target="_blank">
+			<a href="<?php echo esc_attr( $documentation_url ); ?>" class="nav-tab last documentation" title="<?php esc_html_e( 'Documentation', 'wpzinc-social-publisher-for-postiz' ); ?>" target="_blank">
 				<span class="text">
-					<?php esc_html_e( 'Documentation', 'social-publisher-for-postiz' ); ?>
+					<?php esc_html_e( 'Documentation', 'wpzinc-social-publisher-for-postiz' ); ?>
 				</span>
 				<span class="text-mobile">
-					<?php esc_html_e( 'Docs', 'social-publisher-for-postiz' ); ?>
+					<?php esc_html_e( 'Docs', 'wpzinc-social-publisher-for-postiz' ); ?>
 				</span>
 				<span class="dashicons dashicons-admin-page"></span>
 			</a>
@@ -118,7 +118,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<!-- Save -->
 							<div>
 								<?php wp_nonce_field( $this->base->plugin->name, $this->base->plugin->name . '_nonce' ); ?>
-								<input type="submit" name="submit" value="<?php esc_attr_e( 'Save', 'social-publisher-for-postiz' ); ?>" class="button button-primary" />
+								<input type="submit" name="submit" value="<?php esc_attr_e( 'Save', 'wpzinc-social-publisher-for-postiz' ); ?>" class="button button-primary" />
 							</div>
 							<?php
 						}
@@ -131,8 +131,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div id="postbox-container-1" class="postbox-container">
 					<?php
 					// Define the default updated content.
-					$upgrade_title   = __( 'Keep Updated', 'social-publisher-for-postiz' );
-					$upgrade_content = esc_html__( 'Subscribe to the newsletter and receive updates on our WordPress Plugins.', 'social-publisher-for-postiz' ) . '<script async data-uid="' . $this->base->plugin->convertkit_form_uid . '" src="https://dedicated-crafter-4782.ck.page/' . $this->base->plugin->convertkit_form_uid . '/index.js"></script>';
+					$upgrade_title   = __( 'Keep Updated', 'wpzinc-social-publisher-for-postiz' );
+					$upgrade_content = esc_html__( 'Subscribe to the newsletter and receive updates on our WordPress Plugins.', 'wpzinc-social-publisher-for-postiz' ) . '<script async data-uid="' . $this->base->plugin->convertkit_form_uid . '" src="https://dedicated-crafter-4782.ck.page/' . $this->base->plugin->convertkit_form_uid . '/index.js"></script>';
 					require $this->base->plugin->folder . '/_modules/dashboard/views/sidebar-upgrade.php';
 					?>
 				</div>

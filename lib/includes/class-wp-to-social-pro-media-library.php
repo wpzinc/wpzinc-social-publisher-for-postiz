@@ -70,7 +70,7 @@ class WP_To_Social_Pro_Media_Library {
 			return new WP_Error(
 				sprintf(
 					/* translators: Image Source Path and Filename */
-					__( 'Could not identify MIME type of source image %s. Is this an image?', 'social-publisher-for-postiz' ),
+					__( 'Could not identify MIME type of source image %s. Is this an image?', 'wpzinc-social-publisher-for-postiz' ),
 					$source
 				)
 			);

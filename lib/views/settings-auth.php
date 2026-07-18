@@ -16,17 +16,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<ul class="wpzinc-nav-tabs wpzinc-js-tabs" data-panels-container="#settings-container" data-panel=".panel" data-active="wpzinc-nav-tab-vertical-active">
 		<li class="wpzinc-nav-tab lock">
 			<a href="#authentication" class="wpzinc-nav-tab-vertical-active" data-documentation="<?php echo esc_attr( $this->base->plugin->documentation_url ); ?>/authentication-settings/">
-				<?php esc_html_e( 'Authentication', 'social-publisher-for-postiz' ); ?>
+				<?php esc_html_e( 'Authentication', 'wpzinc-social-publisher-for-postiz' ); ?>
 			</a>
 		</li>
 		<li class="wpzinc-nav-tab default">
 			<a href="#general-settings" data-documentation="<?php echo esc_attr( $this->base->plugin->documentation_url ); ?>/general-settings/">
-				<?php esc_html_e( 'General Settings', 'social-publisher-for-postiz' ); ?>
+				<?php esc_html_e( 'General Settings', 'wpzinc-social-publisher-for-postiz' ); ?>
 			</a>
 		</li>
 		<li class="wpzinc-nav-tab file-text">
 			<a href="#log-settings" data-documentation="<?php echo esc_attr( $this->base->plugin->documentation_url ); ?>/log-settings/">
-				<?php esc_html_e( 'Log Settings', 'social-publisher-for-postiz' ); ?>
+				<?php esc_html_e( 'Log Settings', 'wpzinc-social-publisher-for-postiz' ); ?>
 			</a>
 		</li>
 	</ul>
@@ -37,14 +37,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div id="authentication" class="panel">
 			<div class="postbox">
 				<header>
-					<h3><?php esc_html_e( 'Connected Accounts', 'social-publisher-for-postiz' ); ?></h3>
+					<h3><?php esc_html_e( 'Connected Accounts', 'wpzinc-social-publisher-for-postiz' ); ?></h3>
 
 					<p class="description">
 						<?php
 						echo esc_html(
 							sprintf(
 								/* translators: %1$s: Plugin Name, %2$s: Social Media Service Name  */
-								__( 'A list of %1$s accounts/organizations that are connected to %2$s.', 'social-publisher-for-postiz' ),
+								__( 'A list of %1$s accounts/organizations that are connected to %2$s.', 'wpzinc-social-publisher-for-postiz' ),
 								$this->base->plugin->account,
 								$this->base->plugin->displayName
 							)
@@ -80,13 +80,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 						</div>
 						<div class="right">
 							<a href="<?php echo esc_url( $refresh_profiles_url ); ?>" class="button button-secondary">
-								<?php esc_html_e( 'Refresh Profiles', 'social-publisher-for-postiz' ); ?>
+								<?php esc_html_e( 'Refresh Profiles', 'wpzinc-social-publisher-for-postiz' ); ?>
 							</a>
 							<a href="<?php echo esc_url( $reconnect_url ); ?>" class="button button-secondary">
-								<?php esc_html_e( 'Reconnect', 'social-publisher-for-postiz' ); ?>
+								<?php esc_html_e( 'Reconnect', 'wpzinc-social-publisher-for-postiz' ); ?>
 							</a>
 							<a href="<?php echo esc_url( $disconnect_url ); ?>" class="button wpzinc-button-red">
-								<?php esc_html_e( 'Disconnect', 'social-publisher-for-postiz' ); ?>
+								<?php esc_html_e( 'Disconnect', 'wpzinc-social-publisher-for-postiz' ); ?>
 							</a>
 						</div>
 					</div>
@@ -100,15 +100,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div id="general-settings" class="panel">
 			<div class="postbox">
 				<header>
-					<h3><?php esc_html_e( 'General Settings', 'social-publisher-for-postiz' ); ?></h3>
+					<h3><?php esc_html_e( 'General Settings', 'wpzinc-social-publisher-for-postiz' ); ?></h3>
 					<p class="description">
-						<?php esc_html_e( 'Provides options for logging, Post default level settings and whether to use WordPress Cron when publishing or updating Posts.', 'social-publisher-for-postiz' ); ?>
+						<?php esc_html_e( 'Provides options for logging, Post default level settings and whether to use WordPress Cron when publishing or updating Posts.', 'wpzinc-social-publisher-for-postiz' ); ?>
 					</p>
 				</header>
 
 				<div class="wpzinc-option">
 					<div class="left">
-						<label for="test_mode"><?php esc_html_e( 'Enable Test Mode', 'social-publisher-for-postiz' ); ?></label>
+						<label for="test_mode"><?php esc_html_e( 'Enable Test Mode', 'wpzinc-social-publisher-for-postiz' ); ?></label>
 					</div>
 					<div class="right">
 						<input type="checkbox" name="test_mode" id="test_mode" value="1" <?php checked( $this->get_setting( '', 'test_mode' ), 1 ); ?> />
@@ -118,7 +118,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							echo esc_html(
 								sprintf(
 								/* translators: Social Media Service Name  */
-									__( 'If enabled, status(es) are not sent to %s, but will appear in the Log, if logging is enabled. This is useful to test status text, conditions etc.', 'social-publisher-for-postiz' ),
+									__( 'If enabled, status(es) are not sent to %s, but will appear in the Log, if logging is enabled. This is useful to test status text, conditions etc.', 'wpzinc-social-publisher-for-postiz' ),
 									$this->base->plugin->account
 								)
 							);
@@ -129,22 +129,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<div class="wpzinc-option">
 					<div class="left">
-						<label for="force_trailing_forwardslash"><?php esc_html_e( 'Force Trailing Forwardslash?', 'social-publisher-for-postiz' ); ?></label>
+						<label for="force_trailing_forwardslash"><?php esc_html_e( 'Force Trailing Forwardslash?', 'wpzinc-social-publisher-for-postiz' ); ?></label>
 					</div>
 					<div class="right">
 						<input type="checkbox" name="force_trailing_forwardslash" id="force_trailing_forwardslash" value="1" <?php checked( $this->get_setting( '', 'force_trailing_forwardslash' ), 1 ); ?> />
 
 						<p class="description">
 							<?php
-							esc_html_e( 'If enabled, any URLs in statuses will always end with a forwardslash. This might be required if the wrong image is shared with a status.', 'social-publisher-for-postiz' );
+							esc_html_e( 'If enabled, any URLs in statuses will always end with a forwardslash. This might be required if the wrong image is shared with a status.', 'wpzinc-social-publisher-for-postiz' );
 							?>
 							<br />
 							<?php
 							printf(
 								'%1$s <a href="options-permalink.php">%2$s</a> %3$s',
-								esc_html__( 'It\'s better to ensure your', 'social-publisher-for-postiz' ),
-								esc_html__( 'Permalink', 'social-publisher-for-postiz' ),
-								esc_html__( 'settings end with a forwardslash, but this option is a useful fallback if changing Permalink structure isn\'t possible.', 'social-publisher-for-postiz' )
+								esc_html__( 'It\'s better to ensure your', 'wpzinc-social-publisher-for-postiz' ),
+								esc_html__( 'Permalink', 'wpzinc-social-publisher-for-postiz' ),
+								esc_html__( 'settings end with a forwardslash, but this option is a useful fallback if changing Permalink structure isn\'t possible.', 'wpzinc-social-publisher-for-postiz' )
 							);
 							?>
 						</p>
@@ -153,7 +153,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 				<div class="wpzinc-option">
 					<div class="left">
-						<label for="proxy"><?php esc_html_e( 'Use Proxy?', 'social-publisher-for-postiz' ); ?></label>
+						<label for="proxy"><?php esc_html_e( 'Use Proxy?', 'wpzinc-social-publisher-for-postiz' ); ?></label>
 					</div>
 					<div class="right">
 						<input type="checkbox" name="proxy" id="proxy" value="1" <?php checked( $this->get_setting( '', 'proxy' ), 1 ); ?> />
@@ -163,14 +163,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 							echo esc_html(
 								sprintf(
 								/* translators: %1$s: Social Media Service Name , %2$s: Social Media Service Name  */
-									__( 'If enabled, statuses sent to %1$s are performed through our proxy. This is useful if your ISP or host\'s country prevents access to %1$s.', 'social-publisher-for-postiz' ),
+									__( 'If enabled, statuses sent to %1$s are performed through our proxy. This is useful if your ISP or host\'s country prevents access to %1$s.', 'wpzinc-social-publisher-for-postiz' ),
 									$this->base->plugin->account,
 									$this->base->plugin->account
 								)
 							);
 							?>
 							<br />
-							<?php esc_html_e( 'You may still need to use a VPN for initial Authentication when setting up the Plugin for the first time.', 'social-publisher-for-postiz' ); ?>
+							<?php esc_html_e( 'You may still need to use a VPN for initial Authentication when setting up the Plugin for the first time.', 'wpzinc-social-publisher-for-postiz' ); ?>
 						</p>
 					</div>
 				</div>
@@ -181,15 +181,15 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div id="log-settings" class="panel">
 			<div class="postbox">
 				<header>
-					<h3><?php esc_html_e( 'Log Settings', 'social-publisher-for-postiz' ); ?></h3>
+					<h3><?php esc_html_e( 'Log Settings', 'wpzinc-social-publisher-for-postiz' ); ?></h3>
 					<p class="description">
-						<?php esc_html_e( 'Provides options to enable logging, display logs on Posts and how long to keep logs for.', 'social-publisher-for-postiz' ); ?>
+						<?php esc_html_e( 'Provides options to enable logging, display logs on Posts and how long to keep logs for.', 'wpzinc-social-publisher-for-postiz' ); ?>
 					</p>
 				</header>
 
 				<div class="wpzinc-option">
 					<div class="left">
-						<label for="log_enabled"><?php esc_html_e( 'Enable Logging?', 'social-publisher-for-postiz' ); ?></label>
+						<label for="log_enabled"><?php esc_html_e( 'Enable Logging?', 'wpzinc-social-publisher-for-postiz' ); ?></label>
 					</div>
 					<div class="right">
 						<input type="checkbox" name="log[enabled]" id="log_enabled" value="1" <?php checked( $this->get_setting( 'log', '[enabled]' ), 1 ); ?> data-conditional="enable_logging" />
@@ -198,13 +198,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 							if ( $this->get_setting( 'log', '[enabled]' ) ) {
 								printf(
 									'%1$s <a href="%2$s">%3$s</a> %4$s',
-									esc_html__( 'If enabled, the', 'social-publisher-for-postiz' ),
+									esc_html__( 'If enabled, the', 'wpzinc-social-publisher-for-postiz' ),
 									esc_html( admin_url( 'admin.php?page=' . $this->base->plugin->name . '-log' ) ),
-									esc_html__( 'Plugin Logs', 'social-publisher-for-postiz' ),
+									esc_html__( 'Plugin Logs', 'wpzinc-social-publisher-for-postiz' ),
 									esc_html(
 										sprintf(
 											/* translators: Social Media Service Name  */
-											__( 'will detail status(es) sent to %s, including any errors or reasons why no status(es) were sent.', 'social-publisher-for-postiz' ),
+											__( 'will detail status(es) sent to %s, including any errors or reasons why no status(es) were sent.', 'wpzinc-social-publisher-for-postiz' ),
 											$this->base->plugin->account
 										)
 									)
@@ -214,7 +214,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 								echo esc_html(
 									sprintf(
 									/* translators: %1$s: Social Media Service Name  */
-										__( 'If enabled, the Plugin Logs will detail status(es) sent to %1$s, including any errors or reasons why no status(es) were sent.', 'social-publisher-for-postiz' ),
+										__( 'If enabled, the Plugin Logs will detail status(es) sent to %1$s, including any errors or reasons why no status(es) were sent.', 'wpzinc-social-publisher-for-postiz' ),
 										$this->base->plugin->account
 									)
 								);
@@ -227,7 +227,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				<div id="enable_logging">
 					<div class="wpzinc-option">
 						<div class="left">
-							<label for="log_display_on_posts"><?php esc_html_e( 'Display on Posts?', 'social-publisher-for-postiz' ); ?></label>
+							<label for="log_display_on_posts"><?php esc_html_e( 'Display on Posts?', 'wpzinc-social-publisher-for-postiz' ); ?></label>
 						</div>
 						<div class="right">
 							<input type="checkbox" name="log[display_on_posts]" id="log_display_on_posts" value="1" <?php checked( $this->get_setting( 'log', '[display_on_posts]' ), 1 ); ?> />
@@ -237,14 +237,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 								if ( $this->get_setting( 'log', '[enabled]' ) ) {
 									printf(
 										'%1$s <a href="%2$s">%3$s</a> %4$s',
-										esc_html__( 'If enabled, a Log will be displayed when editing a Post.  Logs are always available through the', 'social-publisher-for-postiz' ),
+										esc_html__( 'If enabled, a Log will be displayed when editing a Post.  Logs are always available through the', 'wpzinc-social-publisher-for-postiz' ),
 										esc_html( admin_url( 'admin.php?page=' . $this->base->plugin->name . '-log' ) ),
-										esc_html__( 'Plugin Logs', 'social-publisher-for-postiz' ),
-										esc_html__( 'screen', 'social-publisher-for-postiz' )
+										esc_html__( 'Plugin Logs', 'wpzinc-social-publisher-for-postiz' ),
+										esc_html__( 'screen', 'wpzinc-social-publisher-for-postiz' )
 									);
 								} else {
 									// Don't link "Plugin Log" text, as Logs are disabled so it won't show anything.
-									esc_html_e( 'If enabled, a Log will be displayed when editing a Post.  Logs are always available through the Plugin Logs screen.', 'social-publisher-for-postiz' );
+									esc_html_e( 'If enabled, a Log will be displayed when editing a Post.  Logs are always available through the Plugin Logs screen.', 'wpzinc-social-publisher-for-postiz' );
 								}
 								?>
 							</p>
@@ -253,7 +253,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 					<div class="wpzinc-option">
 						<div class="left">
-							<label for="log_level"><?php esc_html_e( 'Log Level', 'social-publisher-for-postiz' ); ?></label>
+							<label for="log_level"><?php esc_html_e( 'Log Level', 'wpzinc-social-publisher-for-postiz' ); ?></label>
 						</div>
 						<div class="right">
 							<?php
@@ -288,22 +288,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 							?>
 
 							<p class="description">
-								<?php esc_html_e( 'Defines which log results to save to the Log database. Errors will always be logged.', 'social-publisher-for-postiz' ); ?>
+								<?php esc_html_e( 'Defines which log results to save to the Log database. Errors will always be logged.', 'wpzinc-social-publisher-for-postiz' ); ?>
 							</p>
 						</div>
 					</div>
 
 					<div class="wpzinc-option">
 						<div class="left">
-							<label for="log_preserve_days"><?php esc_html_e( 'Preserve Logs', 'social-publisher-for-postiz' ); ?></strong>
+							<label for="log_preserve_days"><?php esc_html_e( 'Preserve Logs', 'wpzinc-social-publisher-for-postiz' ); ?></strong>
 						</div>
 						<div class="right">
 							<input type="number" name="log[preserve_days]" id="log_preserve_days" value="<?php echo esc_attr( $this->get_setting( 'log', '[preserve_days]' ) ); ?>" min="0" max="9999" step="1" />
-							<?php esc_html_e( 'days', 'social-publisher-for-postiz' ); ?>
+							<?php esc_html_e( 'days', 'wpzinc-social-publisher-for-postiz' ); ?>
 					   
 							<p class="description">
 								<?php
-								esc_html_e( 'The number of days to preserve logs for.  Zero means logs are kept indefinitely.', 'social-publisher-for-postiz' );
+								esc_html_e( 'The number of days to preserve logs for.  Zero means logs are kept indefinitely.', 'wpzinc-social-publisher-for-postiz' );
 								?>
 							</p>
 						</div>

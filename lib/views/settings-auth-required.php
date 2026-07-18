@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php echo esc_html( $this->base->plugin->displayName ); ?>
 
 		<span>
-			<?php esc_html_e( 'Settings', 'social-publisher-for-postiz' ); ?>
+			<?php esc_html_e( 'Settings', 'wpzinc-social-publisher-for-postiz' ); ?>
 		</span>
 	</h1>
 </header>
@@ -37,7 +37,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 									echo esc_html(
 										sprintf(
 										/* translators: %1$s: Social Media Service Name , %2$s: Social Media Service Name  */
-											__( 'To allow this Plugin to post updates to your social media profiles using %1$s, please authorize %2$s below.', 'social-publisher-for-postiz' ),
+											__( 'To allow this Plugin to post updates to your social media profiles using %1$s, please authorize %2$s below.', 'wpzinc-social-publisher-for-postiz' ),
 											$this->base->plugin->account,
 											$this->base->plugin->account
 										)
@@ -49,13 +49,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 									echo esc_html(
 										sprintf(
 										/* translators: %1$s: Social Media Service Name  */
-											__( 'Don\'t have a %1$s account?', 'social-publisher-for-postiz' ),
+											__( 'Don\'t have a %1$s account?', 'wpzinc-social-publisher-for-postiz' ),
 											$this->base->plugin->account
 										)
 									);
 									?>
 									<a href="<?php echo esc_attr( $this->base->get_class( 'api' )->get_registration_url() ); ?>" target="_blank" rel="nofollow noopener">
-										<?php esc_html_e( 'Sign up for free', 'social-publisher-for-postiz' ); ?>
+										<?php esc_html_e( 'Sign up for free', 'wpzinc-social-publisher-for-postiz' ); ?>
 									</a>
 								</p>
 							</div>

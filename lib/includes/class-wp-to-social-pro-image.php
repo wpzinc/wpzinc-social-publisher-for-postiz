@@ -53,7 +53,7 @@ class WP_To_Social_Pro_Image {
 	public function get_status_image_options( $network = false, $post_type = false ) {
 
 		// If a Post Type has been specified, get its featured_image label.
-		$label = __( 'Feat. Image', 'social-publisher-for-postiz' );
+		$label = __( 'Feat. Image', 'wpzinc-social-publisher-for-postiz' );
 		if ( $post_type !== false && $post_type !== 'bulk' ) {
 			$post_type_object = get_post_type_object( $post_type );
 			$label            = $post_type_object->labels->featured_image;

@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				echo esc_html(
 					sprintf(
 					/* translators: Translated Action (Publish, Update, Repost, Bulk Publish) */
-						__( 'Defaults: ', 'social-publisher-for-postiz' ),
+						__( 'Defaults: ', 'wpzinc-social-publisher-for-postiz' ),
 						$action_label
 					)
 				);
@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 			<label for="<?php echo esc_attr( $profile_id ); ?>_<?php echo esc_attr( $post_action ); ?>_enabled">
 				<input type="checkbox" id="<?php echo esc_attr( $profile_id ); ?>_<?php echo esc_attr( $post_action ); ?>_enabled" class="enable" name="<?php echo esc_attr( $this->base->plugin->name ); ?>[<?php echo esc_attr( $profile_id ); ?>][<?php echo esc_attr( $post_action ); ?>][enabled]" value="1"<?php checked( $this->get_setting( $post_type, '[' . $profile_id . '][' . $post_action . '][enabled]', 0 ), 1, true ); ?> data-tab="profile-<?php echo esc_attr( $profile_id ); ?>-<?php echo esc_attr( $post_action ); ?>" data-conditional="<?php echo esc_attr( $post_type ); ?>-<?php echo esc_attr( $profile_id ); ?>-<?php echo esc_attr( $post_action ); ?>-statuses" />
-				<?php esc_html_e( 'Enabled', 'social-publisher-for-postiz' ); ?>
+				<?php esc_html_e( 'Enabled', 'wpzinc-social-publisher-for-postiz' ); ?>
 			</label>
 		</h3>
 
@@ -39,13 +39,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 			echo esc_html(
 				sprintf(
 				/* translators: %1$s: Social Media Service Name , %2$s: Post Type, Singular, %3$s: Translated Action (Publish, Update, Repost, Bulk Publish), %4$s: Additional Translated Message */
-					__( 'If enabled, any status(es) defined here will be sent to %1$s when a WordPress %2$s is %3$s %4$s', 'social-publisher-for-postiz' ),
+					__( 'If enabled, any status(es) defined here will be sent to %1$s when a WordPress %2$s is %3$s %4$s', 'wpzinc-social-publisher-for-postiz' ),
 					$this->base->plugin->account,
 					$post_type_object->labels->singular_name,
 					strtolower( $actions_plural[ $post_action ] ),
 					( $profile_id === 'default' ? '' : sprintf(
 					/* translators: Social Media Service Name  */
-						__( 'to %s. These override the status(es) specified on the Defaults tab.', 'social-publisher-for-postiz' ),
+						__( 'to %s. These override the status(es) specified on the Defaults tab.', 'wpzinc-social-publisher-for-postiz' ),
 						$profile['formatted_username']
 					) )
 				)
@@ -61,10 +61,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<thead>
 						<tr>
 							<th>&nbsp;</th>
-							<th><?php esc_html_e( 'Actions', 'social-publisher-for-postiz' ); ?></th>
-							<th><?php esc_html_e( 'Type', 'social-publisher-for-postiz' ); ?></th>
-							<th><?php esc_html_e( 'Text', 'social-publisher-for-postiz' ); ?></th>
-							<th><?php esc_html_e( 'Schedule', 'social-publisher-for-postiz' ); ?></th>
+							<th><?php esc_html_e( 'Actions', 'wpzinc-social-publisher-for-postiz' ); ?></th>
+							<th><?php esc_html_e( 'Type', 'wpzinc-social-publisher-for-postiz' ); ?></th>
+							<th><?php esc_html_e( 'Text', 'wpzinc-social-publisher-for-postiz' ); ?></th>
+							<th><?php esc_html_e( 'Schedule', 'wpzinc-social-publisher-for-postiz' ); ?></th>
 						</tr>
 					</thead>
 					<tbody>

@@ -1,5 +1,5 @@
 {
-    "name": "n7studios/social-publisher-for-postiz",
+    "name": "wpzinc/wpzinc-social-publisher-for-postiz",
     "description": "WordPress to Postiz Plugin",
     "type": "project",
     "require-dev": {
@@ -14,10 +14,10 @@
     "prefer-stable": true,
     "scripts": {
         "create-release-assets": [
-            "php -n $(which wp) i18n make-pot ./ ./languages/social-publisher-for-postiz.pot",
+            "php -n $(which wp) i18n make-pot ./ ./languages/wpzinc-social-publisher-for-postiz.pot",
             "@php .scripts/create-actions-filters-docs.php"
         ],
-        "create-pot": "php -n $(which wp) i18n make-pot ./ ./languages/social-publisher-for-postiz.pot",
+        "create-pot": "php -n $(which wp) i18n make-pot ./ ./languages/wpzinc-social-publisher-for-postiz.pot",
         "create-dev-docs": "@php .scripts/create-actions-filters-docs.php",
         "phpcs": "vendor/bin/phpcs ./ -s -v",
         "phpcbf": "vendor/bin/phpcbf ./ -s -v",

@@ -1,19 +1,19 @@
 <?php
 /**
- * Social Publisher for Postiz class.
+ * WP Zinc Social Publisher for Postiz class.
  *
- * @package social_publisher_for_postiz
+ * @package WPZinc_Social_Publisher_For_Postiz
  * @author WP Zinc
  */
 
 /**
- * Main Social Publisher for Postiz class, used to load the Plugin.
+ * Main WP Zinc Social Publisher for Postiz class, used to load the Plugin.
  *
- * @package   social_publisher_for_postiz
+ * @package   WPZinc_Social_Publisher_For_Postiz
  * @author    WP Zinc
  * @version   1.0.0
  */
-class Social_Publisher_For_Postiz {
+class WPZinc_Social_Publisher_For_Postiz {
 
 	/**
 	 * Holds the class object.
@@ -60,32 +60,24 @@ class Social_Publisher_For_Postiz {
 
 		// Plugin Details.
 		$this->plugin              = new stdClass();
-		$this->plugin->name        = 'social-publisher-for-postiz';
-		$this->plugin->filter_name = 'social_publisher_for_postiz';
-		$this->plugin->displayName = 'Social Publisher for Postiz';
+		$this->plugin->name        = 'wpzinc-social-publisher-for-postiz';
+		$this->plugin->filter_name = 'wpzinc_social_publisher_for_postiz';
+		$this->plugin->displayName = 'WP Zinc Social Publisher for Postiz';
 
 		$this->plugin->settingsName      = 'social-publisher-for-postiz-pro'; // Settings key - used in both Free + Pro, and for oAuth.
 		$this->plugin->account           = 'Postiz';
-		$this->plugin->version           = SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_VERSION;
-		$this->plugin->buildDate         = SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_BUILD_DATE;
-		$this->plugin->folder            = SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH;
-		$this->plugin->url               = SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_URL;
+		$this->plugin->version           = WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_VERSION;
+		$this->plugin->buildDate         = WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_BUILD_DATE;
+		$this->plugin->folder            = WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH;
+		$this->plugin->url               = WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_URL;
 		$this->plugin->documentation_url = 'https://www.wpzinc.com/documentation/wordpress-buffer-pro/';
 		$this->plugin->support_url       = 'https://www.wpzinc.com/support';
 
 		// Logo.
-		$this->plugin->logo                        = SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_URL . 'lib/assets/images/icons/postiz-dark.svg';
+		$this->plugin->logo                        = WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_URL . 'lib/assets/images/icons/postiz-dark.svg';
 		$this->plugin->header_background_color     = '#ffffff';
 		$this->plugin->header_primary_text_color   = '#3d3d3d';
 		$this->plugin->header_secondary_text_color = '#6e6e6e';
-
-		// Review.
-		$this->plugin->review_name   = 'social-publisher-for-postiz';
-		$this->plugin->review_notice = sprintf(
-			'Thanks for using %s to schedule your social media statuses on %s!',
-			$this->plugin->displayName,
-			$this->plugin->account
-		);
 
 		// ConvertKit Form UID.
 		$this->plugin->convertkit_form_uid = 'adb5765302';
@@ -115,11 +107,11 @@ class Social_Publisher_For_Postiz {
 		add_menu_page( $this->plugin->displayName, $this->plugin->displayName, $minimum_capability, $this->plugin->name . '-settings', array( $this->get_class( 'admin' ), 'settings_screen' ), $this->plugin->url . 'lib/assets/images/icons/' . strtolower( $this->plugin->account ) . '-light.svg' );
 
 		// Register Submenu Pages.
-		$settings_page = add_submenu_page( $this->plugin->name . '-settings', __( 'Settings', 'social-publisher-for-postiz' ), __( 'Settings', 'social-publisher-for-postiz' ), $minimum_capability, $this->plugin->name . '-settings', array( $this->get_class( 'admin' ), 'settings_screen' ) );
+		$settings_page = add_submenu_page( $this->plugin->name . '-settings', __( 'Settings', 'wpzinc-social-publisher-for-postiz' ), __( 'Settings', 'wpzinc-social-publisher-for-postiz' ), $minimum_capability, $this->plugin->name . '-settings', array( $this->get_class( 'admin' ), 'settings_screen' ) );
 
 		// Logs.
 		if ( $this->get_class( 'log' )->is_enabled() ) {
-			$log_page = add_submenu_page( $this->plugin->name . '-settings', __( 'Logs', 'social-publisher-for-postiz' ), __( 'Logs', 'social-publisher-for-postiz' ), $minimum_capability, $this->plugin->name . '-log', array( $this->get_class( 'admin' ), 'log_screen' ) );
+			$log_page = add_submenu_page( $this->plugin->name . '-settings', __( 'Logs', 'wpzinc-social-publisher-for-postiz' ), __( 'Logs', 'wpzinc-social-publisher-for-postiz' ), $minimum_capability, $this->plugin->name . '-log', array( $this->get_class( 'admin' ), 'log_screen' ) );
 			add_action( "load-$log_page", array( $this->get_class( 'log' ), 'add_screen_options' ) );
 		}
 
@@ -135,7 +127,7 @@ class Social_Publisher_For_Postiz {
 		// Define translation strings.
 		$this->plugin->review_notice = sprintf(
 			/* translators: Plugin Name */
-			__( 'Thanks for using %s to schedule your social media statuses on Postiz!', 'social-publisher-for-postiz' ),
+			__( 'Thanks for using %s to schedule your social media statuses on Postiz!', 'wpzinc-social-publisher-for-postiz' ),
 			$this->plugin->displayName
 		);
 
@@ -197,7 +189,7 @@ class Social_Publisher_For_Postiz {
 				'social_publisher_for_postiz_get_class',
 				sprintf(
 					/* translators: %1$s: Plugin Name, %2$s: PHP class name */
-					__( '%1$s: Error: Could not load Plugin class %2$s', 'social-publisher-for-postiz' ),
+					__( '%1$s: Error: Could not load Plugin class %2$s', 'wpzinc-social-publisher-for-postiz' ),
 					$this->plugin->displayName,
 					$name
 				)
@@ -210,7 +202,7 @@ class Social_Publisher_For_Postiz {
 					esc_html( $error->get_error_message() ),
 					sprintf(
 						/* translators: Plugin Name */
-						esc_html__( '%s: Error', 'social-publisher-for-postiz' ),
+						esc_html__( '%s: Error', 'wpzinc-social-publisher-for-postiz' ),
 						esc_html( $this->plugin->displayName )
 					),
 					array(

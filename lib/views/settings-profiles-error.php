@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			echo esc_html(
 				sprintf(
 				/* translators: Social Media Service Name  */
-					__( 'Visit your %s account to resolve this error.', 'social-publisher-for-postiz' ),
+					__( 'Visit your %s account to resolve this error.', 'wpzinc-social-publisher-for-postiz' ),
 					$this->base->plugin->account
 				)
 			);
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 			echo esc_html(
 				sprintf(
 				/* translators: Social Media Service Name  */
-					__( 'Visit %s', 'social-publisher-for-postiz' ),
+					__( 'Visit %s', 'wpzinc-social-publisher-for-postiz' ),
 					$this->base->plugin->account
 				)
 			);

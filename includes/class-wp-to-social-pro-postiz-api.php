@@ -123,7 +123,7 @@ class WP_To_Social_Pro_Postiz_API {
 		<div class="wpzinc-option">
 			<div class="full">
 				<a href="<?php echo esc_attr( $this->get_oauth_url() ); ?>" class="button button-primary">
-					<?php esc_html_e( 'Connect a Postiz Account', 'social-publisher-for-postiz' ); ?>
+					<?php esc_html_e( 'Connect a Postiz Account', 'wpzinc-social-publisher-for-postiz' ); ?>
 				</a>
 			</div>
 		</div>
@@ -335,44 +335,44 @@ class WP_To_Social_Pro_Postiz_API {
 		switch ( $type ) {
 
 			case 'x':
-				return __( 'Twitter', 'social-publisher-for-postiz' );
+				return __( 'Twitter', 'wpzinc-social-publisher-for-postiz' );
 
 			case 'linkedin':
-				return __( 'LinkedIn Profile', 'social-publisher-for-postiz' );
+				return __( 'LinkedIn Profile', 'wpzinc-social-publisher-for-postiz' );
 
 			case 'linkedin-page':
-				return __( 'LinkedIn Page', 'social-publisher-for-postiz' );
+				return __( 'LinkedIn Page', 'wpzinc-social-publisher-for-postiz' );
 
 			case 'facebook':
-				return __( 'Facebook Page', 'social-publisher-for-postiz' );
+				return __( 'Facebook Page', 'wpzinc-social-publisher-for-postiz' );
 
 			case 'instagram':
 			case 'instagram-standalone':
-				return __( 'Instagram', 'social-publisher-for-postiz' );
+				return __( 'Instagram', 'wpzinc-social-publisher-for-postiz' );
 
 			case 'threads':
-				return __( 'Threads', 'social-publisher-for-postiz' );
+				return __( 'Threads', 'wpzinc-social-publisher-for-postiz' );
 
 			case 'bluesky':
-				return __( 'Bluesky', 'social-publisher-for-postiz' );
+				return __( 'Bluesky', 'wpzinc-social-publisher-for-postiz' );
 
 			case 'mastodon':
-				return __( 'Mastodon', 'social-publisher-for-postiz' );
+				return __( 'Mastodon', 'wpzinc-social-publisher-for-postiz' );
 
 			case 'vk':
-				return __( 'VK', 'social-publisher-for-postiz' );
+				return __( 'VK', 'wpzinc-social-publisher-for-postiz' );
 
 			case 'tiktok':
-				return __( 'TikTok', 'social-publisher-for-postiz' );
+				return __( 'TikTok', 'wpzinc-social-publisher-for-postiz' );
 
 			case 'telegram':
-				return __( 'Telegram', 'social-publisher-for-postiz' );
+				return __( 'Telegram', 'wpzinc-social-publisher-for-postiz' );
 
 			case 'pinterest':
-				return __( 'Pinterest', 'social-publisher-for-postiz' );
+				return __( 'Pinterest', 'wpzinc-social-publisher-for-postiz' );
 
 			case 'gmb':
-				return __( 'Google My Business', 'social-publisher-for-postiz' );
+				return __( 'Google My Business', 'wpzinc-social-publisher-for-postiz' );
 
 			default:
 				return '';
@@ -607,7 +607,7 @@ class WP_To_Social_Pro_Postiz_API {
 
 		// Check required parameters exist.
 		if ( empty( $this->access_token ) ) {
-			return new WP_Error( 'social_publisher_for_postiz_no_access_token', __( 'No access token was specified', 'social-publisher-for-postiz' ) );
+			return new WP_Error( 'social_publisher_for_postiz_no_access_token', __( 'No access token was specified', 'wpzinc-social-publisher-for-postiz' ) );
 		}
 
 		// Build endpoint URL.

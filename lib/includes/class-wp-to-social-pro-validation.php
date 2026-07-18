@@ -82,18 +82,18 @@ class WP_To_Social_Pro_Validation {
 				$this->base->plugin->filter_name . '_timezones_invalid',
 				sprintf(
 					'%1$s<br /><br />%2$s<br />%3$s %4$s (%5$s) [<a href="%6$s" target="_blank">%7$s</a>]<br />%8$s Profile Timezone: %9$s (%10$s) [<a href="%11$s" target="_blank">%12$s</a>]',
-					__( 'This Profile\'s Timezone does not match your WordPress timezone.  They must be the same, to ensure that statuses can be scheduled, and are scheduled at the correct time.', 'social-publisher-for-postiz' ),
-					__( 'Right now, your timezones are configured as:', 'social-publisher-for-postiz' ),
-					__( 'WordPress Timezone:', 'social-publisher-for-postiz' ),
+					__( 'This Profile\'s Timezone does not match your WordPress timezone.  They must be the same, to ensure that statuses can be scheduled, and are scheduled at the correct time.', 'wpzinc-social-publisher-for-postiz' ),
+					__( 'Right now, your timezones are configured as:', 'wpzinc-social-publisher-for-postiz' ),
+					__( 'WordPress Timezone:', 'wpzinc-social-publisher-for-postiz' ),
 					esc_html( $wordpress_timezone ),
 					esc_html( $wordpress_date ),
 					admin_url( 'options-general.php#timezone_string' ),
-					__( 'Fix', 'social-publisher-for-postiz' ),
+					__( 'Fix', 'wpzinc-social-publisher-for-postiz' ),
 					esc_html( $api_profile_name ),
 					esc_html( $api_profile_timezone ),
 					esc_html( $api_date ),
 					esc_html( $api_profile_change_timezone_url ),
-					__( 'Fix', 'social-publisher-for-postiz' )
+					__( 'Fix', 'wpzinc-social-publisher-for-postiz' )
 				)
 			);
 		}

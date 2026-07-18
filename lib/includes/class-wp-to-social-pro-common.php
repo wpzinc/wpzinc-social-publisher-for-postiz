@@ -49,9 +49,9 @@ class WP_To_Social_Pro_Common {
 
 		// Build status post type options.
 		$status_post_type_options = array(
-			'text'  => __( 'Text', 'social-publisher-for-postiz' ),
-			'link'  => __( 'Link', 'social-publisher-for-postiz' ),
-			'image' => __( 'Image', 'social-publisher-for-postiz' ),
+			'text'  => __( 'Text', 'wpzinc-social-publisher-for-postiz' ),
+			'link'  => __( 'Link', 'wpzinc-social-publisher-for-postiz' ),
+			'image' => __( 'Image', 'wpzinc-social-publisher-for-postiz' ),
 		);
 
 		/**
@@ -81,7 +81,7 @@ class WP_To_Social_Pro_Common {
 
 		// Build schedule options, depending on the Plugin.
 		$schedule = array(
-			'immediate' => __( 'Post Immediately', 'social-publisher-for-postiz' ),
+			'immediate' => __( 'Post Immediately', 'wpzinc-social-publisher-for-postiz' ),
 		);
 
 		/**
@@ -112,7 +112,7 @@ class WP_To_Social_Pro_Common {
 
 		// Build schedule options.
 		$schedule = array(
-			'custom' => __( 'Custom Field / Post Meta Value', 'social-publisher-for-postiz' ),
+			'custom' => __( 'Custom Field / Post Meta Value', 'wpzinc-social-publisher-for-postiz' ),
 		);
 
 		/**
@@ -141,7 +141,7 @@ class WP_To_Social_Pro_Common {
 
 		// Build schedule options.
 		$schedule = array(
-			'custom' => __( 'Custom Field / Post Meta Value', 'social-publisher-for-postiz' ),
+			'custom' => __( 'Custom Field / Post Meta Value', 'wpzinc-social-publisher-for-postiz' ),
 		);
 
 		/**
@@ -349,51 +349,51 @@ class WP_To_Social_Pro_Common {
 		// Build tags array.
 		$tags = array(
 			'post' => array(
-				'{sitename}'              => __( 'Site Name', 'social-publisher-for-postiz' ),
-				'{title}'                 => __( 'Post Title', 'social-publisher-for-postiz' ),
-				'{excerpt}'               => __( 'Post Excerpt (Full)', 'social-publisher-for-postiz' ),
+				'{sitename}'              => __( 'Site Name', 'wpzinc-social-publisher-for-postiz' ),
+				'{title}'                 => __( 'Post Title', 'wpzinc-social-publisher-for-postiz' ),
+				'{excerpt}'               => __( 'Post Excerpt (Full)', 'wpzinc-social-publisher-for-postiz' ),
 				'{excerpt:characters(?)}' => array(
-					'question'      => __( 'Enter the maximum number of characters the Post Excerpt should display.', 'social-publisher-for-postiz' ),
+					'question'      => __( 'Enter the maximum number of characters the Post Excerpt should display.', 'wpzinc-social-publisher-for-postiz' ),
 					'default_value' => '150',
 					'replace'       => '?',
-					'label'         => __( 'Post Excerpt (Character Limited)', 'social-publisher-for-postiz' ),
+					'label'         => __( 'Post Excerpt (Character Limited)', 'wpzinc-social-publisher-for-postiz' ),
 				),
 				'{excerpt:words(?)}'      => array(
-					'question'      => __( 'Enter the maximum number of words the Post Excerpt should display.', 'social-publisher-for-postiz' ),
+					'question'      => __( 'Enter the maximum number of words the Post Excerpt should display.', 'wpzinc-social-publisher-for-postiz' ),
 					'default_value' => '55',
 					'replace'       => '?',
-					'label'         => __( 'Post Excerpt (Word Limited)', 'social-publisher-for-postiz' ),
+					'label'         => __( 'Post Excerpt (Word Limited)', 'wpzinc-social-publisher-for-postiz' ),
 				),
 				'{excerpt:sentences(?)}'  => array(
-					'question'      => __( 'Enter the maximum number of sentences the Post Excerpt should display.', 'social-publisher-for-postiz' ),
+					'question'      => __( 'Enter the maximum number of sentences the Post Excerpt should display.', 'wpzinc-social-publisher-for-postiz' ),
 					'default_value' => '1',
 					'replace'       => '?',
-					'label'         => __( 'Post Excerpt (Sentence Limited)', 'social-publisher-for-postiz' ),
+					'label'         => __( 'Post Excerpt (Sentence Limited)', 'wpzinc-social-publisher-for-postiz' ),
 				),
-				'{content}'               => __( 'Post Content (Full)', 'social-publisher-for-postiz' ),
-				'{content_more_tag}'      => __( 'Post Content (Up to More Tag)', 'social-publisher-for-postiz' ),
+				'{content}'               => __( 'Post Content (Full)', 'wpzinc-social-publisher-for-postiz' ),
+				'{content_more_tag}'      => __( 'Post Content (Up to More Tag)', 'wpzinc-social-publisher-for-postiz' ),
 				'{content:characters(?)}' => array(
-					'question'      => __( 'Enter the maximum number of characters the Post Content should display.', 'social-publisher-for-postiz' ),
+					'question'      => __( 'Enter the maximum number of characters the Post Content should display.', 'wpzinc-social-publisher-for-postiz' ),
 					'default_value' => '150',
 					'replace'       => '?',
-					'label'         => __( 'Post Content (Character Limited)', 'social-publisher-for-postiz' ),
+					'label'         => __( 'Post Content (Character Limited)', 'wpzinc-social-publisher-for-postiz' ),
 				),
 				'{content:words(?)}'      => array(
-					'question'      => __( 'Enter the maximum number of words the Post Content should display.', 'social-publisher-for-postiz' ),
+					'question'      => __( 'Enter the maximum number of words the Post Content should display.', 'wpzinc-social-publisher-for-postiz' ),
 					'default_value' => '55',
 					'replace'       => '?',
-					'label'         => __( 'Post Content (Word Limited)', 'social-publisher-for-postiz' ),
+					'label'         => __( 'Post Content (Word Limited)', 'wpzinc-social-publisher-for-postiz' ),
 				),
 				'{content:sentences(?)}'  => array(
-					'question'      => __( 'Enter the maximum number of sentences the Post Content should display.', 'social-publisher-for-postiz' ),
+					'question'      => __( 'Enter the maximum number of sentences the Post Content should display.', 'wpzinc-social-publisher-for-postiz' ),
 					'default_value' => '1',
 					'replace'       => '?',
-					'label'         => __( 'Post Content (Sentence Limited)', 'social-publisher-for-postiz' ),
+					'label'         => __( 'Post Content (Sentence Limited)', 'wpzinc-social-publisher-for-postiz' ),
 				),
-				'{date}'                  => __( 'Post Date', 'social-publisher-for-postiz' ),
-				'{url}'                   => __( 'Post URL', 'social-publisher-for-postiz' ),
-				'{url_short}'             => __( 'Post URL, Shortened', 'social-publisher-for-postiz' ),
-				'{id}'                    => __( 'Post ID', 'social-publisher-for-postiz' ),
+				'{date}'                  => __( 'Post Date', 'wpzinc-social-publisher-for-postiz' ),
+				'{url}'                   => __( 'Post URL', 'wpzinc-social-publisher-for-postiz' ),
+				'{url_short}'             => __( 'Post URL, Shortened', 'wpzinc-social-publisher-for-postiz' ),
+				'{id}'                    => __( 'Post ID', 'wpzinc-social-publisher-for-postiz' ),
 			),
 		);
 
@@ -413,7 +413,7 @@ class WP_To_Social_Pro_Common {
 			foreach ( $taxonomies as $tax => $details ) {
 				$tags['taxonomy'][ '{taxonomy_' . $tax . '}' ] = sprintf(
 					/* translators: Taxonomy Name, Singular */
-					__( 'Taxonomy: %s: Hashtag Format', 'social-publisher-for-postiz' ),
+					__( 'Taxonomy: %s: Hashtag Format', 'wpzinc-social-publisher-for-postiz' ),
 					$details->labels->singular_name
 				);
 			}
@@ -471,8 +471,8 @@ class WP_To_Social_Pro_Common {
 
 		// Build post actions.
 		$actions = array(
-			'publish' => __( 'Publish', 'social-publisher-for-postiz' ),
-			'update'  => __( 'Update', 'social-publisher-for-postiz' ),
+			'publish' => __( 'Publish', 'wpzinc-social-publisher-for-postiz' ),
+			'update'  => __( 'Update', 'wpzinc-social-publisher-for-postiz' ),
 		);
 
 		/**
@@ -500,8 +500,8 @@ class WP_To_Social_Pro_Common {
 
 		// Build post actions.
 		$actions = array(
-			'publish' => __( 'Published', 'social-publisher-for-postiz' ),
-			'update'  => __( 'Updated', 'social-publisher-for-postiz' ),
+			'publish' => __( 'Published', 'wpzinc-social-publisher-for-postiz' ),
+			'update'  => __( 'Updated', 'wpzinc-social-publisher-for-postiz' ),
 		);
 
 		/**

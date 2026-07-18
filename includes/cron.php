@@ -2,7 +2,7 @@
 /**
  * Defines functions that are called by WordPress' Cron.
  *
- * @package social_publisher_for_postiz
+ * @package WPZinc_Social_Publisher_For_Postiz
  * @author WP Zinc
  */
 
@@ -15,20 +15,20 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @since   1.0.0
  */
-function social_publisher_for_postiz_log_cleanup_cron() {
+function wpzinc_social_publisher_for_postiz_log_cleanup_cron() {
 
 	// Initialise Plugin.
-	$social_publisher_for_postiz = social_publisher_for_postiz::get_instance();
-	$social_publisher_for_postiz->initialize();
+	$wpzinc_social_publisher_for_postiz = wpzinc_social_publisher_for_postiz::get_instance();
+	$wpzinc_social_publisher_for_postiz->initialize();
 
 	// Call CRON Log Cleanup function.
-	$social_publisher_for_postiz->get_class( 'cron' )->log_cleanup();
+	$wpzinc_social_publisher_for_postiz->get_class( 'cron' )->log_cleanup();
 
 	// Shutdown.
-	unset( $social_publisher_for_postiz );
+	unset( $wpzinc_social_publisher_for_postiz );
 
 }
-add_action( 'social_publisher_for_postiz_log_cleanup_cron', 'social_publisher_for_postiz_log_cleanup_cron' );
+add_action( 'wpzinc_social_publisher_for_postiz_log_cleanup_cron', 'wpzinc_social_publisher_for_postiz_log_cleanup_cron' );
 
 /**
  * Define the WP Cron function to perform the Media Library cleanup
@@ -36,17 +36,17 @@ add_action( 'social_publisher_for_postiz_log_cleanup_cron', 'social_publisher_fo
  *
  * @since   1.0.0
  */
-function social_publisher_for_postiz_media_cleanup_cron() {
+function wpzinc_social_publisher_for_postiz_media_cleanup_cron() {
 
 	// Initialise Plugin.
-	$social_publisher_for_postiz = social_publisher_for_postiz::get_instance();
-	$social_publisher_for_postiz->initialize();
+	$wpzinc_social_publisher_for_postiz = wpzinc_social_publisher_for_postiz::get_instance();
+	$wpzinc_social_publisher_for_postiz->initialize();
 
 	// Call Media Cleanup function.
-	$social_publisher_for_postiz->get_class( 'media_library' )->cleanup();
+	$wpzinc_social_publisher_for_postiz->get_class( 'media_library' )->cleanup();
 
 	// Shutdown.
-	unset( $social_publisher_for_postiz );
+	unset( $wpzinc_social_publisher_for_postiz );
 
 }
-add_action( 'social_publisher_for_postiz_media_cleanup_cron', 'social_publisher_for_postiz_media_cleanup_cron' );
+add_action( 'wpzinc_social_publisher_for_postiz_media_cleanup_cron', 'wpzinc_social_publisher_for_postiz_media_cleanup_cron' );

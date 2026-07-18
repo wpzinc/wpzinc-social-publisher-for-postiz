@@ -15,7 +15,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php echo esc_html( $this->base->plugin->displayName ); ?>
 
 		<span>
-			<?php esc_html_e( 'Logs', 'social-publisher-for-postiz' ); ?>
+			<?php esc_html_e( 'Logs', 'wpzinc-social-publisher-for-postiz' ); ?>
 		</span>
 	</h1>
 </header>
@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	// Search Subtitle.
 	if ( $table->is_search() ) {
 		?>
-		<span class="subtitle left"><?php esc_html_e( 'Search results for', 'social-publisher-for-postiz' ); ?> &#8220;<?php echo esc_html( $table->get_search() ); ?>&#8221;</span>
+		<span class="subtitle left"><?php esc_html_e( 'Search results for', 'wpzinc-social-publisher-for-postiz' ); ?> &#8220;<?php echo esc_html( $table->get_search() ); ?>&#8221;</span>
 		<?php
 	}
 	?>
@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<form action="admin.php?page=<?php echo esc_attr( $this->base->plugin->name ); ?>-log" method="post" id="posts-filter">
 		<?php
 		// Output Search Box.
-		$table->search_box( __( 'Search', 'social-publisher-for-postiz' ), 'wp-to-social-log' );
+		$table->search_box( __( 'Search', 'wpzinc-social-publisher-for-postiz' ), 'wp-to-social-log' );
 
 		// Output Table.
 		$table->display();

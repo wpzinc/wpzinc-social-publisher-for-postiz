@@ -16,10 +16,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div class="notice-inline notice-warning pinterest hidden full">
 			<p>
 				<?php
-				esc_html_e( 'You need to create at least one Pinterest Board, and then refresh the screen to choose the board to post this status to.', 'social-publisher-for-postiz' );
+				esc_html_e( 'You need to create at least one Pinterest Board, and then refresh the screen to choose the board to post this status to.', 'wpzinc-social-publisher-for-postiz' );
 				?>
 				<a href="<?php echo esc_attr( $this->base->plugin->documentation_url ); ?>/status-settings/#buffer-pinterest" target="_blank">
-					<?php echo esc_html_e( 'Click here for instructions on creating a Pinterest board.', 'social-publisher-for-postiz' ); ?>
+					<?php echo esc_html_e( 'Click here for instructions on creating a Pinterest board.', 'wpzinc-social-publisher-for-postiz' ); ?>
 				</a>
 			</p>
 		</div>
@@ -27,9 +27,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- Status Type and Text -->
 		<div class="wpzinc-option status">
 			<div class="full">
-				<h3><?php esc_html_e( 'Status Type and Text', 'social-publisher-for-postiz' ); ?></h3>
+				<h3><?php esc_html_e( 'Status Type and Text', 'wpzinc-social-publisher-for-postiz' ); ?></h3>
 				<p class="description">
-					<?php esc_html_e( 'The type of status to create and its text.', 'social-publisher-for-postiz' ); ?>
+					<?php esc_html_e( 'The type of status to create and its text.', 'wpzinc-social-publisher-for-postiz' ); ?>
 				</p>
 
 				<select name="<?php echo esc_attr( $this->base->plugin->name ); ?>_post_type" class="post_type" size="1">
@@ -58,7 +58,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 					?>
 					<small class="characters">
 						<span class="character-count"></span>
-						<?php esc_html_e( 'characters', 'social-publisher-for-postiz' ); ?>
+						<?php esc_html_e( 'characters', 'wpzinc-social-publisher-for-postiz' ); ?>
 					</small>
 					<?php
 				}
@@ -69,9 +69,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- Schedule -->
 		<div class="wpzinc-option status">
 			<div class="full">
-				<h3><?php esc_html_e( 'Schedule', 'social-publisher-for-postiz' ); ?></h3>
+				<h3><?php esc_html_e( 'Schedule', 'wpzinc-social-publisher-for-postiz' ); ?></h3>
 				<p class="description">
-					<?php esc_html_e( 'When the status should be added to social media.', 'social-publisher-for-postiz' ); ?>
+					<?php esc_html_e( 'When the status should be added to social media.', 'wpzinc-social-publisher-for-postiz' ); ?>
 				</p>
 
 				<select name="<?php echo esc_attr( $this->base->plugin->name ); ?>_schedule" size="1" class="schedule widefat">
@@ -89,9 +89,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- Link -->
 		<div class="wpzinc-option link">
 			<div class="full">
-				<h3><?php esc_html_e( 'Link', 'social-publisher-for-postiz' ); ?></h3>
+				<h3><?php esc_html_e( 'Link', 'wpzinc-social-publisher-for-postiz' ); ?></h3>
 				<p class="description">
-					<?php esc_html_e( 'The "primary" URL to use for the link preview / card. Additional links can be included in the status text above.', 'social-publisher-for-postiz' ); ?>
+					<?php esc_html_e( 'The "primary" URL to use for the link preview / card. Additional links can be included in the status text above.', 'wpzinc-social-publisher-for-postiz' ); ?>
 				</p>
 
 				<input type="text" name="<?php echo esc_attr( $this->base->plugin->name ); ?>_url" class="widefat url" />
@@ -101,10 +101,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- Pinterest -->
 		<div class="wpzinc-option pinterest hidden">
 			<div class="full">
-				<h3><?php esc_html_e( 'Pinterest', 'social-publisher-for-postiz' ); ?></h3>
+				<h3><?php esc_html_e( 'Pinterest', 'wpzinc-social-publisher-for-postiz' ); ?></h3>
 				<p class="description">
 					<?php
-					esc_html_e( 'Define the Pinterest Board for this status to be sent to.', 'social-publisher-for-postiz' );
+					esc_html_e( 'Define the Pinterest Board for this status to be sent to.', 'wpzinc-social-publisher-for-postiz' );
 					?>
 				</p>
 
@@ -113,13 +113,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<tr>
 							<td width="20%">
 								<label for="<?php echo esc_attr( $this->base->plugin->name ); ?>_pinterest_board">
-									<?php esc_html_e( 'Board', 'social-publisher-for-postiz' ); ?>
+									<?php esc_html_e( 'Board', 'wpzinc-social-publisher-for-postiz' ); ?>
 								</label>
 							</td>
 							<td>
 								<!-- Pinterest: Sub Profile -->
 								<select name="<?php echo esc_attr( $this->base->plugin->name ); ?>_pinterest[board]" id="<?php echo esc_attr( $this->base->plugin->name ); ?>_pinterest_board" size="1" class="widefat"></select> 
-								<input type="url" name="<?php echo esc_attr( $this->base->plugin->name ); ?>_pinterest[board]" id="<?php echo esc_attr( $this->base->plugin->name ); ?>_pinterest_board" placeholder="<?php esc_attr_e( 'Pinterest Board URL', 'social-publisher-for-postiz' ); ?>" class="widefat" />
+								<input type="url" name="<?php echo esc_attr( $this->base->plugin->name ); ?>_pinterest[board]" id="<?php echo esc_attr( $this->base->plugin->name ); ?>_pinterest_board" placeholder="<?php esc_attr_e( 'Pinterest Board URL', 'wpzinc-social-publisher-for-postiz' ); ?>" class="widefat" />
 							</td>
 						</tr>
 
@@ -129,13 +129,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<tr>
 								<td>
 									<label for="pinterest_title">
-										<?php esc_html_e( 'Pin Title', 'social-publisher-for-postiz' ); ?>
+										<?php esc_html_e( 'Pin Title', 'wpzinc-social-publisher-for-postiz' ); ?>
 									</label>
 								</td>
 								<td>
-									<input type="text" name="<?php echo esc_attr( $this->base->plugin->name ); ?>_pinterest[title]" id="pinterest_title" placeholder="<?php esc_attr_e( 'Pin Title', 'social-publisher-for-postiz' ); ?>" class="widefat" />
+									<input type="text" name="<?php echo esc_attr( $this->base->plugin->name ); ?>_pinterest[title]" id="pinterest_title" placeholder="<?php esc_attr_e( 'Pin Title', 'wpzinc-social-publisher-for-postiz' ); ?>" class="widefat" />
 									<p class="description">
-										<?php esc_html_e( 'An optional title. Text Tags are supported.', 'social-publisher-for-postiz' ); ?>
+										<?php esc_html_e( 'An optional title. Text Tags are supported.', 'wpzinc-social-publisher-for-postiz' ); ?>
 									</p>
 								</td>
 							</tr>
@@ -153,10 +153,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<!-- Google Business Profile -->
 			<div class="wpzinc-option googlebusiness hidden">
 				<div class="full">
-					<h3><?php esc_html_e( 'Google Business Profile', 'social-publisher-for-postiz' ); ?></h3>
+					<h3><?php esc_html_e( 'Google Business Profile', 'wpzinc-social-publisher-for-postiz' ); ?></h3>
 					<p class="description">
 						<?php
-						echo esc_html_e( 'Optional: Define the status type (What\'s New, Offer or Event) and additional structured fields / data.', 'social-publisher-for-postiz' );
+						echo esc_html_e( 'Optional: Define the status type (What\'s New, Offer or Event) and additional structured fields / data.', 'wpzinc-social-publisher-for-postiz' );
 						?>
 					</p>
 
@@ -165,37 +165,37 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<tr>
 								<td width="20%">
 									<label for="googlebusiness_post_type">
-										<?php esc_html_e( 'Post Type', 'social-publisher-for-postiz' ); ?>
+										<?php esc_html_e( 'Post Type', 'wpzinc-social-publisher-for-postiz' ); ?>
 									</label>
 								</td>
 								<td>
 									<select name="<?php echo esc_attr( $this->base->plugin->name ); ?>_googlebusiness[post_type]" id="googlebusiness_post_type" size="1" class="widefat">
-										<option value="whats_new"><?php esc_attr_e( 'What\'s New', 'social-publisher-for-postiz' ); ?></option>
-										<option value="offer"><?php esc_attr_e( 'Offer', 'social-publisher-for-postiz' ); ?></option>
-										<option value="event"><?php esc_attr_e( 'Event', 'social-publisher-for-postiz' ); ?></option>
+										<option value="whats_new"><?php esc_attr_e( 'What\'s New', 'wpzinc-social-publisher-for-postiz' ); ?></option>
+										<option value="offer"><?php esc_attr_e( 'Offer', 'wpzinc-social-publisher-for-postiz' ); ?></option>
+										<option value="event"><?php esc_attr_e( 'Event', 'wpzinc-social-publisher-for-postiz' ); ?></option>
 									</select>
 								</td>
 							</tr>
 							<tr class="whats_new event">
 								<td>
 									<label for="googlebusiness_cta">
-										<?php esc_html_e( 'Call to Action', 'social-publisher-for-postiz' ); ?>
+										<?php esc_html_e( 'Call to Action', 'wpzinc-social-publisher-for-postiz' ); ?>
 									</label>
 								</td>
 								<td>
 									<select name="<?php echo esc_attr( $this->base->plugin->name ); ?>_googlebusiness[cta]" id="googlebusiness_cta" size="1" class="widefat">
-										<option value="book"><?php esc_attr_e( 'Book', 'social-publisher-for-postiz' ); ?></option>
-										<option value="order"><?php esc_attr_e( 'Order', 'social-publisher-for-postiz' ); ?></option>
-										<option value="shop"><?php esc_attr_e( 'Shop', 'social-publisher-for-postiz' ); ?></option>
-										<option value="learn_more"><?php esc_attr_e( 'Learn More', 'social-publisher-for-postiz' ); ?></option>
-										<option value="signup"><?php esc_attr_e( 'Sign Up', 'social-publisher-for-postiz' ); ?></option>
+										<option value="book"><?php esc_attr_e( 'Book', 'wpzinc-social-publisher-for-postiz' ); ?></option>
+										<option value="order"><?php esc_attr_e( 'Order', 'wpzinc-social-publisher-for-postiz' ); ?></option>
+										<option value="shop"><?php esc_attr_e( 'Shop', 'wpzinc-social-publisher-for-postiz' ); ?></option>
+										<option value="learn_more"><?php esc_attr_e( 'Learn More', 'wpzinc-social-publisher-for-postiz' ); ?></option>
+										<option value="signup"><?php esc_attr_e( 'Sign Up', 'wpzinc-social-publisher-for-postiz' ); ?></option>
 									</select>
 								</td>
 							</tr>
 							<tr class="offer event">
 								<td>
 									<label for="googlebusiness_start_date_option">
-										<?php esc_html_e( 'Start Date', 'social-publisher-for-postiz' ); ?>
+										<?php esc_html_e( 'Start Date', 'wpzinc-social-publisher-for-postiz' ); ?>
 									</label>
 								</td>
 								<td>
@@ -209,13 +209,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 										?>
 									</select>
 
-									<input type="text" name="<?php echo esc_attr( $this->base->plugin->name ); ?>_googlebusiness[start_date]" id="googlebusiness_start_date" placeholder="<?php esc_attr_e( 'Custom Meta Field Name', 'social-publisher-for-postiz' ); ?>" />
+									<input type="text" name="<?php echo esc_attr( $this->base->plugin->name ); ?>_googlebusiness[start_date]" id="googlebusiness_start_date" placeholder="<?php esc_attr_e( 'Custom Meta Field Name', 'wpzinc-social-publisher-for-postiz' ); ?>" />
 								</td>
 							</tr>
 							<tr class="offer event">
 								<td>
 									<label for="googlebusiness_end_date_option">
-										<?php esc_html_e( 'End Date', 'social-publisher-for-postiz' ); ?>
+										<?php esc_html_e( 'End Date', 'wpzinc-social-publisher-for-postiz' ); ?>
 									</label>
 								</td>
 								<td>
@@ -229,13 +229,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 										?>
 									</select>
 
-									<input type="text" name="<?php echo esc_attr( $this->base->plugin->name ); ?>_googlebusiness[end_date]" id="googlebusiness_end_date" placeholder="<?php esc_attr_e( 'Custom Meta Field Name', 'social-publisher-for-postiz' ); ?>" />
+									<input type="text" name="<?php echo esc_attr( $this->base->plugin->name ); ?>_googlebusiness[end_date]" id="googlebusiness_end_date" placeholder="<?php esc_attr_e( 'Custom Meta Field Name', 'wpzinc-social-publisher-for-postiz' ); ?>" />
 								</td>
 							</tr>
 							<tr class="offer event">
 								<td>
 									<label for="googlebusiness_title">
-										<?php esc_html_e( 'Event / Offer Title', 'social-publisher-for-postiz' ); ?>
+										<?php esc_html_e( 'Event / Offer Title', 'wpzinc-social-publisher-for-postiz' ); ?>
 									</label>
 								</td>
 								<td>
@@ -245,7 +245,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<tr class="offer">
 								<td>
 									<label for="googlebusiness_code">
-										<?php esc_html_e( 'Coupon Code', 'social-publisher-for-postiz' ); ?>
+										<?php esc_html_e( 'Coupon Code', 'wpzinc-social-publisher-for-postiz' ); ?>
 									</label>
 								</td>
 								<td>
@@ -255,7 +255,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							<tr class="offer">
 								<td>
 									<label for="googlebusiness_terms">
-										<?php esc_html_e( 'Terms and Conditions Text', 'social-publisher-for-postiz' ); ?>
+										<?php esc_html_e( 'Terms and Conditions Text', 'wpzinc-social-publisher-for-postiz' ); ?>
 									</label>
 								</td>
 								<td>
@@ -273,9 +273,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<!-- Images -->
 		<div class="wpzinc-option images">
 			<div class="full">
-				<h3><?php esc_html_e( 'Image', 'social-publisher-for-postiz' ); ?></h3>
+				<h3><?php esc_html_e( 'Image', 'wpzinc-social-publisher-for-postiz' ); ?></h3>
 				<p class="description">
-					<?php esc_html_e( 'The type of image to use.', 'social-publisher-for-postiz' ); ?>
+					<?php esc_html_e( 'The type of image to use.', 'wpzinc-social-publisher-for-postiz' ); ?>
 				</p>
 
 				<table class="widefat fixed striped">
@@ -283,7 +283,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 						<tr>
 							<td width="20%">
 								<label for="<?php echo esc_attr( $this->base->plugin->name ); ?>_image">
-									<?php esc_html_e( 'Image', 'social-publisher-for-postiz' ); ?>
+									<?php esc_html_e( 'Image', 'wpzinc-social-publisher-for-postiz' ); ?>
 								</label>
 							</td>
 							<td>

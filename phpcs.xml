@@ -53,11 +53,11 @@
 	<!-- Define minimum supported WordPress version for sniffs. -->
 	<config name="minimum_supported_wp_version" value="5.0"/>
 
-	<!-- Text domain should always be 'social-publisher-for-postiz'. -->
+	<!-- Text domain should always be 'wpzinc-social-publisher-for-postiz'. -->
 	<rule ref="WordPress.WP.I18n">
 		<properties>
 			<property name="text_domain" type="array">
-				<element value="social-publisher-for-postiz"/>
+				<element value="wpzinc-social-publisher-for-postiz"/>
 			</property>
 		</properties>
 	</rule>

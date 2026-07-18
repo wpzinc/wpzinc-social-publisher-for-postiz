@@ -1,17 +1,17 @@
 <?php
 /**
- * Social Publisher for Postiz WordPress Plugin.
+ * WP Zinc Social Publisher for Postiz.
  *
- * @package social_publisher_for_postiz
+ * @package WPZinc_Social_Publisher_For_Postiz
  * @author WP Zinc
  *
  * @wordpress-plugin
- * Plugin Name: Social Publisher for Postiz
+ * Plugin Name: WP Zinc Social Publisher for Postiz
  * Plugin URI: http://www.wpzinc.com
  * Version: 1.0.0
  * Author: WP Zinc
  * Description: Send WordPress Pages, Posts or Custom Post Types to your Postiz (postiz.io) account for scheduled publishing to social networks.
- * Text Domain: social-publisher-for-postiz
+ * Text Domain: wpzinc-social-publisher-for-postiz
  * License:     GPLv3 or later
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  */
@@ -21,17 +21,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 // Bail if Plugin is alread loaded.
-if ( class_exists( 'Social_Publisher_For_Postiz' ) ) {
+if ( class_exists( 'WPZinc_Social_Publisher_For_Postiz' ) ) {
 	return;
 }
 
 // Define Plugin version and build date.
-define( 'SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_VERSION', '1.0.0' );
-define( 'SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_BUILD_DATE', '2026-07-08 14:00:00' );
+define( 'WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_VERSION', '1.0.0' );
+define( 'WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_BUILD_DATE', '2026-07-08 14:00:00' );
 
 // Define Plugin paths.
-define( 'SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+define( 'WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 
 /**
  * Define the autoloader for this Plugin
@@ -40,7 +40,7 @@ define( 'SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH', plugin_dir_path( __FILE__ ) )
  *
  * @param   string $class_name     The class to load.
  */
-function social_publisher_for_postiz_autoloader( $class_name ) {
+function wpzinc_social_publisher_for_postiz_autoloader( $class_name ) {
 
 	// Define the required start of the class name.
 	$class_start_name = 'WP_To_Social_Pro';
@@ -73,9 +73,9 @@ function social_publisher_for_postiz_autoloader( $class_name ) {
 
 	// Define the paths to search for the file.
 	$include_paths = array(
-		SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'lib/includes',
-		SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'lib/includes/integrations',
-		SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'includes',
+		WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'lib/includes',
+		WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'lib/includes/integrations',
+		WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'includes',
 	);
 
 	// Iterate through the include paths to find the file.
@@ -87,33 +87,33 @@ function social_publisher_for_postiz_autoloader( $class_name ) {
 	}
 
 }
-spl_autoload_register( 'social_publisher_for_postiz_autoloader' );
+spl_autoload_register( 'wpzinc_social_publisher_for_postiz_autoloader' );
 
 // Load Activation, Cron and Deactivation functions.
-require_once SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'includes/activation.php';
-require_once SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'includes/cron.php';
-require_once SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'includes/functions.php';
-require_once SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'includes/deactivation.php';
-register_activation_hook( __FILE__, 'social_publisher_for_postiz_activate' );
+require_once WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'includes/activation.php';
+require_once WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'includes/cron.php';
+require_once WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'includes/functions.php';
+require_once WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'includes/deactivation.php';
+register_activation_hook( __FILE__, 'wpzinc_social_publisher_for_postiz_activate' );
 if ( version_compare( get_bloginfo( 'version' ), '5.1', '>=' ) ) {
-	add_action( 'wp_insert_site', 'social_publisher_for_postiz_activate_new_site' );
+	add_action( 'wp_insert_site', 'wpzinc_social_publisher_for_postiz_activate_new_site' );
 } else {
-	add_action( 'wpmu_new_blog', 'social_publisher_for_postiz_activate_new_site' );
+	add_action( 'wpmu_new_blog', 'wpzinc_social_publisher_for_postiz_activate_new_site' );
 }
-add_action( 'activate_blog', 'social_publisher_for_postiz_activate_new_site' );
-register_deactivation_hook( __FILE__, 'social_publisher_for_postiz_deactivate' );
+add_action( 'activate_blog', 'wpzinc_social_publisher_for_postiz_activate_new_site' );
+register_deactivation_hook( __FILE__, 'wpzinc_social_publisher_for_postiz_deactivate' );
 
 /**
  * Main function to return Plugin instance.
  *
  * @since   1.0.0
  */
-function social_publisher_for_postiz() {
+function wpzinc_social_publisher_for_postiz() {
 
-	return social_publisher_for_postiz::get_instance();
+	return WPZinc_Social_Publisher_For_Postiz::get_instance();
 
 }
 
 // Finally, initialize the Plugin.
-require_once SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'includes/class-social-publisher-for-postiz.php';
-$social_publisher_for_postiz = social_publisher_for_postiz();
+require_once WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'includes/class-wpzinc-social-publisher-for-postiz.php';
+$wpzinc_social_publisher_for_postiz = wpzinc_social_publisher_for_postiz();
