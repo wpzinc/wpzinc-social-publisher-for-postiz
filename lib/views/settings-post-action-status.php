@@ -3,7 +3,7 @@
  * Outputs the single status configuration form.  Its values are populated by statuses.js, based
  * on the status that has been selected for editing.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  */
 
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 ?>
 <div id="<?php echo esc_attr( $this->base->plugin->name ); ?>-status-form-container" class="hidden">
-	<div id="<?php echo esc_attr( $this->base->plugin->name ); ?>-status-form" class="wp-to-social-pro-status-form">
+	<div id="<?php echo esc_attr( $this->base->plugin->name ); ?>-status-form" class="wpzinc-social-publisher-pro-status-form">
 		<div class="notice-inline notice-warning pinterest hidden full">
 			<p>
 				<?php

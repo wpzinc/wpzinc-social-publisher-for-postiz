@@ -3,7 +3,7 @@
  * Outputs a screen with a button/link/form to authenticate the Plugin
  * with the third party API service.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  */
 
@@ -69,7 +69,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 							 *
 							 * @param   array   $schedule   Schedule Options
 							 */
-							do_action( 'social_publisher_for_postiz_output_auth' );
+							do_action( 'wpzinc_social_publisher_for_postiz_output_auth' );
 							?>
 						</div>
 					</div>

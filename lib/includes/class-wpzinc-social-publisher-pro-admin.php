@@ -2,18 +2,18 @@
 /**
  * Administration class.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author WP Zinc
  */
 
 /**
  * Plugin settings screen and JS/CSS.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  * @version 3.0.0
  */
-class WP_To_Social_Pro_Admin {
+class WPZinc_Social_Publisher_Pro_Admin {
 
 	/**
 	 * Holds the base class object.
@@ -74,7 +74,7 @@ class WP_To_Social_Pro_Admin {
 		 *
 		 * @since   4.2.0
 		 */
-		do_action( 'social_publisher_for_postiz_save_settings_auth' );
+		do_action( 'wpzinc_social_publisher_for_postiz_save_settings_auth' );
 
 		// If we've returned from the oAuth process and an error occured, add it to the notices.
 		if ( filter_has_var( INPUT_GET, $this->base->plugin->settingsName . '-oauth-error' ) ) {
@@ -413,7 +413,7 @@ class WP_To_Social_Pro_Admin {
 		 * @param   array   $autocomplete_configuration     Javascript  Autocomplete Configuration.
 		 * @param   string  $post_type                      Post Type.
 		 */
-		$autocomplete_configuration = apply_filters( 'social_publisher_for_postiz_admin_get_autocomplete_configuration', $autocomplete_configuration );
+		$autocomplete_configuration = apply_filters( 'wpzinc_social_publisher_for_postiz_admin_get_autocomplete_configuration', $autocomplete_configuration );
 
 		// Return.
 		return $autocomplete_configuration;
@@ -439,7 +439,7 @@ class WP_To_Social_Pro_Admin {
 		 * @param   string  $capability     Minimum Required Capability.
 		 * @return  string                  Minimum Required Capability
 		 */
-		$minimum_capability = apply_filters( 'social_publisher_for_postiz_admin_admin_menu_minimum_capability', $minimum_capability );
+		$minimum_capability = apply_filters( 'wpzinc_social_publisher_for_postiz_admin_admin_menu_minimum_capability', $minimum_capability );
 
 		/**
 		 * Add settings menus and sub menus for the Plugin's settings.
@@ -448,7 +448,7 @@ class WP_To_Social_Pro_Admin {
 		 *
 		 * @param   string  $minimum_capability     Minimum capability required.
 		 */
-		do_action( 'social_publisher_for_postiz_admin_admin_menu', $minimum_capability );
+		do_action( 'wpzinc_social_publisher_for_postiz_admin_admin_menu', $minimum_capability );
 
 	}
 
@@ -629,7 +629,7 @@ class WP_To_Social_Pro_Admin {
 	public function log_screen() {
 
 		// Init table.
-		$table = new WP_To_Social_Pro_Log_Table( $this->base );
+		$table = new WPZinc_Social_Publisher_Pro_Log_Table( $this->base );
 		$table->prepare_items();
 
 		// Load View.
@@ -774,7 +774,7 @@ class WP_To_Social_Pro_Admin {
 		// Missing nonce.
 		if ( ! isset( $_POST[ $this->base->plugin->name . '_nonce' ] ) ) {
 			return new WP_Error(
-				'wp_to_social_pro_admin_save_settings_error',
+				'wpzinc_social_publisher_pro_admin_save_settings_error',
 				__( 'Nonce field is missing. Settings NOT saved.', 'wpzinc-social-publisher-for-postiz' )
 			);
 		}
@@ -782,7 +782,7 @@ class WP_To_Social_Pro_Admin {
 		// Invalid nonce.
 		if ( ! wp_verify_nonce( sanitize_key( $_POST[ $this->base->plugin->name . '_nonce' ] ), 'wpzinc-social-publisher-for-postiz' ) ) {
 			return new WP_Error(
-				'wp_to_social_pro_admin_save_settings_error',
+				'wpzinc_social_publisher_pro_admin_save_settings_error',
 				__( 'Invalid nonce specified. Settings NOT saved.', 'wpzinc-social-publisher-for-postiz' )
 			);
 		}
@@ -832,7 +832,7 @@ class WP_To_Social_Pro_Admin {
 			default:
 				if ( ! isset( $_POST[ $this->base->plugin->name ]['statuses'] ) ) {
 					return new WP_Error(
-						'wp_to_social_pro_admin_save_settings_error',
+						'wpzinc_social_publisher_pro_admin_save_settings_error',
 						__( 'Statuses field is missing. Settings NOT saved.', 'wpzinc-social-publisher-for-postiz' )
 					);
 				}
@@ -843,7 +843,7 @@ class WP_To_Social_Pro_Admin {
 				// Bail if the JSON was malformed.
 				if ( ! is_array( $settings ) ) {
 					return new WP_Error(
-						'wp_to_social_pro_admin_save_settings_error',
+						'wpzinc_social_publisher_pro_admin_save_settings_error',
 						__( 'Statuses field is invalid. Settings NOT saved.', 'wpzinc-social-publisher-for-postiz' )
 					);
 				}

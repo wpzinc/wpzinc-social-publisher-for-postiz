@@ -2,18 +2,18 @@
 /**
  * Settings class
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author WP Zinc
  */
 
 /**
  * Handles reading and writing settings.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  * @version 3.0.0
  */
-class WP_To_Social_Pro_Settings {
+class WPZinc_Social_Publisher_Pro_Settings {
 
 	/**
 	 * Holds the class object.
@@ -109,7 +109,7 @@ class WP_To_Social_Pro_Settings {
 		 * @param   array   $settings   Settings.
 		 * @param   string  $type       Post Type.
 		 */
-		$settings = apply_filters( 'social_publisher_for_postiz_get_settings', $settings, $type );
+		$settings = apply_filters( 'wpzinc_social_publisher_for_postiz_get_settings', $settings, $type );
 
 		// Return result.
 		return $settings;
@@ -142,7 +142,7 @@ class WP_To_Social_Pro_Settings {
 		 * @param   string  $type                Post Type.
 		 * @param   array   $existing_settings   Existing Settings.
 		 */
-		$settings = apply_filters( 'social_publisher_for_postiz_update_settings', $settings, $type, $existing_settings );
+		$settings = apply_filters( 'wpzinc_social_publisher_for_postiz_update_settings', $settings, $type, $existing_settings );
 
 		// Save.
 		$result = $this->update_option( $type, $settings );
@@ -254,7 +254,7 @@ class WP_To_Social_Pro_Settings {
 		 * @param   array   $settings   Settings.
 		 * @param   string  $type       Post Type.
 		 */
-		$settings = apply_filters( 'social_publisher_for_postiz_default_installation_settings', $settings );
+		$settings = apply_filters( 'wpzinc_social_publisher_for_postiz_default_installation_settings', $settings );
 
 		// Return.
 		return $settings;
@@ -493,7 +493,7 @@ class WP_To_Social_Pro_Settings {
 		 *
 		 * @param   array   $status     Status.
 		 */
-		$status = apply_filters( 'social_publisher_for_postiz_settings_get_default_status', $status );
+		$status = apply_filters( 'wpzinc_social_publisher_for_postiz_settings_get_default_status', $status );
 
 		// Return.
 		return $status;
@@ -614,7 +614,7 @@ class WP_To_Social_Pro_Settings {
 		 *
 		 * @param   array   $status     Status.
 		 */
-		$status = apply_filters( 'social_publisher_for_postiz_settings_validate_status', $status );
+		$status = apply_filters( 'wpzinc_social_publisher_for_postiz_settings_validate_status', $status );
 
 		// Return.
 		return $status;
@@ -963,7 +963,7 @@ class WP_To_Social_Pro_Settings {
 		 * @param   string  $value  Option Value.
 		 * @param   string  $key    Option Key.
 		 */
-		$value = apply_filters( 'social_publisher_for_postiz_update_option', $value, $key );
+		$value = apply_filters( 'wpzinc_social_publisher_for_postiz_update_option', $value, $key );
 
 		// Update.
 		return update_option( $this->base->plugin->settingsName . '-' . $key, $value );

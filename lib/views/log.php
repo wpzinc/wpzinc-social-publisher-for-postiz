@@ -2,7 +2,7 @@
 /**
  * Outputs the Logs WP_List_Table.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  */
 

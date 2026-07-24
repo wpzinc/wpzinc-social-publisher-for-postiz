@@ -2,18 +2,18 @@
 /**
  * API class.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author WP Zinc
  */
 
 /**
  * Used by other classes which interact with APIs to perform POST and GET requests.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  * @version 1.0.0
  */
-class WP_To_Social_Pro_API {
+class WPZinc_Social_Publisher_Pro_API {
 
 	/**
 	 * Sanitizes API arguments, by removing false or empty
@@ -88,7 +88,7 @@ class WP_To_Social_Pro_API {
 		 *
 		 * @param   int     $timeout    Timeout, in seconds.
 		 */
-		$timeout = apply_filters( 'wp_to_social_pro_api_request_timeout', $timeout );
+		$timeout = apply_filters( 'wpzinc_social_publisher_pro_api_request_timeout', $timeout );
 
 		// Send request.
 		$result = $this->request_wordpress( $this->api_endpoint, $cmd, $method, $params, $timeout );

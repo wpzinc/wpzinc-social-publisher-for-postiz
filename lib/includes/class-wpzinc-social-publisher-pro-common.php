@@ -2,18 +2,18 @@
 /**
  * Common class.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author WP Zinc
  */
 
 /**
  * Common functions that don't fit into other classes.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  * @version 3.0.0
  */
-class WP_To_Social_Pro_Common {
+class WPZinc_Social_Publisher_Pro_Common {
 
 	/**
 	 * Holds the base class object.
@@ -61,7 +61,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $status_post_type_options   Status Post Type Options.
 		 */
-		$status_post_type_options = apply_filters( 'social_publisher_for_postiz_get_status_post_type_options', $status_post_type_options );
+		$status_post_type_options = apply_filters( 'wpzinc_social_publisher_for_postiz_get_status_post_type_options', $status_post_type_options );
 
 		// Return filtered results.
 		return $status_post_type_options;
@@ -93,7 +93,7 @@ class WP_To_Social_Pro_Common {
 		 * @param   string  $post_type          Post Type.
 		 * @param   bool    $is_post_screen     On Post Edit Screen.
 		 */
-		$schedule = apply_filters( 'social_publisher_for_postiz_get_schedule_options', $schedule, $post_type, $is_post_screen );
+		$schedule = apply_filters( 'wpzinc_social_publisher_for_postiz_get_schedule_options', $schedule, $post_type, $is_post_screen );
 
 		// Return filtered results.
 		return $schedule;
@@ -122,7 +122,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $schedule   Schedule Options.
 		 */
-		$schedule = apply_filters( 'social_publisher_for_postiz_get_google_business_start_date_options', $schedule, $post_type );
+		$schedule = apply_filters( 'wpzinc_social_publisher_for_postiz_get_google_business_start_date_options', $schedule, $post_type );
 
 		// Return filtered results.
 		return $schedule;
@@ -151,7 +151,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $schedule   Schedule Options.
 		 */
-		$schedule = apply_filters( 'social_publisher_for_postiz_get_google_business_end_date_options', $schedule, $post_type );
+		$schedule = apply_filters( 'wpzinc_social_publisher_for_postiz_get_google_business_end_date_options', $schedule, $post_type );
 
 		// Return filtered results.
 		return $schedule;
@@ -190,7 +190,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $types  Post Types.
 		 */
-		$types = apply_filters( 'social_publisher_for_postiz_get_post_types', $types );
+		$types = apply_filters( 'wpzinc_social_publisher_for_postiz_get_post_types', $types );
 
 		// Return filtered results.
 		return $types;
@@ -221,7 +221,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $types  Post Types.
 		 */
-		$types = apply_filters( 'social_publisher_for_postiz_get_excluded_post_types', $types );
+		$types = apply_filters( 'wpzinc_social_publisher_for_postiz_get_excluded_post_types', $types );
 
 		// Return filtered results.
 		return $types;
@@ -250,7 +250,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $taxonomies     Excluded Taxonomies.
 		 */
-		$taxonomies = apply_filters( 'social_publisher_for_postiz_get_excluded_taxonomies', $taxonomies );
+		$taxonomies = apply_filters( 'wpzinc_social_publisher_for_postiz_get_excluded_taxonomies', $taxonomies );
 
 		// Return filtered results.
 		return $taxonomies;
@@ -289,7 +289,7 @@ class WP_To_Social_Pro_Common {
 		 * @param   array   $taxonomies             Taxonomies.
 		 * @param   string  $post_type              Post Type.
 		 */
-		$taxonomies = apply_filters( 'social_publisher_for_postiz_get_taxonomies', $taxonomies, $post_type );
+		$taxonomies = apply_filters( 'wpzinc_social_publisher_for_postiz_get_taxonomies', $taxonomies, $post_type );
 
 		// Return filtered results.
 		return $taxonomies;
@@ -326,7 +326,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $taxonomies             Taxonomies.
 		 */
-		$taxonomies = apply_filters( 'social_publisher_for_postiz_get_all_taxonomies', $taxonomies );
+		$taxonomies = apply_filters( 'wpzinc_social_publisher_for_postiz_get_all_taxonomies', $taxonomies );
 
 		// Return filtered results.
 		return $taxonomies;
@@ -428,7 +428,7 @@ class WP_To_Social_Pro_Common {
 		 * @param   array   $tags       Dynamic Status Tags.
 		 * @param   string  $post_type  Post Type.
 		 */
-		$tags = apply_filters( 'social_publisher_for_postiz_get_tags', $tags, $post_type );
+		$tags = apply_filters( 'wpzinc_social_publisher_for_postiz_get_tags', $tags, $post_type );
 
 		// Return filtered results.
 		return $tags;
@@ -482,7 +482,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $actions    Post Actions.
 		 */
-		$actions = apply_filters( 'social_publisher_for_postiz_get_post_actions', $actions );
+		$actions = apply_filters( 'wpzinc_social_publisher_for_postiz_get_post_actions', $actions );
 
 		// Return filtered results.
 		return $actions;
@@ -512,7 +512,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $actions    Post Actions.
 		 */
-		$actions = apply_filters( 'social_publisher_for_postiz_get_post_actions_past_tense', $actions );
+		$actions = apply_filters( 'wpzinc_social_publisher_for_postiz_get_post_actions_past_tense', $actions );
 
 		// Return filtered results.
 		return $actions;
@@ -544,7 +544,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $tags   Tags.
 		 */
-		$tags = apply_filters( 'social_publisher_for_postiz_get_tags_excluded_from_character_limit', $tags );
+		$tags = apply_filters( 'wpzinc_social_publisher_for_postiz_get_tags_excluded_from_character_limit', $tags );
 
 		// Return filtered results.
 		return $tags;
@@ -570,7 +570,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   int     $expiration_time    Transient Expiration Time, in seconds.
 		 */
-		$expiration_time = apply_filters( 'social_publisher_for_postiz_get_transient_expiration_time', $expiration_time );
+		$expiration_time = apply_filters( 'wpzinc_social_publisher_for_postiz_get_transient_expiration_time', $expiration_time );
 
 		// Return filtered results.
 		return $expiration_time;
@@ -604,7 +604,7 @@ class WP_To_Social_Pro_Common {
 		 *
 		 * @param   array   $filters    Filters.
 		 */
-		$filters = apply_filters( 'social_publisher_for_postiz_get_log_filters', $filters );
+		$filters = apply_filters( 'wpzinc_social_publisher_for_postiz_get_log_filters', $filters );
 
 		// Return filtered results.
 		return $filters;

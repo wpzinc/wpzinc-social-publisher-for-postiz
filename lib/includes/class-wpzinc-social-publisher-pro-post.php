@@ -2,18 +2,18 @@
 /**
  * Post class
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author WP Zinc
  */
 
 /**
  * Registers status settings on Posts as a metabox.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  * @version 3.0.0
  */
-class WP_To_Social_Pro_Post {
+class WPZinc_Social_Publisher_Pro_Post {
 
 	/**
 	 * Holds the base class object.

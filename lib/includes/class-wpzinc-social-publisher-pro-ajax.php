@@ -2,7 +2,7 @@
 /**
  * AJAX class.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author WP Zinc
  */
 
@@ -10,11 +10,11 @@
  * Registers AJAX actions for saving statuses, fetching usernames,
  * searching Taxonomy Terms etc.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  * @version 3.0.0
  */
-class WP_To_Social_Pro_Ajax {
+class WPZinc_Social_Publisher_Pro_Ajax {
 
 	/**
 	 * Holds the base class object.

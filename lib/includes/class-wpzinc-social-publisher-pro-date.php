@@ -2,7 +2,7 @@
 /**
  * Date class.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author WP Zinc
  */
 
@@ -10,11 +10,11 @@
  * Helper functions for changing dates and returning time offsets
  * based on the WordPress configuration.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  * @version 4.6.9
  */
-class WP_To_Social_Pro_Date {
+class WPZinc_Social_Publisher_Pro_Date {
 
 	/**
 	 * Holds the base class object.
@@ -164,7 +164,7 @@ class WP_To_Social_Pro_Date {
 		 *
 		 * @param   string      $gmt_offset   GMT Offset (e.g. -0500, +0330).
 		 */
-		$gmt_offset = apply_filters( 'social_publisher_for_postiz_common_convert_wordpress_gmt_offset_to_offset_value', $gmt_offset );
+		$gmt_offset = apply_filters( 'wpzinc_social_publisher_for_postiz_common_convert_wordpress_gmt_offset_to_offset_value', $gmt_offset );
 
 		// Return.
 		return $gmt_offset;

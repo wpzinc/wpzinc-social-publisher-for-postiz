@@ -2,18 +2,18 @@
 /**
  * Screen class
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author WP Zinc
  */
 
 /**
  * Determines which Plugin Screen the User is on
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  * @version 3.9.6
  */
-class WP_To_Social_Pro_Screen {
+class WPZinc_Social_Publisher_Pro_Screen {
 
 	/**
 	 * Holds the base object.

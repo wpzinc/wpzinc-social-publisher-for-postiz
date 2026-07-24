@@ -1,13 +1,13 @@
 <?php
 /**
- * WP Zinc Social Publisher for Postiz class.
+ * WPZinc Social Publisher for Postiz class.
  *
  * @package WPZinc_Social_Publisher_For_Postiz
  * @author WP Zinc
  */
 
 /**
- * Main WP Zinc Social Publisher for Postiz class, used to load the Plugin.
+ * Main WPZinc Social Publisher for Postiz class, used to load the Plugin.
  *
  * @package   WPZinc_Social_Publisher_For_Postiz
  * @author    WP Zinc
@@ -62,9 +62,9 @@ class WPZinc_Social_Publisher_For_Postiz {
 		$this->plugin              = new stdClass();
 		$this->plugin->name        = 'wpzinc-social-publisher-for-postiz';
 		$this->plugin->filter_name = 'wpzinc_social_publisher_for_postiz';
-		$this->plugin->displayName = 'WP Zinc Social Publisher for Postiz';
+		$this->plugin->displayName = 'WPZinc Social Publisher for Postiz';
 
-		$this->plugin->settingsName      = 'social-publisher-for-postiz-pro'; // Settings key - used in both Free + Pro, and for oAuth.
+		$this->plugin->settingsName      = 'wpzinc-social-publisher-for-postiz-pro'; // Settings key - used in both Free + Pro, and for oAuth.
 		$this->plugin->account           = 'Postiz';
 		$this->plugin->version           = WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_VERSION;
 		$this->plugin->buildDate         = WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_BUILD_DATE;
@@ -141,22 +141,22 @@ class WPZinc_Social_Publisher_For_Postiz {
 		$this->classes = new stdClass();
 
 		// Initialize required classes.
-		$this->classes->admin         = new WP_To_Social_Pro_Admin( self::$instance );
-		$this->classes->ajax          = new WP_To_Social_Pro_AJAX( self::$instance );
-		$this->classes->api           = new WP_To_Social_Pro_Postiz_API( self::$instance );
-		$this->classes->common        = new WP_To_Social_Pro_Common( self::$instance );
-		$this->classes->cron          = new WP_To_Social_Pro_Cron( self::$instance );
-		$this->classes->date          = new WP_To_Social_Pro_Date( self::$instance );
-		$this->classes->image         = new WP_To_Social_Pro_Image( self::$instance );
-		$this->classes->install       = new WP_To_Social_Pro_Install( self::$instance );
-		$this->classes->log           = new WP_To_Social_Pro_Log( self::$instance );
-		$this->classes->media_library = new WP_To_Social_Pro_Media_Library( self::$instance );
-		$this->classes->notices       = new WP_To_Social_Pro_Notices( self::$instance );
-		$this->classes->post          = new WP_To_Social_Pro_Post( self::$instance );
-		$this->classes->publish       = new WP_To_Social_Pro_Publish( self::$instance );
-		$this->classes->screen        = new WP_To_Social_Pro_Screen( self::$instance );
-		$this->classes->settings      = new WP_To_Social_Pro_Settings( self::$instance );
-		$this->classes->validation    = new WP_To_Social_Pro_Validation( self::$instance );
+		$this->classes->admin         = new WPZinc_Social_Publisher_Pro_Admin( self::$instance );
+		$this->classes->ajax          = new WPZinc_Social_Publisher_Pro_AJAX( self::$instance );
+		$this->classes->api           = new WPZinc_Social_Publisher_Pro_Postiz_API( self::$instance );
+		$this->classes->common        = new WPZinc_Social_Publisher_Pro_Common( self::$instance );
+		$this->classes->cron          = new WPZinc_Social_Publisher_Pro_Cron( self::$instance );
+		$this->classes->date          = new WPZinc_Social_Publisher_Pro_Date( self::$instance );
+		$this->classes->image         = new WPZinc_Social_Publisher_Pro_Image( self::$instance );
+		$this->classes->install       = new WPZinc_Social_Publisher_Pro_Install( self::$instance );
+		$this->classes->log           = new WPZinc_Social_Publisher_Pro_Log( self::$instance );
+		$this->classes->media_library = new WPZinc_Social_Publisher_Pro_Media_Library( self::$instance );
+		$this->classes->notices       = new WPZinc_Social_Publisher_Pro_Notices( self::$instance );
+		$this->classes->post          = new WPZinc_Social_Publisher_Pro_Post( self::$instance );
+		$this->classes->publish       = new WPZinc_Social_Publisher_Pro_Publish( self::$instance );
+		$this->classes->screen        = new WPZinc_Social_Publisher_Pro_Screen( self::$instance );
+		$this->classes->settings      = new WPZinc_Social_Publisher_Pro_Settings( self::$instance );
+		$this->classes->validation    = new WPZinc_Social_Publisher_Pro_Validation( self::$instance );
 
 	}
 

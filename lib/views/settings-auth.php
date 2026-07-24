@@ -3,7 +3,7 @@
  * Outputs the Settings screen when the Plugin is authenticated with
  * the third party API service.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  */
 

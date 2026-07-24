@@ -6,8 +6,8 @@ rm -rf vendor
 composer install --no-dev
 
 # Build ZIP file, excluding non-Plugin files
-rm social-publisher-for-postiz.zip
-zip -r social-publisher-for-postiz.zip . \
+rm wpzinc-social-publisher-for-postiz.zip
+zip -r wpzinc-social-publisher-for-postiz.zip . \
 -x "*.git*" \
 -x ".devcontainer/*" \
 -x ".scripts/*" \

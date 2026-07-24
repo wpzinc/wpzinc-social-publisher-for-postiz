@@ -2,18 +2,18 @@
 /**
  * Postiz API class
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  */
 
 /**
  * Provides functions for sending statuses and querying Postiz's API.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  * @version 1.0.0
  */
-class WP_To_Social_Pro_Postiz_API {
+class WPZinc_Social_Publisher_Pro_Postiz_API {
 
 	/**
 	 * Holds the base class object.
@@ -108,7 +108,7 @@ class WP_To_Social_Pro_Postiz_API {
 		// Store base class.
 		$this->base = $base;
 
-		add_action( 'social_publisher_for_postiz_output_auth', array( $this, 'output_oauth' ) );
+		add_action( 'wpzinc_social_publisher_for_postiz_output_auth', array( $this, 'output_oauth' ) );
 
 	}
 
@@ -466,6 +466,8 @@ class WP_To_Social_Pro_Postiz_API {
 				// Build images array.
 				$images = array();
 				foreach ( $params['media_urls'] as $media ) {
+					// @TODO: Upload image.
+					
 					$images[] = array(
 						'id'   => '',
 						'path' => $media['image'],
@@ -607,7 +609,7 @@ class WP_To_Social_Pro_Postiz_API {
 
 		// Check required parameters exist.
 		if ( empty( $this->access_token ) ) {
-			return new WP_Error( 'social_publisher_for_postiz_no_access_token', __( 'No access token was specified', 'wpzinc-social-publisher-for-postiz' ) );
+			return new WP_Error( 'wpzinc_social_publisher_for_postiz_no_access_token', __( 'No access token was specified', 'wpzinc-social-publisher-for-postiz' ) );
 		}
 
 		// Build endpoint URL.
@@ -701,7 +703,7 @@ class WP_To_Social_Pro_Postiz_API {
 		 *
 		 * @param   int     $timeout    Timeout, in seconds
 		 */
-		$timeout = apply_filters( 'social_publisher_for_postiz_api_get_timeout', $timeout );
+		$timeout = apply_filters( 'wpzinc_social_publisher_for_postiz_api_get_timeout', $timeout );
 
 		return $timeout;
 
@@ -725,7 +727,7 @@ class WP_To_Social_Pro_Postiz_API {
 		 *
 		 * @param   bool    $enable_ssl_verification    Enable SSL verification.
 		 */
-		$enable_ssl_verification = apply_filters( 'social_publisher_for_postiz_api_enable_ssl_verification', $enable_ssl_verification );
+		$enable_ssl_verification = apply_filters( 'wpzinc_social_publisher_for_postiz_api_enable_ssl_verification', $enable_ssl_verification );
 
 		return $enable_ssl_verification;
 

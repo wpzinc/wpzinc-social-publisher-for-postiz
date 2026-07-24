@@ -2,18 +2,18 @@
 /**
  * Log class.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author WP Zinc
  */
 
 /**
  * Handles logging and log output.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  * @version 3.0.0
  */
-class WP_To_Social_Pro_Log {
+class WPZinc_Social_Publisher_Pro_Log {
 
 	/**
 	 * Holds the base class object.
@@ -169,7 +169,7 @@ class WP_To_Social_Pro_Log {
 		);
 
 		// Initialize Logs WP_List_Table, as this will trigger WP_List_Table to add column options.
-		$log_table = new WP_To_Social_Pro_Log_Table( $this->base );
+		$log_table = new WPZinc_Social_Publisher_Pro_Log_Table( $this->base );
 
 	}
 
@@ -501,7 +501,7 @@ class WP_To_Social_Pro_Log {
 		 * @param   array   $log        Post Log.
 		 * @param   int     $post_id    Post ID.
 		 */
-		$log = apply_filters( 'social_publisher_for_postiz_get_log', $log, $post_id );
+		$log = apply_filters( 'wpzinc_social_publisher_for_postiz_get_log', $log, $post_id );
 
 		// Return.
 		return $log;
@@ -568,7 +568,7 @@ class WP_To_Social_Pro_Log {
 		 *
 		 * @param   array   $result_options   Result Options.
 		 */
-		$result_options = apply_filters( 'social_publisher_for_postiz_log_get_result_options', $result_options );
+		$result_options = apply_filters( 'wpzinc_social_publisher_for_postiz_log_get_result_options', $result_options );
 
 		// Return filtered results.
 		return $result_options;
@@ -600,7 +600,7 @@ class WP_To_Social_Pro_Log {
 		 *
 		 * @param   array   $log_levels   Log Levels.
 		 */
-		$log_levels = apply_filters( 'social_publisher_for_postiz_log_get_log_levels', $log_levels );
+		$log_levels = apply_filters( 'wpzinc_social_publisher_for_postiz_log_get_log_levels', $log_levels );
 
 		// Return filtered results.
 		return $log_levels;

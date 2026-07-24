@@ -2,7 +2,7 @@
 /**
  * Outputs the Logs table when viewing/editing an individual Post.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  */
 

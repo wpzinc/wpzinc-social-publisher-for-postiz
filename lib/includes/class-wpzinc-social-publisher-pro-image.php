@@ -2,7 +2,7 @@
 /**
  * Image class.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author WP Zinc
  */
 
@@ -12,11 +12,11 @@
  * in WordPress and (where possible) resizes and crops
  * images.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  * @version 4.6.6
  */
-class WP_To_Social_Pro_Image {
+class WPZinc_Social_Publisher_Pro_Image {
 
 	/**
 	 * Holds the base class object.
@@ -78,7 +78,7 @@ class WP_To_Social_Pro_Image {
 		 * @param   string  $network    Social Network.
 		 * @param   string  $post_type  Post Type.
 		 */
-		$options = apply_filters( 'social_publisher_for_postiz_get_status_image_options', $options, $network, $post_type );
+		$options = apply_filters( 'wpzinc_social_publisher_for_postiz_get_status_image_options', $options, $network, $post_type );
 
 		// Return filtered results.
 		return $options;
@@ -146,7 +146,7 @@ class WP_To_Social_Pro_Image {
 				}
 
 				// Save to temporary file on disk.
-				$converted_image = $image->save( get_temp_dir() . 'wp-to-social-pro-' . $image_id . '-converted-' . bin2hex( random_bytes( 5 ) ) );
+				$converted_image = $image->save( get_temp_dir() . 'wpzinc-social-publisher-pro-' . $image_id . '-converted-' . bin2hex( random_bytes( 5 ) ) );
 
 				// Bail if an error occured.
 				if ( is_wp_error( $converted_image ) ) {
@@ -181,7 +181,7 @@ class WP_To_Social_Pro_Image {
 				 * @param   string  $service            Social Media Service the image is for. If not defined, just return the large version.
 				 * @param   string  $image_mime_type    Image MIME Type.
 				 */
-				$image_id = apply_filters( 'wp_to_social_pro_image_get_images_sources_convert', $image_id, $source, $service, $image_mime_type );
+				$image_id = apply_filters( 'wpzinc_social_publisher_pro_image_get_images_sources_convert', $image_id, $source, $service, $image_mime_type );
 				break;
 		}
 

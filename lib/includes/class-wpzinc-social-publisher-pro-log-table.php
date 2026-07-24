@@ -2,18 +2,18 @@
 /**
  * Log Table class.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author WP Zinc
  */
 
 /**
  * Controls the Log WP_List_Table.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  * @version 3.9.6
  */
-class WP_To_Social_Pro_Log_Table extends WP_List_Table {
+class WPZinc_Social_Publisher_Pro_Log_Table extends WP_List_Table {
 
 	/**
 	 * Holds the base class object.

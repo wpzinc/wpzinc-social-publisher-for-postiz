@@ -2,7 +2,7 @@
 /**
  * Validation class
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author WP Zinc
  */
 
@@ -10,11 +10,11 @@
  * Provides several validation functions which the Plugin can run
  * to ensure features work as expected.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  * @version 3.8.1
  */
-class WP_To_Social_Pro_Validation {
+class WPZinc_Social_Publisher_Pro_Validation {
 
 	/**
 	 * Holds the base class object.
@@ -128,7 +128,7 @@ class WP_To_Social_Pro_Validation {
 		 *
 		 * @param   array   $status_keys_to_compare     Status Key Values to Compare.
 		 */
-		$status_keys_to_compare = apply_filters( 'social_publisher_for_postiz_validate_check_for_duplicates_status_keys', $status_keys_to_compare );
+		$status_keys_to_compare = apply_filters( 'wpzinc_social_publisher_for_postiz_validate_check_for_duplicates_status_keys', $status_keys_to_compare );
 
 		// Iterate through each profile.
 		foreach ( $settings as $profile_id => $actions ) {

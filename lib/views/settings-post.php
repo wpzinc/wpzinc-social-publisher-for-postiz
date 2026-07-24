@@ -4,7 +4,7 @@
  *
  * @since    3.0.0
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  */
 
@@ -32,7 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 				$profile_enabled = $this->get_setting( $post_type, '[' . $profile['id'] . '][enabled]', 0 );
 				?>
 				<li class="wpzinc-nav-tab <?php echo esc_attr( $profile['service'] ); ?>">
-					<a href="#profile-<?php echo esc_attr( $profile['id'] ); ?>"<?php echo ( $profile_enabled ? ' class="enabled"' : '' ); ?> title="<?php echo esc_attr( $profile['formatted_service'] . ': ' . $profile['formatted_username'] ); ?>"<?php echo ( empty( $profile['formatted_username'] ) ? ' data-wp-to-social-pro-twitter-id="' . esc_attr( $profile['social_network_id'] ) . '"' : '' ); ?>>
+					<a href="#profile-<?php echo esc_attr( $profile['id'] ); ?>"<?php echo ( $profile_enabled ? ' class="enabled"' : '' ); ?> title="<?php echo esc_attr( $profile['formatted_service'] . ': ' . $profile['formatted_username'] ); ?>"<?php echo ( empty( $profile['formatted_username'] ) ? ' data-wpzinc-social-publisher-pro-twitter-id="' . esc_attr( $profile['social_network_id'] ) . '"' : '' ); ?>>
 						<span class="formatted-username"><?php echo esc_html( $profile['formatted_username'] ); ?></span>
 						<span class="dashicons dashicons-yes"></span>
 					</a>

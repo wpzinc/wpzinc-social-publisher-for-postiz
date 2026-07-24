@@ -2,7 +2,7 @@
 /**
  * Outputs a tag dropdown for the status configuration form.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  */
 

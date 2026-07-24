@@ -2,7 +2,7 @@
 /**
  * Outputs the settings screen.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  */
 
@@ -102,7 +102,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<div id="poststuff">
 			<div id="post-body" class="metabox-holder columns-2">
 				<!-- Content -->
-				<form name="post" method="post" action="" id="<?php echo esc_attr( $this->base->plugin->name ); ?>" class="wp-to-social-pro">
+				<form name="post" method="post" action="" id="<?php echo esc_attr( $this->base->plugin->name ); ?>" class="wpzinc-social-publisher-pro">
 					<div id="post-body-content">
 						<div id="normal-sortables" class="meta-box-sortables ui-sortable publishing-defaults">  
 							<?php

@@ -1,12 +1,12 @@
 <?php
 /**
- * WP Zinc Social Publisher for Postiz.
+ * WPZinc Social Publisher for Postiz.
  *
  * @package WPZinc_Social_Publisher_For_Postiz
  * @author WP Zinc
  *
  * @wordpress-plugin
- * Plugin Name: WP Zinc Social Publisher for Postiz
+ * Plugin Name: WPZinc Social Publisher for Postiz
  * Plugin URI: http://www.wpzinc.com
  * Version: 1.0.0
  * Author: WP Zinc
@@ -43,7 +43,7 @@ define( 'WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH', plugin_dir_path( __FIL
 function wpzinc_social_publisher_for_postiz_autoloader( $class_name ) {
 
 	// Define the required start of the class name.
-	$class_start_name = 'WP_To_Social_Pro';
+	$class_start_name = 'WPZinc_Social_Publisher_Pro';
 
 	// Get the number of parts the class start name has.
 	$class_parts_count = count( explode( '_', $class_start_name ) );
@@ -51,7 +51,7 @@ function wpzinc_social_publisher_for_postiz_autoloader( $class_name ) {
 	// Break the class name into an array.
 	$class_path = explode( '_', $class_name );
 
-	// Bail if it's not a minimum length (i.e. doesn't potentially have WP_To_Social_Pro).
+	// Bail if it's not a minimum length (i.e. doesn't potentially have WPZinc_Social_Publisher_Pro).
 	if ( count( $class_path ) < $class_parts_count ) {
 		return;
 	}
@@ -74,7 +74,6 @@ function wpzinc_social_publisher_for_postiz_autoloader( $class_name ) {
 	// Define the paths to search for the file.
 	$include_paths = array(
 		WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'lib/includes',
-		WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'lib/includes/integrations',
 		WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH . 'includes',
 	);
 

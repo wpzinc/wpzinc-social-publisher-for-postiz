@@ -2,18 +2,18 @@
 /**
  * Install class.
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author WP Zinc
  */
 
 /**
  * Runs any steps required on plugin activation and upgrade.
  *
- * @package  WP_To_Social_Pro
+ * @package  WPZinc_Social_Publisher_Pro
  * @author   WP Zinc
  * @version  3.2.5
  */
-class WP_To_Social_Pro_Install {
+class WPZinc_Social_Publisher_Pro_Install {
 
 	/**
 	 * Holds the base class object.

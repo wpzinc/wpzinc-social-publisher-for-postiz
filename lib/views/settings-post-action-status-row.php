@@ -2,7 +2,7 @@
 /**
  * Outputs a status setting within a table of statuses for an action (publish,update,repost,bulk publish).
  *
- * @package WP_To_Social_Pro
+ * @package WPZinc_Social_Publisher_Pro
  * @author  WP Zinc
  */
 

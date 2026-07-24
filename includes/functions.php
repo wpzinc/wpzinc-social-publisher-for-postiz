@@ -1,6 +1,6 @@
 <?php
 /**
- * WP Zinc Social Publisher for Postiz general plugin functions.
+ * WPZinc Social Publisher for Postiz general plugin functions.
  *
  * @package WPZinc_Social_Publisher_For_Postiz
  * @author WP Zinc

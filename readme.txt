@@ -1,4 +1,4 @@
-=== Social Publisher for Postiz ===
+=== WPZinc Social Publisher for Postiz ===
 Contributors: n7studios,wpzinc
 Donate link: https://www.wpzinc.com/documentation/wordpress-buffer-pro/
 Tags: social media automation, auto post, postiz, social media scheduler, auto publish
@@ -76,10 +76,10 @@ This plugin connects to the following APIs and services:
 
 1. Log in to your WordPress admin dashboard
 2. Navigate to Plugins > Add New
-3. Search for "Social Publisher for Postiz"
-4. Click "Install Now" on the Social Publisher for Postiz plugin
+3. Search for "WPZinc Social Publisher for Postiz"
+4. Click "Install Now" on the WPZinc Social Publisher for Postiz plugin
 5. Click "Activate" once installation completes
-6. Go to Social Publisher for Postiz in your admin menu
+6. Go to WPZinc Social Publisher for Postiz in your admin menu
 7. Click "Authorize" to connect your Postiz account
 8. Configure your social media posting settings
 
@@ -90,7 +90,7 @@ This plugin connects to the following APIs and services:
 3. Navigate to Plugins > Add New > Upload Plugin
 4. Choose the downloaded ZIP file and click "Install Now"
 5. Click "Activate Plugin"
-6. Go to Social Publisher for Postiz in your admin menu
+6. Go to WPZinc Social Publisher for Postiz in your admin menu
 7. Click "Authorize" to connect your Postiz account
 8. Configure your social media posting settings
 
