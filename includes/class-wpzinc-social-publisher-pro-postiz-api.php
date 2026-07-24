@@ -145,10 +145,14 @@ class WPZinc_Social_Publisher_Pro_Postiz_API {
 			array(
 				'client_id'     => $this->client_id,
 				'response_type' => 'code',
-				'state'         => add_query_arg(
-					'_wpnonce',
-					wp_create_nonce( 'wpzinc_social_publisher_pro_nonce' ),
-					admin_url( 'admin.php?page=' . $this->base->plugin->name . '-settings' )
+				'state'         => rawurlencode(
+					add_query_arg(
+						array(
+							'wpzinc_social_publisher_pro_nonce' => wp_create_nonce( 'wpzinc_social_publisher_pro_nonce' ),
+							'page' => $this->base->plugin->name . '-settings',
+						),
+						admin_url( 'admin.php' )
+					)
 				),
 			),
 			$this->oauth_authorize_url . 'authorize'

@@ -69,15 +69,11 @@ class WPZinc_Social_Publisher_Pro_Admin {
 		// Setup notices class.
 		$this->base->get_class( 'notices' )->set_key_prefix( $this->base->plugin->filter_name . '_' . wp_get_current_user()->ID );
 
-		/**
-		 * Perform any pre-oAuth actions now, such as starting the oAuth process
-		 *
-		 * @since   4.2.0
-		 */
-		do_action( 'wpzinc_social_publisher_for_postiz_save_settings_auth' );
-
 		// Bail if nonce is not valid, to prevent OAuth callback CSRF.
-		if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'wpzinc_social_publisher_pro_nonce' ) ) {
+		if ( ! isset( $_REQUEST['wpzinc_social_publisher_pro_nonce'] ) ) {
+			return;
+		}
+		if ( ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['wpzinc_social_publisher_pro_nonce'] ) ), 'wpzinc_social_publisher_pro_nonce' ) ) {
 			return;
 		}
 
@@ -87,18 +83,18 @@ class WPZinc_Social_Publisher_Pro_Admin {
 		}
 
 		// If we've returned from the oAuth process and an error occured, add it to the notices.
-		$oauth_error = isset( $_REQUEST['oauth_error'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['oauth_error'] ) ) : '';
+		$oauth_error = isset( $_REQUEST['wpzinc-social-publisher-for-postiz-pro-oauth-error'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['wpzinc-social-publisher-for-postiz-pro-oauth-error'] ) ) : '';
 		if ( $oauth_error ) {
 			$this->base->get_class( 'notices' )->add_error_notice( $oauth_error );
 			return;
 		}
 
 		// If an Access Token is included in the request, store it and show a success message.
-		$access_token = isset( $_REQUEST['access_token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['access_token'] ) ) : '';
+		$access_token = isset( $_REQUEST['wpzinc-social-publisher-for-postiz-pro-oauth-access-token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['wpzinc-social-publisher-for-postiz-pro-oauth-access-token'] ) ) : '';
 		if ( $access_token ) {
 			// Define tokens and expiry.
-			$refresh_token = isset( $_REQUEST['refresh_token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['refresh_token'] ) ) : '';
-			$expiry        = isset( $_REQUEST['expiry'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['expiry'] ) ) : '';
+			$refresh_token = isset( $_REQUEST['wpzinc-social-publisher-for-postiz-pro-oauth-refresh-token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['wpzinc-social-publisher-for-postiz-pro-oauth-refresh-token'] ) ) : '';
+			$expiry        = isset( $_REQUEST['wpzinc-social-publisher-for-postiz-pro-oauth-expiry'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['wpzinc-social-publisher-for-postiz-pro-oauth-expiry'] ) ) : '';
 			if ( $expiry > 0 ) {
 				$expiry = strtotime( '+' . $expiry . ' seconds' );
 			}
