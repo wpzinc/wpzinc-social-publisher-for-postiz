@@ -76,21 +76,29 @@ class WPZinc_Social_Publisher_Pro_Admin {
 		 */
 		do_action( 'wpzinc_social_publisher_for_postiz_save_settings_auth' );
 
-		// If we've returned from the oAuth process and an error occured, add it to the notices.
-		if ( filter_has_var( INPUT_GET, $this->base->plugin->settingsName . '-oauth-error' ) ) {
-			$this->base->get_class( 'notices' )->add_error_notice(
-				filter_input( INPUT_GET, $this->base->plugin->settingsName . '-oauth-error', FILTER_SANITIZE_FULL_SPECIAL_CHARS )
-			);
+		// Bail if nonce is not valid, to prevent OAuth callback CSRF.
+		if ( ! isset( $_REQUEST['_wpnonce'] ) || ! wp_verify_nonce( sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ), 'wpzinc_social_publisher_pro_nonce' ) ) {
+			return;
+		}
 
+		// Bail if the current user cannot manage the plugin's settings.
+		if ( ! current_user_can( 'manage_options' ) ) {
+			return;
+		}
+
+		// If we've returned from the oAuth process and an error occured, add it to the notices.
+		$oauth_error = isset( $_REQUEST['oauth_error'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['oauth_error'] ) ) : '';
+		if ( $oauth_error ) {
+			$this->base->get_class( 'notices' )->add_error_notice( $oauth_error );
 			return;
 		}
 
 		// If an Access Token is included in the request, store it and show a success message.
-		if ( filter_has_var( INPUT_GET, $this->base->plugin->settingsName . '-oauth-access-token' ) ) {
+		$access_token = isset( $_REQUEST['access_token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['access_token'] ) ) : '';
+		if ( $access_token ) {
 			// Define tokens and expiry.
-			$access_token  = filter_input( INPUT_GET, $this->base->plugin->settingsName . '-oauth-access-token', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-			$refresh_token = filter_input( INPUT_GET, $this->base->plugin->settingsName . '-oauth-refresh-token', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
-			$expiry        = filter_input( INPUT_GET, $this->base->plugin->settingsName . '-oauth-expires', FILTER_SANITIZE_FULL_SPECIAL_CHARS );
+			$refresh_token = isset( $_REQUEST['refresh_token'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['refresh_token'] ) ) : '';
+			$expiry        = isset( $_REQUEST['expiry'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['expiry'] ) ) : '';
 			if ( $expiry > 0 ) {
 				$expiry = strtotime( '+' . $expiry . ' seconds' );
 			}

@@ -145,7 +145,11 @@ class WPZinc_Social_Publisher_Pro_Postiz_API {
 			array(
 				'client_id'     => $this->client_id,
 				'response_type' => 'code',
-				'state'         => admin_url( 'admin.php?page=' . $this->base->plugin->name . '-settings' ),
+				'state'         => add_query_arg(
+					'_wpnonce',
+					wp_create_nonce( 'wpzinc_social_publisher_pro_nonce' ),
+					admin_url( 'admin.php?page=' . $this->base->plugin->name . '-settings' )
+				),
 			),
 			$this->oauth_authorize_url . 'authorize'
 		);
@@ -466,11 +470,23 @@ class WPZinc_Social_Publisher_Pro_Postiz_API {
 				// Build images array.
 				$images = array();
 				foreach ( $params['media_urls'] as $media ) {
-					// @TODO: Upload image.
-					
+					// Upload image.
+					$upload = $this->post(
+						'upload-from-url',
+						array(
+							'url' => $media,
+						)
+					);
+
+					// Bail if the upload failed.
+					if ( is_wp_error( $upload ) ) {
+						return $upload;
+					}
+
+					// Add ID and path to the array.
 					$images[] = array(
-						'id'   => '',
-						'path' => $media['image'],
+						'id'   => $upload['id'],
+						'path' => $upload['path'],
 					);
 				}
 
