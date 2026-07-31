@@ -610,6 +610,21 @@ class WPZinc_Social_Publisher_Pro_Admin {
 		// Load View.
 		include_once $this->base->plugin->folder . 'lib/views/settings.php';
 
+		// Add footer action to output overlay modal markup.
+		add_action( 'admin_footer', array( $this, 'output_modal' ) );
+
+	}
+
+	/**
+	 * Outputs the hidden Javascript Modal and Overlay in the Footer
+	 *
+	 * @since   1.0.0
+	 */
+	public function output_modal() {
+
+		// Load view.
+		require_once $this->base->plugin->folder . '_modules/dashboard/views/modal.php';
+
 	}
 
 	/**
