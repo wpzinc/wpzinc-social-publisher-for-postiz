@@ -426,9 +426,11 @@ class WPZinc_Social_Publisher_Pro_Postiz_API {
 	 */
 	public function updates_create( $params, $service = '' ) {
 
+		$is_draft = array_key_exists( 'is_draft', $params ) && $params['is_draft'] ? true : false;
+
 		// Build arguments.
 		$args = array(
-			'type'      => array_key_exists( 'is_draft', $params ) && $params['is_draft'] ? 'draft' : $params['schedule_type'],
+			'type'      => $is_draft ? 'draft' : 'now',
 			'date'      => gmdate( 'Y-m-d\TH:i:s\Z', strtotime( '+1 day' ) ), // Setting to now as a draft results in no errors but no post is created in the Postiz UI.
 			'shortLink' => false,
 			'tags'      => array(),
@@ -453,11 +455,17 @@ class WPZinc_Social_Publisher_Pro_Postiz_API {
 		);
 
 		// Scheduling.
-		switch ( $params['schedule_type'] ) {
-			case 'schedule':
-				$args['type'] = 'schedule';
-				$args['date'] = gmdate( 'Y-m-d\TH:i:s\Z', strtotime( $params['scheduled_at'] ) );
-				break;
+		if ( ! $is_draft ) {
+			switch ( $params['schedule_type'] ) {
+				case 'immediate':
+					$args['type'] = 'now';
+					$args['date'] = gmdate( 'Y-m-d\TH:i:s\Z', strtotime( 'now' ) );
+					break;
+				case 'schedule':
+					$args['type'] = 'schedule';
+					$args['date'] = gmdate( 'Y-m-d\TH:i:s\Z', strtotime( $params['scheduled_at'] ) );
+					break;
+			}
 		}
 
 		// Images.
@@ -478,7 +486,7 @@ class WPZinc_Social_Publisher_Pro_Postiz_API {
 					$upload = $this->post(
 						'upload-from-url',
 						array(
-							'url' => $media,
+							'url' => $media['image'],
 						)
 					);
 
