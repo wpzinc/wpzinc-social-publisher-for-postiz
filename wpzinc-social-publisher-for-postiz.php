@@ -6,7 +6,7 @@
  * @author WP Zinc
  *
  * @wordpress-plugin
- * Plugin Name: WPZinc Social Publisher for Postiz
+ * Plugin Name: WP to Postiz
  * Plugin URI: http://www.wpzinc.com
  * Version: 1.0.0
  * Author: WP Zinc

@@ -62,7 +62,7 @@ class WPZinc_Social_Publisher_For_Postiz {
 		$this->plugin              = new stdClass();
 		$this->plugin->name        = 'wpzinc-social-publisher-for-postiz';
 		$this->plugin->filter_name = 'wpzinc_social_publisher_for_postiz';
-		$this->plugin->displayName = 'WPZinc Social Publisher for Postiz';
+		$this->plugin->displayName = 'Postiz';
 
 		$this->plugin->settingsName      = 'wpzinc-social-publisher-for-postiz-pro'; // Settings key - used in both Free + Pro, and for oAuth.
 		$this->plugin->account           = 'Postiz';
@@ -78,6 +78,14 @@ class WPZinc_Social_Publisher_For_Postiz {
 		$this->plugin->header_background_color     = '#ffffff';
 		$this->plugin->header_primary_text_color   = '#3d3d3d';
 		$this->plugin->header_secondary_text_color = '#6e6e6e';
+
+		// Review.
+		$this->plugin->review_name   = 'wpzinc-social-publisher-for-postiz';
+		$this->plugin->review_notice = sprintf(
+			'Thanks for using %s to schedule your social media statuses on %s!',
+			$this->plugin->displayName,
+			$this->plugin->account
+		);
 
 		// ConvertKit Form UID.
 		$this->plugin->convertkit_form_uid = 'adb5765302';

@@ -1,6 +1,6 @@
-=== WPZinc Social Publisher for Postiz ===
+=== Social Media Auto Poster – Schedule & Publish to Postiz ===
 Contributors: n7studios,wpzinc
-Donate link: https://www.wpzinc.com/documentation/wordpress-buffer-pro/
+Donate link: https://www.wpzinc.com/
 Tags: social media automation, auto post, postiz, social media scheduler, auto publish
 Requires at least: 6.2
 Tested up to: 7.0
@@ -67,7 +67,7 @@ We provide community support through the <a href="https://wordpress.org/support/
 This plugin connects to the following APIs and services:
 
 - [WP Zinc API](https://www.wpzinc.com/documentation/wordpress-buffer-pro/data/): To facilitate the OAuth connection process
-- [Postiz API](https://docs.postiz.com/public-api/introduction): To fetch your connected social media profile names and IDs, and publish WordPress content to those accounts via Postiz' API, based on the Plugin's settings
+- [Postiz API](https://postiz.com/privacy-policy): To fetch your connected social media profile names and IDs, and publish WordPress content to those accounts via Postiz' API, based on the Plugin's settings
 - [Kit (formerly ConvertKit)](https://kit.com/privacy): To display the newsletter subscription form in the settings screen
 
 == Installation ==
@@ -76,10 +76,10 @@ This plugin connects to the following APIs and services:
 
 1. Log in to your WordPress admin dashboard
 2. Navigate to Plugins > Add New
-3. Search for "WPZinc Social Publisher for Postiz"
-4. Click "Install Now" on the WPZinc Social Publisher for Postiz plugin
+3. Search for "Postiz"
+4. Click "Install Now" on the Postiz plugin
 5. Click "Activate" once installation completes
-6. Go to WPZinc Social Publisher for Postiz in your admin menu
+6. Go to Postiz in your admin menu
 7. Click "Authorize" to connect your Postiz account
 8. Configure your social media posting settings
 
@@ -90,7 +90,7 @@ This plugin connects to the following APIs and services:
 3. Navigate to Plugins > Add New > Upload Plugin
 4. Choose the downloaded ZIP file and click "Install Now"
 5. Click "Activate Plugin"
-6. Go to WPZinc Social Publisher for Postiz in your admin menu
+6. Go to Postiz in your admin menu
 7. Click "Authorize" to connect your Postiz account
 8. Configure your social media posting settings
 
@@ -222,9 +222,8 @@ Free version support is available through the [WordPress support forums](https:/
 == Screenshots ==
 
 1. Settings Screen when Plugin is first installed.
-2. Settings Screen when Postiz is authorized.
-3. Settings Screen showing available options for Posts.
-4. Post-level Logging.
+2. Settings Screen showing available options for Posts.
+3. Post-level Logging.
 
 == Changelog ==
 
