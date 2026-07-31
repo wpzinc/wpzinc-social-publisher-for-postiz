@@ -30,7 +30,7 @@ jobs:
     env:
       ROOT_DIR: /var/www/html
       PLUGIN_DIR: /var/www/html/wp-content/plugins/social-publisher-for-postiz
-      WORKING_DIR: /home/runner/work/social-publisher-for-postiz/social-publisher-for-postiz/social-publisher-for-postiz
+      WORKING_DIR: ${{ github.workspace }}/social-publisher-for-postiz
       DB_NAME: test
       DB_USER: root
       DB_PASS: root
