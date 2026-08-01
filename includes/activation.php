@@ -17,16 +17,16 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @param   bool $network_wide   Is network wide activation.
  */
-function wpzinc_social_publisher_for_postiz_activate( $network_wide ) {
+function wp_to_postiz_activate( $network_wide ) {
 
 	// Initialise Plugin.
-	$wpzinc_social_publisher_for_postiz = wpzinc_social_publisher_for_postiz::get_instance();
-	$wpzinc_social_publisher_for_postiz->initialize();
+	$wp_to_postiz = wp_to_postiz::get_instance();
+	$wp_to_postiz->initialize();
 
 	// Check if we are on a multisite install, activating network wide, or a single install.
 	if ( ! is_multisite() || ! $network_wide ) {
 		// Single Site activation.
-		$wpzinc_social_publisher_for_postiz->get_class( 'install' )->install();
+		$wp_to_postiz->get_class( 'install' )->install();
 	} else {
 		// Multisite network wide activation.
 		$sites = get_sites(
@@ -36,7 +36,7 @@ function wpzinc_social_publisher_for_postiz_activate( $network_wide ) {
 		);
 		foreach ( $sites as $site ) {
 			switch_to_blog( $site->blog_id );
-			$wpzinc_social_publisher_for_postiz->get_class( 'install' )->install();
+			$wp_to_postiz->get_class( 'install' )->install();
 			restore_current_blog();
 		}
 	}
@@ -51,7 +51,7 @@ function wpzinc_social_publisher_for_postiz_activate( $network_wide ) {
  *
  * @param   mixed $site_or_blog_id    WP_Site or Blog ID.
  */
-function wpzinc_social_publisher_for_postiz_activate_new_site( $site_or_blog_id ) {
+function wp_to_postiz_activate_new_site( $site_or_blog_id ) {
 
 	// Check if $site_or_blog_id is a WP_Site or a blog ID.
 	if ( is_a( $site_or_blog_id, 'WP_Site' ) ) {
@@ -59,12 +59,12 @@ function wpzinc_social_publisher_for_postiz_activate_new_site( $site_or_blog_id 
 	}
 
 	// Initialise Plugin.
-	$wpzinc_social_publisher_for_postiz = wpzinc_social_publisher_for_postiz::get_instance();
-	$wpzinc_social_publisher_for_postiz->initialize();
+	$wp_to_postiz = wp_to_postiz::get_instance();
+	$wp_to_postiz->initialize();
 
 	// Run installation routine.
 	switch_to_blog( $site_or_blog_id );
-	$wpzinc_social_publisher_for_postiz->get_class( 'install' )->install();
+	$wp_to_postiz->get_class( 'install' )->install();
 	restore_current_blog();
 
 }
