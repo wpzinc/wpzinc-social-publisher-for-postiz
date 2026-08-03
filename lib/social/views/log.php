@@ -35,7 +35,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<form action="admin.php?page=<?php echo esc_attr( $this->base->plugin->name ); ?>-log" method="post" id="posts-filter">
 		<?php
 		// Output Search Box.
-		$table->search_box( __( 'Search', 'wpzinc-social-publisher-for-postiz' ), 'wp-to-social-log' );
+		$table->search_box( __( 'Search', 'wpzinc-social-publisher-for-postiz' ), 'wpzinc-social-log' );
 
 		// Output Table.
 		$table->display();
