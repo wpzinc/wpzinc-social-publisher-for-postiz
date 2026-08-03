@@ -5,7 +5,7 @@ Tags: social media automation, auto post, postiz, social media scheduler, auto p
 Requires at least: 6.2
 Tested up to: 7.0
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv3 or later
 License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
@@ -226,6 +226,11 @@ Free version support is available through the [WordPress support forums](https:/
 3. Post-level Logging.
 
 == Changelog ==
+
+= 1.1.0 (2026-08-05) =
+* Added: Namespaced `WPZinc\Social` (previously `WP_To_Social_*` classes) and `WPZinc\Shared` (previously WPZincDashboardSubmodule). See Docs: []
+* Updated: Improved WordPress Coding Standards for dates
+* Fix: Authentication: OAuth: Use nonce for improved security when connecting to Buffer
 
 = 1.0.0 =
 * First release.
