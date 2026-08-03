@@ -150,8 +150,8 @@ class Postiz_API {
 				'state'         => rawurlencode(
 					add_query_arg(
 						array(
-							'wpzinc_social_publisher_pro_nonce' => wp_create_nonce( 'wpzinc_social_publisher_pro_nonce' ),
-							'page' => $this->base->plugin->name . '-settings',
+							'_wpnonce' => wp_create_nonce( $this->base->plugin->filter_name . '_oauth' ),
+							'page'     => $this->base->plugin->name . '-settings',
 						),
 						admin_url( 'admin.php' )
 					)
@@ -639,7 +639,7 @@ class Postiz_API {
 
 		// Check required parameters exist.
 		if ( empty( $this->access_token ) ) {
-			return new WP_Error( 'wpzinc_social_publisher_for_postiz_no_access_token', __( 'No access token was specified', 'wpzinc-social-publisher-for-postiz' ) );
+			return new \WP_Error( 'wpzinc_social_publisher_for_postiz_no_access_token', __( 'No access token was specified', 'wpzinc-social-publisher-for-postiz' ) );
 		}
 
 		// Build endpoint URL.
@@ -703,7 +703,7 @@ class Postiz_API {
 			$messages = is_array( $body['message'] ) ? $body['message'] : array( $body['message'] );
 
 			// Return WP_Error.
-			return new WP_Error(
+			return new \WP_Error(
 				'social_publisher_for_postiz_api_error',
 				implode( '; ', $messages )
 			);
