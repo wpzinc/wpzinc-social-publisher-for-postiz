@@ -74,7 +74,7 @@ class WP_To_Postiz {
 		$this->plugin->support_url       = 'https://www.wpzinc.com/support';
 
 		// Logo.
-		$this->plugin->logo                        = WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_URL . 'lib/assets/images/icons/postiz-dark.svg';
+		$this->plugin->logo                        = WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_URL . 'lib/social/assets/images/icons/postiz-dark.svg';
 		$this->plugin->header_background_color     = '#ffffff';
 		$this->plugin->header_primary_text_color   = '#3d3d3d';
 		$this->plugin->header_secondary_text_color = '#6e6e6e';
@@ -112,7 +112,7 @@ class WP_To_Postiz {
 	public function admin_menus( $minimum_capability ) {
 
 		// Menus.
-		add_menu_page( $this->plugin->displayName, $this->plugin->displayName, $minimum_capability, $this->plugin->name . '-settings', array( $this->get_class( 'admin' ), 'settings_screen' ), $this->plugin->url . 'lib/assets/images/icons/' . strtolower( $this->plugin->account ) . '-light.svg' );
+		add_menu_page( $this->plugin->displayName, $this->plugin->displayName, $minimum_capability, $this->plugin->name . '-settings', array( $this->get_class( 'admin' ), 'settings_screen' ), $this->plugin->url . 'lib/social/assets/images/icons/' . strtolower( $this->plugin->account ) . '-light.svg' );
 
 		// Register Submenu Pages.
 		$settings_page = add_submenu_page( $this->plugin->name . '-settings', __( 'Settings', 'wpzinc-social-publisher-for-postiz' ), __( 'Settings', 'wpzinc-social-publisher-for-postiz' ), $minimum_capability, $this->plugin->name . '-settings', array( $this->get_class( 'admin' ), 'settings_screen' ) );
