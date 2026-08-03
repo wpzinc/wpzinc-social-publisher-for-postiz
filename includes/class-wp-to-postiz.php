@@ -62,7 +62,7 @@ class WP_To_Postiz {
 		$this->plugin              = new stdClass();
 		$this->plugin->name        = 'wpzinc-social-publisher-for-postiz';
 		$this->plugin->filter_name = 'wpzinc_social_publisher_for_postiz';
-		$this->plugin->displayName = 'Postiz';
+		$this->plugin->displayName = 'WP to Postiz';
 
 		$this->plugin->settingsName      = 'wpzinc-social-publisher-for-postiz-pro'; // Settings key - used in both Free + Pro, and for oAuth.
 		$this->plugin->account           = 'Postiz';
@@ -141,10 +141,6 @@ class WP_To_Postiz {
 
 		// Upgrade Reasons.
 		$this->plugin->upgrade_reasons = array(
-			array(
-				__( 'Post to Instagram and Pinterest', 'wpzinc-social-publisher-for-postiz' ),
-				__( 'Pro supports Direct Posting to Instagram Business Profiles and Pinterest Boards', 'wpzinc-social-publisher-for-postiz' ),
-			),
 			array(
 				__( 'Multiple Postiz Account Support', 'wpzinc-social-publisher-for-postiz' ),
 				__( 'Pro supports connecting multiple Buffer accounts to a single WordPress site', 'wpzinc-social-publisher-for-postiz' ),
