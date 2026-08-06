@@ -228,9 +228,9 @@ Free version support is available through the [WordPress support forums](https:/
 == Changelog ==
 
 = 1.1.0 (2026-08-05) =
-* Added: Namespaced `WPZinc\Social` (previously `WP_To_Social_*` classes) and `WPZinc\Shared` (previously WPZincDashboardSubmodule). See Docs: []
+* Added: Namespaced `WPZinc\Social` (previously `WP_To_Social_*` classes) and `WPZinc\Shared` (previously WPZincDashboardSubmodule)
 * Updated: Improved WordPress Coding Standards for dates
-* Fix: Authentication: OAuth: Use nonce for improved security when connecting to Buffer
+* Fix: Authentication: OAuth: Use nonce for improved security when connecting to Postiz
 
 = 1.0.0 =
 * First release.

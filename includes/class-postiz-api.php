@@ -1,6 +1,6 @@
 <?php
 /**
- * Buffer API class
+ * Postiz API class
  *
  * @package WPZinc\Social
  * @author  WP Zinc
