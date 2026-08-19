@@ -3,9 +3,13 @@
  * Creates the ACTIONS-FILTERS.md markdown file, comprising of all
  * action and filter hooks parsed from the Plugin code.
  *
- * @package Social Publisher for Postiz
+ * @package WPZinc_Social_Publisher_For_Postiz
  * @author WP Zinc
  */
+
+// Resolve all relative paths against this script's directory, so the script
+// works regardless of the directory it is executed from.
+chdir( __DIR__ );
 
 // Setup Read Actions and Filters class.
 require_once 'class-read-actions-filters.php';
@@ -13,32 +17,30 @@ $read_actions_filters = new Read_Actions_Filters();
 
 // Read Plugin filters.
 $filter_docs = $read_actions_filters->run(
-	// Define Plugin folders to include in Docs. 
-    array(
-    	'../admin',
+    folders: array(
+    	'../lib/social/includes',
     	'../includes',
-    	'../views',
+    	'../lib/social/views',
     ),
-    true, // Extract filters.
-    false, // Extract actions.
-    'markdown', // Return as HTML/markdown compatible with GitHub.
-    '\'social_publisher_for_postiz_', // Only build Docs for actions starting with social_publisher_for_postiz_.
-    false, // Change prefix.
-    true // Return by file.
+    extract_filters: true,
+    extract_actions: false,
+    return_format: 'markdown',
+    prefix_required: '$this->base->plugin->filter_name . \'_',
+    prefix_required_replacement: '\'wpzinc_social_publisher_for_postiz_',
+    by_file: true
 );
-$action_docs = $read_actions_filters->run( 
-	// Define Plugin folders to include in Docs.
-    array(
-    	'../admin',
+$action_docs = $read_actions_filters->run(
+    folders: array(
+    	'../lib/social/includes',
     	'../includes',
-    	'../views',
+    	'../lib/social/views',
     ),
-    false, // Extract filters.
-    true, // Extract actions.
-    'markdown', // Return as HTML/markdown compatible with GitHub.
-    '\'social_publisher_for_postiz_', // Only build Docs for actions starting with social_publisher_for_postiz_.
-    false, // Change prefix.
-    true // Return by file.
+    extract_filters: false,
+    extract_actions: true,
+    return_format: 'markdown',
+    prefix_required: '$this->base->plugin->filter_name . \'_',
+    prefix_required_replacement: '\'wpzinc_social_publisher_for_postiz_',
+    by_file: true
 );
 
 // Build HTML.
