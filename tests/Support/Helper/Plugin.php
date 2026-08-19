@@ -20,7 +20,7 @@ class Plugin extends \Codeception\Module
 	 */
 	public function activatePostizAutoPosterPlugin($I)
 	{
-		$I->activateThirdPartyPlugin($I, 'wp-to-postiz');
+		$I->activateThirdPartyPlugin($I, 'wpzinc-social-publisher-for-postiz');
 	}
 
 	/**
@@ -33,7 +33,7 @@ class Plugin extends \Codeception\Module
 	 */
 	public function deactivatePostizAutoPosterPlugin($I)
 	{
-		$I->deactivateThirdPartyPlugin($I, 'wp-to-postiz');
+		$I->deactivateThirdPartyPlugin($I, 'wpzinc-social-publisher-for-postiz');
 	}
 
 	/**
