@@ -177,7 +177,7 @@ class Postiz_API {
 
 	/**
 	 * Returns the Postiz URL where the user can connect their social media accounts
-	 * to Buffer
+	 * to Postiz
 	 *
 	 * @since   1.0.0
 	 *
@@ -198,9 +198,9 @@ class Postiz_API {
 	 * @param   string $profile_id     Profile ID.
 	 * @return  string                  Timezone Settings URL
 	 */
-	public function get_timezone_settings_url( $profile_id ) {
+	public function get_timezone_settings_url( $profile_id ) { // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter.Found
 
-		return 'https://publish.buffer.com/profile/' . $profile_id . '/tab/settings/postingSchedule';
+		return 'https://platform.postiz.com/launches';
 
 	}
 
@@ -309,6 +309,11 @@ class Postiz_API {
 		// Build profiles array from results.
 		$profiles = array();
 		foreach ( $results as $channel ) {
+			// Skip anything that isn't a channel, in case the API response shape changes.
+			if ( ! is_array( $channel ) || ! isset( $channel['identifier'], $channel['id'] ) ) {
+				continue;
+			}
+
 			// Skip some unsupported services.
 			if ( in_array( $channel['identifier'], array( 'youtube', 'kick', 'twitch', 'reddit', 'lemmy', 'discord', 'slack', 'warpcast', 'nostr', 'dribbble', 'medium', 'devto', 'hashnode', 'wordpress', 'listmonk', 'whop', 'skool', 'kick', 'moltbook' ), true ) ) {
 				continue;
@@ -697,15 +702,45 @@ class Postiz_API {
 		// Decode response.
 		$body = json_decode( $response, true );
 
-		// If an error is detected, return it.
-		if ( array_key_exists( 'error', $body ) ) {
-			// Messages can be a string or array.
-			$messages = is_array( $body['message'] ) ? $body['message'] : array( $body['message'] );
-
-			// Return WP_Error.
+		// Bail if the response isn't valid JSON.
+		if ( ! is_array( $body ) ) {
 			return new \WP_Error(
 				'social_publisher_for_postiz_api_error',
-				implode( '; ', $messages )
+				sprintf(
+					/* translators: HTTP status code */
+					__( 'Postiz API: unexpected response (HTTP %s).', 'wpzinc-social-publisher-for-postiz' ),
+					$http_code
+				)
+			);
+		}
+
+		// Bail if the API key was rejected.
+		if ( $http_code === 401 || $http_code === 403 ) {
+			return new \WP_Error(
+				'social_publisher_for_postiz_api_unauthorized',
+				sprintf(
+					/* translators: %1$s: Social Media Scheduler Name, %2$s: Plugin Name, %3$s: Error message from Postiz */
+					__( '%1$s rejected the API key. Go to %2$s > Settings and click Reconnect. (%3$s)', 'wpzinc-social-publisher-for-postiz' ),
+					$this->base->plugin->account,
+					$this->base->plugin->displayName,
+					$this->get_error_message( $body, $http_code )
+				)
+			);
+		}
+
+		// Bail on any other unsuccessful response.
+		if ( $http_code < 200 || $http_code > 299 ) {
+			return new \WP_Error(
+				'social_publisher_for_postiz_api_error',
+				$this->get_error_message( $body, $http_code )
+			);
+		}
+
+		// Bail if the body contains an error.
+		if ( array_key_exists( 'error', $body ) ) {
+			return new \WP_Error(
+				'social_publisher_for_postiz_api_error',
+				$this->get_error_message( $body, $http_code )
 			);
 		}
 
@@ -763,4 +798,32 @@ class Postiz_API {
 
 	}
 
+
+	/**
+	 * Returns an error message from the given API response body.
+	 *
+	 * @since   1.1.0
+	 *
+	 * @param   array $body        Response body.
+	 * @param   int   $http_code   HTTP status code.
+	 * @return  string              Error message
+	 */
+	private function get_error_message( $body, $http_code ) {
+
+		// Postiz returns errors in either the message or error key, as a string or array.
+		foreach ( array( 'message', 'error' ) as $key ) {
+			if ( empty( $body[ $key ] ) ) {
+				continue;
+			}
+
+			return implode( '; ', (array) $body[ $key ] );
+		}
+
+		return sprintf(
+			/* translators: HTTP status code */
+			__( 'Postiz API returned HTTP %s.', 'wpzinc-social-publisher-for-postiz' ),
+			$http_code
+		);
+
+	}
 }
