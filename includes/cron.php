@@ -50,23 +50,3 @@ function wp_to_postiz_media_cleanup_cron() {
 
 }
 add_action( 'wp_to_postiz_media_cleanup_cron', 'wp_to_postiz_media_cleanup_cron' );
-
-/**
- * Define the WP Cron function to refresh access tokens before they expire
- *
- * @since   6.2.0
- */
-function wpzinc_social_publisher_for_postiz_refresh_token_cron() {
-
-	// Initialise Plugin.
-	$wpzinc_social_publisher_for_postiz = WPZinc_Social_Publisher_For_Postiz::get_instance();
-	$wpzinc_social_publisher_for_postiz->initialize();
-
-	// Refresh any access tokens that are due to expire.
-	$wpzinc_social_publisher_for_postiz->get_class( 'cron' )->refresh_token();
-
-	// Shutdown.
-	unset( $wpzinc_social_publisher_for_postiz );
-
-}
-add_action( 'wpzinc_social_publisher_for_postiz_refresh_token_cron', 'wpzinc_social_publisher_for_postiz_refresh_token_cron' );
