@@ -27,7 +27,7 @@ if ( class_exists( 'WPZinc_Social_Publisher_For_Postiz' ) ) {
 
 // Define Plugin version and build date.
 define( 'WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_VERSION', '1.1.0' );
-define( 'WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_BUILD_DATE', '2026-08-05 18:00:00' );
+define( 'WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_BUILD_DATE', '2026-08-19 18:00:00' );
 
 // Define Plugin paths.
 define( 'WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
