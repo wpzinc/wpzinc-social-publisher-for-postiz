@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function wp_to_postiz_log_cleanup_cron() {
 
 	// Initialise Plugin.
-	$wp_to_postiz = wp_to_postiz::get_instance();
+	$wp_to_postiz = WP_To_Postiz::get_instance();
 	$wp_to_postiz->initialize();
 
 	// Call CRON Log Cleanup function.
@@ -39,7 +39,7 @@ add_action( 'wp_to_postiz_log_cleanup_cron', 'wp_to_postiz_log_cleanup_cron' );
 function wp_to_postiz_media_cleanup_cron() {
 
 	// Initialise Plugin.
-	$wp_to_postiz = wp_to_postiz::get_instance();
+	$wp_to_postiz = WP_To_Postiz::get_instance();
 	$wp_to_postiz->initialize();
 
 	// Call Media Cleanup function.

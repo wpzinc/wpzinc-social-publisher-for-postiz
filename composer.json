@@ -31,7 +31,7 @@
         "fix-js": "npm run fix:js",
         "build-js": "npm run build:js",
         "build": "npm run build",
-        "phpstan": "vendor/bin/phpstan analyse --memory-limit=1250M",
+        "phpstan": "vendor/bin/phpstan analyse --memory-limit=2G",
         "test": [
             "vendor/bin/codecept build",
             "vendor/bin/codecept run EndToEnd @additional_args --fail-fast"

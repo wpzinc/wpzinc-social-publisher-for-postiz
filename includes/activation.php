@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 function wp_to_postiz_activate( $network_wide ) {
 
 	// Initialise Plugin.
-	$wp_to_postiz = wp_to_postiz::get_instance();
+	$wp_to_postiz = WP_To_Postiz::get_instance();
 	$wp_to_postiz->initialize();
 
 	// Check if we are on a multisite install, activating network wide, or a single install.
@@ -35,7 +35,7 @@ function wp_to_postiz_activate( $network_wide ) {
 			)
 		);
 		foreach ( $sites as $site ) {
-			switch_to_blog( $site->blog_id );
+			switch_to_blog( (int) $site->blog_id );
 			$wp_to_postiz->get_class( 'install' )->install();
 			restore_current_blog();
 		}
@@ -59,7 +59,7 @@ function wp_to_postiz_activate_new_site( $site_or_blog_id ) {
 	}
 
 	// Initialise Plugin.
-	$wp_to_postiz = wp_to_postiz::get_instance();
+	$wp_to_postiz = WP_To_Postiz::get_instance();
 	$wp_to_postiz->initialize();
 
 	// Run installation routine.

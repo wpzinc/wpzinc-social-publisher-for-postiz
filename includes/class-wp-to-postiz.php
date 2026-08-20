@@ -20,7 +20,7 @@ class WP_To_Postiz {
 	 *
 	 * @since   1.0.0
 	 *
-	 * @var     object
+	 * @var     object|null
 	 */
 	public static $instance;
 
@@ -31,7 +31,7 @@ class WP_To_Postiz {
 	 *
 	 * @var     object
 	 */
-	public $plugin = '';
+	public $plugin;
 
 	/**
 	 * Dashboard
@@ -40,16 +40,16 @@ class WP_To_Postiz {
 	 *
 	 * @var     object
 	 */
-	public $dashboard = '';
+	public $dashboard;
 
 	/**
 	 * Classes
 	 *
 	 * @since   1.0.0
 	 *
-	 * @var     array
+	 * @var     object
 	 */
-	public $classes = '';
+	public $classes;
 
 	/**
 	 * Constructor. Acts as a bootstrap to load the rest of the plugin
@@ -218,7 +218,7 @@ class WP_To_Postiz {
 
 		// Initialize required classes.
 		$this->classes->admin         = new \WPZinc\Social\Admin( self::$instance );
-		$this->classes->ajax          = new \WPZinc\Social\AJAX( self::$instance );
+		$this->classes->ajax          = new \WPZinc\Social\Ajax( self::$instance );
 		$this->classes->api           = new \WPZinc\Social\Postiz_API( self::$instance );
 		$this->classes->common        = new \WPZinc\Social\Common( self::$instance );
 		$this->classes->cron          = new \WPZinc\Social\Cron( self::$instance );
@@ -326,7 +326,7 @@ class WP_To_Postiz {
 	 */
 	public static function get_instance() {
 
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof self ) ) {
+		if ( ! self::$instance instanceof self ) {
 			self::$instance = new self();
 		}
 

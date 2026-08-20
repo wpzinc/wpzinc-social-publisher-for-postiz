@@ -22,7 +22,7 @@ class Postiz_API {
 	 *
 	 * @since   1.0.0
 	 *
-	 * @var     object.
+	 * @var     object
 	 */
 	public $base;
 
@@ -31,7 +31,7 @@ class Postiz_API {
 	 *
 	 * @since   1.0.0
 	 *
-	 * @var     string.
+	 * @var     string
 	 */
 	private $client_id = 'pca_qqjGRuJ7khiATvS7d59KqBWGd9wWnAnU';
 
@@ -40,34 +40,16 @@ class Postiz_API {
 	 *
 	 * @since   1.0.0
 	 *
-	 * @var     string.
+	 * @var     string
 	 */
 	private $oauth_authorize_url = 'https://platform.postiz.com/oauth/';
-
-	/**
-	 * Holds the oAuth Gateway endpoint, used to exchange a code for an access token
-	 *
-	 * @since   1.0.0
-	 *
-	 * @var     string.
-	 */
-	private $redirect_uri = 'https://www.wpzinc.com/?oauth=postiz';
-
-	/**
-	 * Holds the Proxy endpoint, which might be used to pass requests through
-	 *
-	 * @since   1.0.0
-	 *
-	 * @var     string.
-	 */
-	private $proxy_endpoint = 'https://proxy.wpzinc.net/';
 
 	/**
 	 * Holds the API endpoint
 	 *
 	 * @since   1.0.0
 	 *
-	 * @var     string.
+	 * @var     string
 	 */
 	private $api_endpoint = 'https://api.postiz.com/public/v1/';
 
@@ -94,7 +76,7 @@ class Postiz_API {
 	 *
 	 * @since   1.0.0
 	 *
-	 * @var     int
+	 * @var     int|false
 	 */
 	public $token_expires = false;
 
@@ -222,42 +204,6 @@ class Postiz_API {
 	}
 
 	/**
-	 * Checks if an access token was set.  Called by any function which
-	 * performs a call to the API
-	 *
-	 * @since   1.0.0
-	 *
-	 * @return  bool    Token Exists
-	 */
-	private function check_access_token_exists() {
-
-		if ( empty( $this->access_token ) ) {
-			return false;
-		}
-
-		return true;
-
-	}
-
-	/**
-	 * Checks if a refresh token was set.  Called by any function which
-	 * performs a call to the API
-	 *
-	 * @since   1.0.0
-	 *
-	 * @return  bool    Token Exists
-	 */
-	private function check_refresh_token_exists() {
-
-		if ( empty( $this->refresh_token ) ) {
-			return false;
-		}
-
-		return true;
-
-	}
-
-	/**
 	 * Returns the account details.
 	 *
 	 * @since   1.0.0
@@ -284,7 +230,7 @@ class Postiz_API {
 	 *
 	 * @param   bool   $force        Force API call (false = use stored option).
 	 * @param   string $account_id   Account ID.
-	 * @return  WP_Error|array
+	 * @return  \WP_Error|array
 	 */
 	public function profiles( $force = false, $account_id = 'default' ) {
 
@@ -429,7 +375,7 @@ class Postiz_API {
 	 *
 	 * @param   array  $params     Params.
 	 * @param   string $service    Service.
-	 * @return  WP_Error|array
+	 * @return  \WP_Error|array
 	 */
 	public function updates_create( $params, $service = '' ) {
 
@@ -592,7 +538,7 @@ class Postiz_API {
 	 * @since   1.0.0
 	 *
 	 * @param   string $id   Post ID.
-	 * @return  WP_Error|array
+	 * @return  \WP_Error|array
 	 */
 	public function get_post( $id ) {
 
@@ -607,7 +553,7 @@ class Postiz_API {
 	 *
 	 * @param  string $cmd        Command (required).
 	 * @param  array  $params     Params (optional).
-	 * @return WP_Error|array
+	 * @return \WP_Error|array
 	 */
 	private function get( $cmd, $params = array() ) {
 
@@ -622,7 +568,7 @@ class Postiz_API {
 	 *
 	 * @param  string $cmd        Command (required).
 	 * @param  array  $params     Params (optional).
-	 * @return WP_Error|array
+	 * @return \WP_Error|array
 	 */
 	private function post( $cmd, $params = array() ) {
 
@@ -638,7 +584,7 @@ class Postiz_API {
 	 * @param   string $cmd        Command.
 	 * @param   string $method     Method (get|post).
 	 * @param   array  $params     Parameters (optional).
-	 * @return  WP_Error|array
+	 * @return  \WP_Error|array
 	 */
 	private function request( $cmd, $method = 'get', $params = array() ) {
 
@@ -651,6 +597,7 @@ class Postiz_API {
 		$url = $this->api_endpoint . $cmd;
 
 		// Send request.
+		$response = new \WP_Error( 'wpzinc_social_publisher_for_postiz_api_invalid_method', __( 'Invalid request method.', 'wpzinc-social-publisher-for-postiz' ) );
 		switch ( $method ) {
 			/**
 			 * GET
