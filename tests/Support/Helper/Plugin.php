@@ -18,9 +18,9 @@ class Plugin extends \Codeception\Module
 	 *
 	 * @param   AcceptanceTester $I  Tester.
 	 */
-	public function activateWPToBufferProPlugin($I)
+	public function activatePostizAutoPosterPlugin($I)
 	{
-		$I->activateThirdPartyPlugin($I, 'wp-to-buffer-pro');
+		$I->activateThirdPartyPlugin($I, 'wpzinc-social-publisher-for-postiz');
 	}
 
 	/**
@@ -31,9 +31,9 @@ class Plugin extends \Codeception\Module
 	 *
 	 * @param   AcceptanceTester $I  Tester.
 	 */
-	public function deactivateWPToBufferProPlugin($I)
+	public function deactivatePostizAutoPosterPlugin($I)
 	{
-		$I->deactivateThirdPartyPlugin($I, 'wp-to-buffer-pro');
+		$I->deactivateThirdPartyPlugin($I, 'wpzinc-social-publisher-for-postiz');
 	}
 
 	/**
