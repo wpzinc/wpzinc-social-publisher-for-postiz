@@ -229,6 +229,7 @@ Free version support is available through the [WordPress support forums](https:/
 
 = 1.1.2 (2026-08-xx) =
 * Fix: Upgrade wording
+* Fix: Documentation link
 
 = 1.1.1 (2026-08-20) =
 * Fix: Status: Images: Don't attempt to assign image to status if no image exists
