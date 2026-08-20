@@ -227,7 +227,8 @@ Free version support is available through the [WordPress support forums](https:/
 
 == Changelog ==
 
-= 1.1.2 (2026-08-xx) =
+= 1.1.2 (2026-08-21) =
+* Added: PHPStan static analysis improvements
 * Fix: Upgrade wording
 * Fix: Documentation link
 
