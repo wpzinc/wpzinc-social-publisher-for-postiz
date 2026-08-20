@@ -72,6 +72,7 @@ class WP_To_Postiz {
 		$this->plugin->url               = WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_URL;
 		$this->plugin->documentation_url = 'https://www.wpzinc.com/documentation/wordpress-buffer-pro/';
 		$this->plugin->support_url       = 'https://www.wpzinc.com/support';
+		$this->plugin->upgrade_url       = 'https://www.wpzinc.com/plugins/wordpress-to-postiz-pro';
 
 		// Logo.
 		$this->plugin->logo                        = WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_URL . 'lib/social/assets/images/icons/postiz-dark.svg';
@@ -122,6 +123,8 @@ class WP_To_Postiz {
 			$log_page = add_submenu_page( $this->plugin->name . '-settings', __( 'Logs', 'wpzinc-social-publisher-for-postiz' ), __( 'Logs', 'wpzinc-social-publisher-for-postiz' ), $minimum_capability, $this->plugin->name . '-log', array( $this->get_class( 'admin' ), 'log_screen' ) );
 			add_action( "load-$log_page", array( $this->get_class( 'log' ), 'add_screen_options' ) );
 		}
+
+		$upgrade_page = add_submenu_page( $this->plugin->name . '-settings', __( 'Upgrade', 'wpzinc-social-publisher-for-postiz' ), __( 'Upgrade', 'wpzinc-social-publisher-for-postiz' ), $minimum_capability, $this->plugin->name . '-upgrade', array( $this->get_class( 'admin' ), 'upgrade_screen' ) );
 
 	}
 
