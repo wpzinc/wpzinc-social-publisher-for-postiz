@@ -6,7 +6,7 @@ namespace Tests\Support\Helper;
  * would be used across multiple tests.
  * These are then available using $I->{yourFunctionName}.
  *
- * @since   1.0.0
+ * @since   3.8.4
  */
 class Plugin extends \Codeception\Module
 {
@@ -14,33 +14,33 @@ class Plugin extends \Codeception\Module
 	 * Helper method to activate the Plugin, checking
 	 * it activated and no errors were output.
 	 *
-	 * @since   1.0.0
+	 * @since   3.8.4
 	 *
 	 * @param   AcceptanceTester $I  Tester.
 	 */
-	public function activatePostizAutoPosterPlugin($I)
+	public function activateWPToBufferProPlugin($I)
 	{
-		$I->activateThirdPartyPlugin($I, 'wpzinc-social-publisher-for-postiz');
+		$I->activateThirdPartyPlugin($I, 'wp-to-buffer-pro');
 	}
 
 	/**
 	 * Helper method to deactivate the Plugin, checking
 	 * it activated and no errors were output.
 	 *
-	 * @since   1.0.0
+	 * @since   3.8.4
 	 *
 	 * @param   AcceptanceTester $I  Tester.
 	 */
-	public function deactivatePostizAutoPosterPlugin($I)
+	public function deactivateWPToBufferProPlugin($I)
 	{
-		$I->deactivateThirdPartyPlugin($I, 'wpzinc-social-publisher-for-postiz');
+		$I->deactivateThirdPartyPlugin($I, 'wp-to-buffer-pro');
 	}
 
 	/**
 	 * Helper method to activate a third party Plugin, checking
 	 * it activated and no errors were output.
 	 *
-	 * @since   1.0.0
+	 * @since   3.8.4
 	 *
 	 * @param   EndToEndTester $I                       EndToEndTester.
 	 * @param   string         $name                    Plugin Slug.
@@ -59,7 +59,7 @@ class Plugin extends \Codeception\Module
 		$I->waitForElementVisible('body.plugins-php');
 
 		// Activate the Plugin.
-		$I->checkOption('//*[@data-slug="' . $name . '"]/th/input');
+		$I->checkOption('//*[@data-slug="' . $name . '"]//input[@type="checkbox"]');
 		$I->selectOption('action', 'activate-selected');
 		$I->click('#doaction');
 
@@ -74,7 +74,7 @@ class Plugin extends \Codeception\Module
 	 * Helper method to activate a third party Plugin, checking
 	 * it activated and no errors were output.
 	 *
-	 * @since   1.0.0
+	 * @since   3.8.4
 	 *
 	 * @param   EndToEndTester $I      EndToEnd Tester.
 	 * @param   string         $name   Plugin Slug.
@@ -93,7 +93,7 @@ class Plugin extends \Codeception\Module
 		$I->waitForElementVisible('body.plugins-php');
 
 		// Deactivate the Plugin.
-		$I->checkOption('//*[@data-slug="' . $name . '"]/th/input');
+		$I->checkOption('//*[@data-slug="' . $name . '"]//input[@type="checkbox"]');
 		$I->selectOption('action', 'deactivate-selected');
 		$I->click('#doaction');
 	}
@@ -101,7 +101,7 @@ class Plugin extends \Codeception\Module
 	/**
 	 * Helper method to check if the Administrator is logged in.
 	 *
-	 * @since   1.0.0
+	 * @since   5.0.5
 	 *
 	 * @param   EndToEndTester $I      EndToEnd Tester.
 	 *
@@ -116,7 +116,7 @@ class Plugin extends \Codeception\Module
 	/**
 	 * Helper method to reliably login as the Administrator.
 	 *
-	 * @since   1.0.0
+	 * @since   5.0.5
 	 *
 	 * @param   EndToEndTester $I      EndToEnd Tester.
 	 */
