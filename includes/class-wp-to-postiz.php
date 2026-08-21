@@ -20,7 +20,7 @@ class WP_To_Postiz {
 	 *
 	 * @since   1.0.0
 	 *
-	 * @var     object
+	 * @var     object|null
 	 */
 	public static $instance;
 
@@ -31,7 +31,7 @@ class WP_To_Postiz {
 	 *
 	 * @var     object
 	 */
-	public $plugin = '';
+	public $plugin;
 
 	/**
 	 * Dashboard
@@ -40,16 +40,16 @@ class WP_To_Postiz {
 	 *
 	 * @var     object
 	 */
-	public $dashboard = '';
+	public $dashboard;
 
 	/**
 	 * Classes
 	 *
 	 * @since   1.0.0
 	 *
-	 * @var     array
+	 * @var     object
 	 */
-	public $classes = '';
+	public $classes;
 
 	/**
 	 * Constructor. Acts as a bootstrap to load the rest of the plugin
@@ -70,7 +70,7 @@ class WP_To_Postiz {
 		$this->plugin->buildDate         = WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_BUILD_DATE;
 		$this->plugin->folder            = WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_PATH;
 		$this->plugin->url               = WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_URL;
-		$this->plugin->documentation_url = 'https://www.wpzinc.com/documentation/wordpress-buffer-pro/';
+		$this->plugin->documentation_url = 'https://www.wpzinc.com/documentation/wordpress-to-postiz-pro';
 		$this->plugin->support_url       = 'https://www.wpzinc.com/support';
 		$this->plugin->upgrade_url       = 'https://www.wpzinc.com/plugins/wordpress-to-postiz-pro';
 
@@ -146,7 +146,7 @@ class WP_To_Postiz {
 		$this->plugin->upgrade_reasons = array(
 			array(
 				__( 'Multiple Postiz Account Support', 'wpzinc-social-publisher-for-postiz' ),
-				__( 'Pro supports connecting multiple Buffer accounts to a single WordPress site', 'wpzinc-social-publisher-for-postiz' ),
+				__( 'Pro supports connecting multiple Postiz accounts to a single WordPress site', 'wpzinc-social-publisher-for-postiz' ),
 			),
 			array(
 				__( 'Multiple, Customisable Status Messages', 'wpzinc-social-publisher-for-postiz' ),
@@ -154,11 +154,11 @@ class WP_To_Postiz {
 			),
 			array(
 				__( 'Conditionally send Status Messages', 'wpzinc-social-publisher-for-postiz' ),
-				__( 'Only send status(es) to Buffer based on Post Author(s), Taxonomy Term(s) and/or Custom Field Values', 'wpzinc-social-publisher-for-postiz' ),
+				__( 'Only send status(es) to Postiz based on Post Author(s), Taxonomy Term(s) and/or Custom Field Values', 'wpzinc-social-publisher-for-postiz' ),
 			),
 			array(
 				__( 'More Scheduling Options', 'wpzinc-social-publisher-for-postiz' ),
-				__( 'Each status update can be added to the start/end of your Buffer queue, posted immediately or scheduled at a specific time', 'wpzinc-social-publisher-for-postiz' ),
+				__( 'Each status update can be posted immediately, at a custom time, or at a specific date and time', 'wpzinc-social-publisher-for-postiz' ),
 			),
 			array(
 				__( 'Dynamic Status Tags', 'wpzinc-social-publisher-for-postiz' ),
@@ -170,7 +170,7 @@ class WP_To_Postiz {
 			),
 			array(
 				__( 'Per-Post Settings', 'wpzinc-social-publisher-for-postiz' ),
-				__( 'Override Settings on Individual Posts: Each Post can have its own Buffer settings', 'wpzinc-social-publisher-for-postiz' ),
+				__( 'Override Settings on Individual Posts: Each Post can have its own Postiz settings', 'wpzinc-social-publisher-for-postiz' ),
 			),
 			array(
 				__( 'Repost Old Posts', 'wpzinc-social-publisher-for-postiz' ),
@@ -182,7 +182,7 @@ class WP_To_Postiz {
 			),
 			array(
 				__( 'The Events Calendar, Event Manager and Modern Events Calendar Integration', 'wpzinc-social-publisher-for-postiz' ),
-				__( 'Schedule Posts to Buffer based on your Event\'s Start or End date, and display Event-specific details in your status updates', 'wpzinc-social-publisher-for-postiz' ),
+				__( 'Schedule Posts to Postiz based on your Event\'s Start or End date, and display Event-specific details in your status updates', 'wpzinc-social-publisher-for-postiz' ),
 			),
 			array(
 				__( 'SEO Integration', 'wpzinc-social-publisher-for-postiz' ),
@@ -218,7 +218,7 @@ class WP_To_Postiz {
 
 		// Initialize required classes.
 		$this->classes->admin         = new \WPZinc\Social\Admin( self::$instance );
-		$this->classes->ajax          = new \WPZinc\Social\AJAX( self::$instance );
+		$this->classes->ajax          = new \WPZinc\Social\Ajax( self::$instance );
 		$this->classes->api           = new \WPZinc\Social\Postiz_API( self::$instance );
 		$this->classes->common        = new \WPZinc\Social\Common( self::$instance );
 		$this->classes->cron          = new \WPZinc\Social\Cron( self::$instance );
@@ -326,7 +326,7 @@ class WP_To_Postiz {
 	 */
 	public static function get_instance() {
 
-		if ( ! isset( self::$instance ) && ! ( self::$instance instanceof self ) ) {
+		if ( ! self::$instance instanceof self ) {
 			self::$instance = new self();
 		}
 
