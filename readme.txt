@@ -5,7 +5,7 @@ Tags: social media automation, auto post, postiz, social media scheduler, auto p
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -226,6 +226,9 @@ Free version support is available through the [WordPress support forums](https:/
 3. Post-level Logging.
 
 == Changelog ==
+
+= 1.1.3 (2026-08-24) =
+* Updated: Libraries
 
 = 1.1.2 (2026-08-21) =
 * Added: PHPStan static analysis improvements
