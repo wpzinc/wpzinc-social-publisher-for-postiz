@@ -229,6 +229,7 @@ Free version support is available through the [WordPress support forums](https:/
 
 = 1.1.7 (2026-11-20) =
 * Fix: Security: Check the user can edit the Post before viewing or clearing its Log, and can access the Plugin's settings before saving them
+* Fix: Security: Escape status text, profile names and API responses when displaying Logs
 
 = 1.1.6 (2026-11-11) =
 * Fix: Authentication: Re-read stored credentials from the database before clearing them, so newer credentials saved by another request are not removed
