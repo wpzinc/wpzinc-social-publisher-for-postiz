@@ -5,7 +5,7 @@ Tags: social media automation, auto post, postiz, social media scheduler, auto p
 Requires at least: 6.2
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.7
+Stable tag: 1.1.8
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -226,6 +226,9 @@ Free version support is available through the [WordPress support forums](https:/
 3. Post-level Logging.
 
 == Changelog ==
+
+= 1.1.8 (2026-11-23) =
+* Fix: Security: Only send statuses for a Post that is being published or updated, preventing a pending Post being sent to social media
 
 = 1.1.7 (2026-11-20) =
 * Fix: Security: Check the user can edit the Post before viewing or clearing its Log, and can access the Plugin's settings before saving them

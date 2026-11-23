@@ -8,7 +8,7 @@
  * @wordpress-plugin
  * Plugin Name: WP to Postiz
  * Plugin URI: https://www.wpzinc.com/plugins/wordpress-to-postiz-pro
- * Version: 1.1.7
+ * Version: 1.1.8
  * Author: WP Zinc
  * Author URI: https://www.wpzinc.com
  * Description: Send WordPress Pages, Posts or Custom Post Types to your Postiz (postiz.io) account for scheduled publishing to social networks.
@@ -27,7 +27,7 @@ if ( class_exists( 'WPZinc_Social_Publisher_For_Postiz' ) ) {
 }
 
 // Define Plugin version and build date.
-define( 'WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_VERSION', '1.1.7' );
+define( 'WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_VERSION', '1.1.8' );
 define( 'WPZINC_SOCIAL_PUBLISHER_FOR_POSTIZ_PLUGIN_BUILD_DATE', '2026-11-20 10:00:00' );
 
 // Define Plugin paths.
